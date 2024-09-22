@@ -132,6 +132,168 @@ th {
     background-color: #28a745;
     color: white;
 }
+.feedbackBtn{
+    background-color: white;
+    color: black;
+    border-radius: 10em;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid black;
+    box-shadow: 0 0 0 0 black;
+}
+.feedbackBtn:hover{
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 2px 5px 0 0 black;
+}
+.feedbackBtn:active{
+    transform: translateY(2px) translateX(1px);
+    box-shadow: 0 0 0 0 black;
+}
+.menu {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #000000;
+  width: fit-content;
+  display: flex;
+  list-style: none;
+}
+
+.menu a {
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.menu .link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 36px;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu .link::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0a3cff;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+/* From Uiverse.io by 3bdel3ziz-T */ 
+.select {
+  width: fit-content;
+  cursor: pointer;
+  position: relative;
+  transition: 300ms;
+  color: white;
+  overflow: hidden;
+}
+
+.selected {
+  background-color: #2a2f3b;
+  padding: 5px;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  position: relative;
+  z-index: 100000;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arrow {
+  position: relative;
+  right: 0px;
+  height: 10px;
+  transform: rotate(-90deg);
+  width: 25px;
+  fill: white;
+  z-index: 100000;
+  transition: 300ms;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #2a2f3b;
+  position: relative;
+  top: -100px;
+  opacity: 0;
+  transition: 300ms;
+}
+
+.select:hover > .options {
+  opacity: 1;
+  top: 0;
+}
+
+.select:hover > .selected .arrow {
+  transform: rotate(0deg);
+}
+
+.option {
+  border-radius: 5px;
+  padding: 5px;
+  transition: 300ms;
+  background-color: #2a2f3b;
+  width: 150px;
+  font-size: 15px;
+}
+.option:hover {
+  background-color: #323741;
+}
+
+.options input[type="radio"] {
+  display: none;
+}
+
+.options label {
+  display: inline-block;
+}
+.options label::before {
+  content: attr(data-txt);
+}
+
+.options input[type="radio"]:checked + label {
+  display: none;
+}
+
+.options input[type="radio"]#all:checked + label {
+  display: none;
+}
+
+.select:has(.options input[type="radio"]#all:checked) .selected::before {
+  content: attr(data-default);
+}
+.select:has(.options input[type="radio"]#option-1:checked) .selected::before {
+  content: attr(data-one);
+}
+.select:has(.options input[type="radio"]#option-2:checked) .selected::before {
+  content: attr(data-two);
+}
+.select:has(.options input[type="radio"]#option-3:checked) .selected::before {
+  content: attr(data-three);
+}
+
+
 
 @media (max-width: 768px) {
     header {
@@ -173,9 +335,45 @@ th {
         <nav>
             <div class="logo">Research University</div>
             <ul>
-                <li><a href="#">Dashboard</a></li>
+                <li><a href="{{route('supervisor.search')}}">Search</a></li>
                 <li><a href="#">Projects</a></li>
-                <li><a href="#">Teams</a></li>
+                <li>                    
+                    <div class="select">
+                    <div
+                        class="selected"
+                        data-default="Messaging"
+                        data-one="option-1"
+                        data-two="option-2"
+                        data-three="option-3"
+                    >
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="1em"
+                        viewBox="0 0 512 512"
+                        class="arrow"
+                        >
+                        <path
+                            d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+                        ></path>
+                        </svg>
+                    </div>
+                    <div class="options">
+                        <div title="all">
+                        <input id="all" name="option" type="radio" checked=""  />
+                        <label class="option" for="all" data-txt="Messaging"></label>
+                        </div>
+                        <div title="option-1">
+                        <input id="option-1" name="option" type="radio" />
+                        <a class="option" href="{{route('login')}} ">LOGIN</a>
+                        </div>
+                        <div title="option-2">
+                        <input id="option-2" name="option" type="radio" href="{{route('login')}}" />
+                        <a class="option" href="{{route('register')}} ">REGISTER</a>
+                        {{-- <label class="option" for="option-2" data-txt="Login"></label> --}}
+                        </div>
+                    </div>
+                    </div>
+                </li>
                 <li><a href="#">Calendar</a></li>
                 <li><a href="#">Docs</a></li>
             </ul>
@@ -219,10 +417,12 @@ th {
                             @method('POST')
                             @csrf
                             <input type="hidden" name="chapter_id" value="{{ $value->id }}">
-                            <select name="status" class="form-select">
+                            <select name="status" >
+                            <div class="options">
                                 <option value="Pending" {{ $value->status == 'Pending' ? 'selected' : '' }}>Pending</option>
                                 <option value="Graded" {{ $value->status == 'Graded' ? 'selected' : '' }}>Graded</option>
                                 <option value="Reviewed" {{ $value->status == 'Reviewed' ? 'selected' : '' }}>Reviewed</option>
+                            </div>
                             </select>
                             <button type="button" class="update-status-btn" data-form-id="status-form-{{ $value->id }}">Update</button>
                         </form>
@@ -234,7 +434,9 @@ th {
                     <td>    
                         <form action="{{ route('supervisor.feedback',  ['student_id' => $value->id]) }}" method="get">
                             <input type="hidden" name="student_id" value="{{ $value->id }}">
-                            <button type="submit">Add Feedback</button>
+                            <button class="feedbackBtn">
+                                Add Feedback
+                            </button>
                         </form>
                     </td>
                 </tr>

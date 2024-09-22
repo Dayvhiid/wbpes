@@ -60,6 +60,12 @@ return [
 
     ],
 
+        'chatify' => [
+        'driver' => 'local',
+        'root' => storage_path('app/public/attachments'),
+        'url' => env('APP_URL').'/storage/attachments',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Symbolic Links
@@ -74,5 +80,7 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
+
+    'storage_disk_name' => env('CHATIFY_STORAGE_DISK', 'public'),
 
 ];

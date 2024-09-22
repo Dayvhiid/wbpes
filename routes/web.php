@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ChapterController;
-use App\Http\Controllers\FeedBackController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\SupervisorController;
-use App\Http\Controllers\TestController;
 use App\Models\Student;
 use App\Models\Supervisor;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ChapterController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\FeedBackController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SupervisorController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,6 +37,8 @@ Route::get('supervisor/feedback/{student_id}', [SupervisorController::class, 'fe
 Route::get('supervisor/welcome/fix', [SupervisorController::class, 'supervisorFix'])->name('supervisor.fix');
 Route::post('supervisor/update/status', [ChapterController::class, 'update'])->name('chapterUpdate.update');
 Route::post('supervisor/feeback/save/{chapter}', [FeedBackController::class, 'feedbackSave'])->name('supervisor.feedback.save');
+Route::get('supervisor/search', [SupervisorController::class, 'search'])->name('supervisor.search');
+Route::get('supervisor/find', [SupervisorController::class, 'find'])->name('supervisor.find');
 
 //feeback
 Route::post('/feedback/store', [FeedBackController::class, 'store'])->name('feedback.store');
@@ -61,6 +64,26 @@ Route::get('/status/message', function () {
 });
 
 
-//status message routes
 Route::get('/signup/status', function () { return view('status.status'); })->name('status.status');
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+//status message routes
+
 

@@ -6,6 +6,7 @@ use App\Models\Chapter;
 use App\Models\Student;
 use App\Models\Supervisor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 
@@ -115,14 +116,21 @@ class SupervisorController extends Controller
             // $supervisor->update();
         }
 
-// For handling general errors
-// $student = Student::where('matric_no', $matricNo)->first();
-// if ($student) {
-//     return redirect(route('student.welcome', ['student' => $student->id]));
-//     echo "An error occurred while updating student data.";
-//     // report($e); // For logging or further debugging
-// }
+    }
 
+    function search(){
+        return view('supervisor.search');
+    }
+
+    function find(Request $request , Student $student){
+        $search_text = $_GET['query'];
+        // $students = Student::where('name','LIKE', '%'.$search_text.'%')->get();
+
+        $students = Student::where('name', 'LIKE', '%' . $search_text . '%')->get();
+        $chapters = Chapter::where('fullname', 'LIKE', '%' . $search_text . '%')->get();
+        
+        $results = $students->union($chapters);
+        return view('supervisor.find', compact('results'));
     }
 
 
@@ -135,19 +143,9 @@ class SupervisorController extends Controller
         return view('supervisor.feedback', compact('student'));
     }
 
-    function feedbackSave(){
-        
-    }
-
-   
 
     
 }
 
 
-// if ($search[0]['department']){
-//     $chapter = Supervisor::where('name', $data['name'])->get();
-//     return view('supervisor.welcome',['chapter' => $chapter]);
-// }else {
-//     return redirect(route('supervisor.form'));
-// }
+
