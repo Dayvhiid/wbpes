@@ -2,6 +2,9 @@
 
 use App\Models\Student;
 use App\Models\Supervisor;
+use App\Exports\StudentsExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\StudentData;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\AdminController;
@@ -12,6 +15,9 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FeedBackController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SupervisorController;
+use App\Http\Controllers\StudentDataController;
+use App\Http\Controllers\StudentGroupController;
+use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\StudentT;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +27,8 @@ Route::get('/', function () {
 Route::get('/signup', [AdminController::class, 'signup'])->name('admin.auth');
 Route::post('/signup/auth', [RegisterController::class, 'store'])->name('register.data');
 Route::post('/signup/check', [RegisterController::class, 'check'])->name('register.check');
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/group-students', [StudentGroupController::class, 'groupStudents']);
 
 //Supervisor
 // Route::get('/supervisor', [Supervisor::class, 'index'])->name('supervisor.index');
@@ -58,6 +66,7 @@ Route::get('student/projects', [ProjectController::class, 'projectList'])->name(
 Route::delete('student/projectList/delete/{chapter}', [ProjectController::class, 'delete'])->name('student.delete');
 
 
+
 //route to handle toast messages
 Route::get('/status/message', function () {
    return view('status.toast');
@@ -85,5 +94,11 @@ Route::middleware('auth')->group(function () {
 
 
 //status message routes
+
+
+//testing
+Route::get('/testing', [StudentDataController::class, 'index'])->name('testing');
+Route::get('users/export', [StudentDataController::class, 'export'])->name('users.export');
+Route::post('users/import', [StudentDataController::class, 'import'])->name('users.import');
 
 
