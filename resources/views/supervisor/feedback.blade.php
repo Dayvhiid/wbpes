@@ -78,6 +78,72 @@ textarea::-webkit-scrollbar{
 
   
     </form>
+    <form action="/submit-feedback" method="POST">
+      <!-- CSRF Token if you're using Laravel -->
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    
+      {{-- <h3>Feedback on Project: {{ $project->title }}</h3> --}}
+    
+      <!-- Title Evaluation -->
+      <label for="title">Title:</label>
+      <select id="title" name="title_evaluation">
+        <option value="meets">Meets Expectation</option>
+        <option value="does_not_meet">Does Not Meet Expectation</option>
+      </select><br>
+    
+      <!-- Methodology Evaluation -->
+      <label for="methodology">Methodology:</label>
+      <select id="methodology" name="methodology_evaluation">
+        <option value="meets">Meets Expectation</option>
+        <option value="does_not_meet">Does Not Meet Expectation</option>
+      </select><br>
+    
+      <!-- Literature Review Evaluation -->
+      <label for="literature_review">Literature Review:</label>
+      <select id="literature_review" name="literature_review_evaluation">
+        <option value="meets">Meets Expectation</option>
+        <option value="does_not_meet">Does Not Meet Expectation</option>
+      </select><br>
+    
+      <!-- Research Question Evaluation -->
+      <label for="research_question">Research Question:</label>
+      <select id="research_question" name="research_question_evaluation">
+        <option value="meets">Meets Expectation</option>
+        <option value="does_not_meet">Does Not Meet Expectation</option>
+      </select><br>
+    
+      <!-- Data Collection Evaluation -->
+      <label for="data_collection">Data Collection:</label>
+      <select id="data_collection" name="data_collection_evaluation">
+        <option value="meets">Meets Expectation</option>
+        <option value="does_not_meet">Does Not Meet Expectation</option>
+      </select><br>
+    
+      <!-- Data Analysis Evaluation -->
+      <label for="data_analysis">Data Analysis:</label>
+      <select id="data_analysis" name="data_analysis_evaluation">
+        <option value="meets">Meets Expectation</option>
+        <option value="does_not_meet">Does Not Meet Expectation</option>
+      </select><br>
+    
+      <!-- Conclusion Evaluation -->
+      <label for="conclusion">Conclusion:</label>
+      <select id="conclusion" name="conclusion_evaluation">
+        <option value="meets">Meets Expectation</option>
+        <option value="does_not_meet">Does Not Meet Expectation</option>
+      </select><br>
+    
+      <!-- Overall Presentation Quality -->
+      <label for="presentation_quality">Overall Presentation Quality:</label>
+      <select id="presentation_quality" name="presentation_quality_evaluation">
+        <option value="meets">Meets Expectation</option>
+        <option value="does_not_meet">Does Not Meet Expectation</option>
+      </select><br>
+    
+      <button type="submit">Submit Feedback</button>
+    </form>
+    
+    
     <script>
       const textarea = document.querySelector("textarea");
       textarea.addEventListener("keyup", e =>{
