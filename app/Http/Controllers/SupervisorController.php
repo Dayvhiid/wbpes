@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Session;
 
 class SupervisorController extends Controller
 {
-    
+    public function feedback($student_id) {
+        $student = Chapter::findOrFail($student_id);
+        return view('supervisor.feedback', compact('student'));
+    }
     public function index (){
         return view('supervisor.index');
     }
@@ -123,6 +126,7 @@ class SupervisorController extends Controller
 
    
     }
+
     
 
     function search(){
@@ -145,10 +149,6 @@ class SupervisorController extends Controller
         return view('supervisor.welcomeTwo', ['chapter' => $chapter]);
     }
 
-    function feedback($student_id){
-        $student = Chapter::findOrFail($student_id);
-        return view('supervisor.feedback', compact('student'));
-    }
 
 
     
