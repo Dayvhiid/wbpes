@@ -1,4 +1,7 @@
 {{-- -------------------- Saved Messages -------------------- --}}
+@php
+    use Illuminate\Support\Facades\Auth;
+@endphp
 @if($get == 'saved')
     <table class="messenger-list-item" data-contact="{{ Auth::user()->id }}">
         <tr data-action="0">

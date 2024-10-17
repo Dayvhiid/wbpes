@@ -1,4 +1,7 @@
 {{-- ---------------------- Image modal box ---------------------- --}}
+@php
+    use Illuminate\Support\Facades\Auth;
+@endphp
 <div id="imageModalBox" class="imageModal">
     <span class="imageModal-close">&times;</span>
     <img class="imageModal-content" id="imageModalBoxSrc">

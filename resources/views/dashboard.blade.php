@@ -1,15 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        {{-- <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2> --}}
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{-- {{ __('Dashboard') }} --}}
+            <a href="{{ url('/chatify') }}">Chat</a>
 
-
-        <h1  class="font-semibold text-xl text-gray-800 leading-tight">
-           <a href="{{route('chatify')}}">  
-            {{ __('Click To Proceed') }}
-           </a>
-        </h1>
+        </h2>
     </x-slot>
 
     {{-- <div class="py-12">

@@ -112,4 +112,11 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    'aliases' => [
+    // Other facades
+    'Auth' => Illuminate\Support\Facades\Auth::class,
+],
+
+    
+
 ];

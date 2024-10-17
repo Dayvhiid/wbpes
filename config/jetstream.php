@@ -1,7 +1,7 @@
 <?php
 
 use Laravel\Jetstream\Features;
-use Illuminate\Session\Middleware\AuthenticateSession;
+use Laravel\Jetstream\Http\Middleware\AuthenticateSession;
 
 return [
 
@@ -57,13 +57,13 @@ return [
     |
     */
 
-    // 'features' => [
-    //     // Features::termsAndPrivacyPolicy(),
-    //     // Features::profilePhotos(),
-    //     // Features::api(),
-    //     // Features::teams(['invitations' => true]),
-    //     Features::accountDeletion(),
-    // ],
+    'features' => [
+        // Features::termsAndPrivacyPolicy(),
+        // Features::profilePhotos(),
+        // Features::api(),
+        // Features::teams(['invitations' => true]),
+        Features::accountDeletion(),
+    ],
 
     /*
     |--------------------------------------------------------------------------

@@ -13,6 +13,7 @@ class studentData extends Model
         'matric_no',
         'department',
         'cgpa',
-        'phone_number'
+        'phone_number',
+        ''
     ];
 }

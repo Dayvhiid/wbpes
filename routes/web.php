@@ -28,8 +28,11 @@ Route::get('/signup', [AdminController::class, 'signup'])->name('admin.auth');
 Route::post('/signup/auth', [RegisterController::class, 'store'])->name('register.data');
 Route::post('/signup/check', [RegisterController::class, 'check'])->name('register.check');
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/group-students', [StudentGroupController::class, 'groupStudents']);
-
+Route::get('/group-students', [StudentGroupController::class, 'groupStudents']);//for grouping students
+Route::get('/file-upload', [AdminController::class, 'fileUpload'])->name('students.update');
+Route::get('/student-list', [AdminController::class, 'studentList'])->name('studentList');
+Route::get('/group-list', [AdminController::class, 'groupList'])->name('groupList');
+Route::get('/export-excel', [AdminController::class, 'exportExcel'])->name('export.excel');
 //Supervisor
 // Route::get('/supervisor', [Supervisor::class, 'index'])->name('supervisor.index');
 
@@ -39,7 +42,7 @@ Route::get('/supervisor', function () {
 Route::post('/supervisor/auth', [SupervisorController::class, 'store'])->name('supervisor.data');
 Route::post('/supervisor/check', [SupervisorController::class, 'check'])->name('supervisor.check');
 Route::get('supervisor/form', [SupervisorController::class, 'form'])->name('supervisor.form');
-Route::post('supervisor/form/save/{chapter}', [SupervisorController::class, 'save'])->name('supervisor.save');
+Route::post('supervisor/form/save', [SupervisorController::class, 'save'])->name('supervisor.save');
 Route::get('supervisor/welcome', [SupervisorController::class, 'welcome'])->name('supervisor.welcome');
 Route::get('supervisor/feedback/{student_id}', [SupervisorController::class, 'feedback'])->name('supervisor.feedback');
 Route::get('supervisor/welcome/fix', [SupervisorController::class, 'supervisorFix'])->name('supervisor.fix');
@@ -47,6 +50,7 @@ Route::post('supervisor/update/status', [ChapterController::class, 'update'])->n
 Route::post('supervisor/feeback/save/{chapter}', [FeedBackController::class, 'feedbackSave'])->name('supervisor.feedback.save');
 Route::get('supervisor/search', [SupervisorController::class, 'search'])->name('supervisor.search');
 Route::get('supervisor/find', [SupervisorController::class, 'find'])->name('supervisor.find');
+
 
 //feeback
 Route::post('/feedback/store', [FeedBackController::class, 'store'])->name('feedback.store');

@@ -35,26 +35,55 @@ class RegisterController extends Controller
         // return view('doctors.signup');
     }
 
-    public function check(Request $request){
-        //This function handles the signing in logic
-        $data = $request->validate([
-            'name' => 'required',
-            'password' => 'required',
-        ]);
-        $search = Admin::where('name', $data['name'])->get();
-        if (count($search) === 0) {
-            // No results found
-            return redirect(route('status.status'))->with('msg','Invalid Input details'); 
-        } else {
-            // Handle results (process $search)
-            if(password_verify($data['password'], $search[0]['password'])){
-                // return redirect(route('pages.register'));
-                error_log('Password Correct');
-          } else {
-              error_log('Password Incorrect');
-              return redirect(route('status.status'))->with('msg','Wrong Password'); 
-          }
-        }
+    // public function check(Request $request){
+    //     //This function handles the signing in logic
+    //     $data = $request->validate([
+    //         'name' => 'required',
+    //         'password' => 'required',
+    //     ]);
+    //     $search = Admin::where('name', $data['name'])->get();
+    //     if (count($search) === 0) {
+    //         // No results found
+    //         return redirect(route('status.status'))->with('msg','Invalid Input details'); 
+    //     } else {
+    //         // Handle results (process $search)
+    //         if(password_verify($data['password'], $search[0]['password'])){
+    //             // return redirect(route('pages.register'));
+    //             error_log('Password Correct');
+    //             return redirect(route('admin.dashboard'));
+    //       } else {
+    //           error_log('Password Incorrect');
+    //           return redirect(route('status.status'))->with('msg','Wrong Password'); 
+    //       }
+    //     }
 
+    // }
+    public function check(Request $request)
+{
+    // This function handles the signing in logic
+    $data = $request->validate([
+        'name' => 'required',
+        'password' => 'required',
+    ]);
+
+    // Search for the admin by name
+    $search = Admin::where('name', $data['name'])->first(); // Use first() instead of get()
+
+    if (!$search) {
+        // No results found
+        return redirect(route('status.status'))->with('msg', 'Invalid Input details');
+    } else {
+        // Handle results (process $search)
+        if (password_verify($data['password'], $search->password)) {
+            // Password is correct, save the user's name to the session
+            session(['user_name' => $search->name]); // Save the name to session
+            error_log('Password Correct');
+            return redirect(route('admin.dashboard'));
+        } else {
+            error_log('Password Incorrect');
+            return redirect(route('status.status'))->with('msg', 'Wrong Password');
+        }
     }
+}
+
 }

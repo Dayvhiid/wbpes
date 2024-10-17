@@ -69,8 +69,8 @@ textarea::-webkit-scrollbar{
         @csrf
         @method('POST')
     <div class="wrapper">
-      <h1>Add Feedback for {{ $student->fullname }}</h1>
-      <h2>Auto Resize Textarea</h2>
+      <h2> Feedback for {{ $student->fullname }}</h2>
+      {{-- <h2>Auto Resize Textarea</h2> --}}
       <input type="hidden" name="student_id" value="{{ $student->id }}">
       <textarea spellcheck="false" placeholder="Type something here..." name="feedback"></textarea>  
       <button type="submit">Save</button>

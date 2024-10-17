@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Auth;
+@endphp
+
 <title>{{ config('chatify.name') }}</title>
 
 {{-- Meta tags --}}

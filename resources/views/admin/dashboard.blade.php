@@ -207,7 +207,7 @@ table td{
 <body>
   <header class="header">
     <div class="logo">
-      <a href="#">EasyPay</a>
+      <a href="#">Babcock University</a>
       <div class="search_box">
         <input type="text" placeholder="Search EasyPay">
         <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
@@ -218,7 +218,7 @@ table td{
       <i class="fas fa-bell"></i>
       <div class="account">
         <img src="./pic/img.jpg" alt="">
-        <h4>Jhon Viek</h4>
+        <p>{{ session('user_name', 'Defualt Value') }}</p>
       </div>
     </div>
   </header>
@@ -227,11 +227,12 @@ table td{
       <div class="side_navbar">
         <span>Main Menu</span>
         <a href="#" class="active">Dashboard</a>
-        <a href="#">Profile</a>
-        <a href="#">History</a>
-        <a href="#">Application</a>
+        <a href="{{ route('testing') }}">Update Student List</a>
+        <a href="{{ route('studentList') }}">Student List</a>
+        <a href="{{ route('groupList')}}">Group Students</a>
+        {{-- <a href="#">Application</a>
         <a href="#">My Account</a>
-        <a href="#">Documnets</a>
+        <a href="#">Documnets</a> --}}
 
         <div class="links">
           <span>Quick Link</span>
@@ -244,12 +245,12 @@ table td{
 
     <div class="main-body">
       <h2>Dashboard</h2>
-      <div class="promo_card">
+      {{-- <div class="promo_card">
         <h1>Welcome to EasyPay</h1>
         <span>Lorem ipsum dolor sit amet.</span>
         <button>Learn More</button>
-      </div>
-
+      </div> --}}
+{{-- 
       <div class="history_lists">
         <div class="list1">
           <div class="row">
@@ -314,7 +315,7 @@ table td{
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> --}}
 {{-- 
         <div class="list2">
           <div class="row">

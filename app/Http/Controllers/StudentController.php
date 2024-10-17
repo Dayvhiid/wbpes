@@ -53,7 +53,7 @@ class StudentController extends Controller
         return view('student.welcome');
     }
 
-    public function check(Request $request)
+    public function check(Request $request) 
 {
     // This function handles the signing in logic
     $data = $request->validate([
@@ -128,7 +128,7 @@ class StudentController extends Controller
 
      // Find the student by matric number
     // Find the student by matric number
-$student = Student::where('matric_no', $matricNo)->first();
+     $student = Student::where('matric_no', $matricNo)->first();
 
 if ($student) {
     // Update the retrieved student instance

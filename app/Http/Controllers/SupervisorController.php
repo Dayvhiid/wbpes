@@ -16,12 +16,12 @@ class SupervisorController extends Controller
     public function index (){
         return view('supervisor.index');
     }
-    public function form(){
-        return view('supervisor.supervisorForms');
+    public function form(Chapter $chapter){
+        return view('supervisor.supervisorForms',  ['chapter' => $chapter->id]);
     }
     
     public function welcome(Chapter $chapter){
-        // $chapter = Chapter::where('project_supervisor', session('name'))->get();
+        $chapter = Chapter::where('project_supervisor', session('name'))->get();
         return view('supervisor.welcome', ['chapter' => $chapter]);
     }
 
@@ -70,9 +70,9 @@ class SupervisorController extends Controller
                 session(['name' => $data['name']]);
                 if ($search[0]['department']){
                     $chapter = Chapter::where('project_supervisor', $data['name'])->get();
-                    return view('supervisor.welcome',['chapter' => $chapter]);
+                    return view('supervisor.welcome', ['chapter' => $chapter] );
                 }else {
-                    return redirect(route('supervisor.form'));
+                    return redirect(route('supervisor.form',  ['chapter' => $chapter->id]));
                 }
           } else {
               error_log('Supervisor Password Incorrect');
@@ -83,6 +83,9 @@ class SupervisorController extends Controller
         }
 
     }
+
+   
+    
 
     public function save(Request $request, Chapter $chapter){
      
@@ -109,7 +112,7 @@ class SupervisorController extends Controller
             ]);
 
             // Redirect to the welcome route with the name
-            // return redirect(route('supervisor.welcome', ['chapter' => $chapter]));
+            // return redirect(route('supervisor.welcome', ['chapter' => $chapter->id]));
             return view('supervisor.welcome',['chapter' => $chapter]);
         } else {
             echo "Student with matric number '$' not found.";
@@ -117,6 +120,10 @@ class SupervisorController extends Controller
         }
 
     }
+
+   
+    }
+    
 
     function search(){
         return view('supervisor.search');
@@ -145,7 +152,7 @@ class SupervisorController extends Controller
 
 
     
-}
+
 
 
 

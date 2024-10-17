@@ -10,6 +10,7 @@ class GroupStudent extends Model
     use HasFactory;
     protected $fillable = [
         "matric_no",
-        "group_name"
+        "group_name",
+        "supervisor"
     ];
 }

@@ -24,8 +24,10 @@ class StudentDataController extends Controller
     public function import()
     {
         Excel::import(new StudentDataImport, request()->file('file'));
+        return redirect(route('status.status'))->with('msg', 'Student Database Imported Succesfully');
 
-        return redirect()->back()->with('success', 'Users Imported Successfully');
+
+        // return redirect()->back()->with('success', 'Users Imported Successfully');
     }
 
 

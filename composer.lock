@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3053108d9f348119050d0885de98bca2",
+    "content-hash": "5f7c21cf4fb81eba844d73d65498f8e4",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1576,16 +1576,16 @@
         },
         {
             "name": "laravel/jetstream",
-            "version": "v5.2.1",
+            "version": "v5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/jetstream.git",
-                "reference": "47e73a27541d368f3ac1178b7348b730cc19cd22"
+                "reference": "c9c23e14ac6c9cef7daf4f2754382de1ba5d567e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/jetstream/zipball/47e73a27541d368f3ac1178b7348b730cc19cd22",
-                "reference": "47e73a27541d368f3ac1178b7348b730cc19cd22",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/c9c23e14ac6c9cef7daf4f2754382de1ba5d567e",
+                "reference": "c9c23e14ac6c9cef7daf4f2754382de1ba5d567e",
                 "shasum": ""
             },
             "require": {
@@ -1639,7 +1639,7 @@
                 "issues": "https://github.com/laravel/jetstream/issues",
                 "source": "https://github.com/laravel/jetstream"
             },
-            "time": "2024-10-02T15:06:22+00:00"
+            "time": "2024-10-12T16:23:32+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -2269,16 +2269,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.5.10",
+            "version": "v3.5.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "774092003edb2670615ef09f3a9fbdd335d6d0d7"
+                "reference": "3c8d1f9d7d9098aaea663093ae168f2d5d2ae73d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/774092003edb2670615ef09f3a9fbdd335d6d0d7",
-                "reference": "774092003edb2670615ef09f3a9fbdd335d6d0d7",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/3c8d1f9d7d9098aaea663093ae168f2d5d2ae73d",
+                "reference": "3c8d1f9d7d9098aaea663093ae168f2d5d2ae73d",
                 "shasum": ""
             },
             "require": {
@@ -2333,7 +2333,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.5.10"
+                "source": "https://github.com/livewire/livewire/tree/v3.5.12"
             },
             "funding": [
                 {
@@ -2341,7 +2341,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-10T20:03:38+00:00"
+            "time": "2024-10-15T19:35:06+00:00"
         },
         {
             "name": "maatwebsite/excel",
