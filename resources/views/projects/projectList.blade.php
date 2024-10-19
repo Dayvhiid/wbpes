@@ -212,7 +212,7 @@ th {
                     <th>Project Title</th>
                     <th>Due Date</th>
                     <th>Submitted</th>
-                    <th>Status</th>
+                    <th>Evaluation</th>
                     <th>View</th>
                     <th>Delete</th>
                 </tr>
@@ -229,11 +229,16 @@ th {
                         <td>{{ $project->chapter_name }}</td>
                         <td>{{ $project->due_date }}</td>
                         <td>{{ Carbon\Carbon::parse($project->created_at)->format('Y-m-d') }}</td>
-                        <td>
+                        {{-- <td>
                             <span class="status {{ rand(0, 2) === 0 ? 'reviewed' : (rand(0, 1) === 0 ? 'graded' : 'pending') }}">
                               {{ rand(0, 2) === 0 ? 'Reviewed' : (rand(0, 1) === 0 ? 'Graded' : 'Pending') }}
                             </span>
-                          </td>
+                        </td> --}}
+                        <td>
+                            <button class="view"  >
+                                <a href="{{ url('/evaluation') }}">Evaluation</a>
+                            </button>
+                        </td>
                         <td>   <button class="view">
                             <a href="{{ asset('storage/' . $project->file_name) }}" download="{{ $project->file_name }}">
                               View</a>

@@ -18,6 +18,15 @@ class Chapter extends Model
         'file_name',
         'fullname',
         'project_supervisor',
-        'feedback'
+        'feedback',
+        'title_evaluation',
+        'methodology_evaluation',
+        'literature_review_evaluation',
+        'research_question_evaluation',
+        'data_collection_evaluation',
+        'data_analysis_evaluation',
+        'conclusion_evaluation',
+        'presentation_quality_evaluation',
+        'comments'
     ];
 }

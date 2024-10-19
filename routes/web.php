@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ChapterController;
+use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StudentController;
@@ -68,6 +69,7 @@ Route::get('student/project_chapter', [ProjectController::class, 'index'])->name
 Route::post('student/project/store', [ProjectController::class, 'store'])->name('student.project.store');
 Route::get('student/projects', [ProjectController::class, 'projectList'])->name('student.projectList');
 Route::delete('student/projectList/delete/{chapter}', [ProjectController::class, 'delete'])->name('student.delete');
+Route::get('/evaluation', [EvaluationController::class, 'index'])->name('evaluation');
 
 
 
