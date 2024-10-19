@@ -77,8 +77,8 @@ textarea::-webkit-scrollbar{
     </div>
 
   
-    </form>
-    <form action="/submit-feedback" method="POST">
+    {{-- </form>
+    <form action="/submit-feedback" method="POST"> --}}
       <!-- CSRF Token if you're using Laravel -->
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
     
