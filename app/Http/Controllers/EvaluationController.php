@@ -9,7 +9,8 @@ class EvaluationController extends Controller
 {
     //
     public function index(Chapter $chapter){
-        $chapter = Chapter::where('matric_no', session('matric_no'))->get();
+        $matricNo = session('matric_no');
+        $chapter = Chapter::where('matric_no', $matricNo)->get();
         return view('student.evaluation', ['chapter' => $chapter]);
     }
 }
