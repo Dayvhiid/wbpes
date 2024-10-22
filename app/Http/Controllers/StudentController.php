@@ -63,7 +63,6 @@ class StudentController extends Controller
 
     // Search for the student by name
     $search = Student::where('name', $data['name'])->get();
-
     if ($search->isEmpty()) {
         // No results found
         return redirect(route('status.status'))->with('msg', 'Invalid Input details');
