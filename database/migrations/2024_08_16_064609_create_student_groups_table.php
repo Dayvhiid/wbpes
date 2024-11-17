@@ -9,13 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+
+     public function up()
     {
+        // Schema::create('student_groups', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('group_name');
+        //     $table->timestamps();
+        // });
+        
         Schema::create('group_students', function (Blueprint $table) {
             $table->id();
-            $table->string('matric_no'); // Link to the student
-            $table->string('group_name'); // Group name or identifier
-            $table->foreign('matric_no')->references('matric_no')->on('student_data')->onDelete('cascade');
+            $table->string('matric_no');
+            $table->string('group_name');
+            $table->string('supervisor');
             $table->timestamps();
         });
     }
@@ -24,4 +31,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('group_students');
     }
+   
 };

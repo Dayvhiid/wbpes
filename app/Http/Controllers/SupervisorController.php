@@ -87,7 +87,20 @@ class SupervisorController extends Controller
 
     }
 
-   
+    public function search(){
+        return view('supervisor.search');
+    }
+
+     public function find(Request $request , Student $student){
+        $search_text = $_GET['query'];
+        // $students = Student::where('name','LIKE', '%'.$search_text.'%')->get();
+
+        $students = Student::where('name', 'LIKE', '%' . $search_text . '%')->get();
+        $chapters = Chapter::where('fullname', 'LIKE', '%' . $search_text . '%')->get();
+        
+        $results = $students->union($chapters);
+        return view('supervisor.find', compact('results'));
+    }
     
 
     public function save(Request $request, Chapter $chapter){
@@ -129,20 +142,9 @@ class SupervisorController extends Controller
 
     
 
-    function search(){
-        return view('supervisor.search');
-    }
+   
 
-    function find(Request $request , Student $student){
-        $search_text = $_GET['query'];
-        // $students = Student::where('name','LIKE', '%'.$search_text.'%')->get();
-
-        $students = Student::where('name', 'LIKE', '%' . $search_text . '%')->get();
-        $chapters = Chapter::where('fullname', 'LIKE', '%' . $search_text . '%')->get();
-        
-        $results = $students->union($chapters);
-        return view('supervisor.find', compact('results'));
-    }
+    
 
 
     function SupervisorFix(Supervisor $chapter){
