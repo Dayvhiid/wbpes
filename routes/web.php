@@ -20,6 +20,10 @@ use App\Http\Controllers\StudentDataController;
 use App\Http\Controllers\StudentGroupController;
 use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\StudentT;
 
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -96,6 +100,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/conversations', [ConversationController::class, 'store'])->middleware('auth');
+    // Route::get('/login', [TestController::class, 'login'])->name('login');
 });
 
 

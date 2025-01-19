@@ -7,22 +7,25 @@
     "require": {
         "php": "^8.2",
         "laravel/fortify": "*",
-        "laravel/framework": "^11.9",
+        "laravel/framework": "*",
         "laravel/jetstream": "^5.3",
+        "laravel/reverb": "^1.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.0",
         "maatwebsite/excel": "^3.1",
-        "munafio/chatify": "^1.6"
+        "munafio/chatify": "^1.6",
+        "namu/wirechat": "^0.0.7"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
-        "laravel/breeze": "^2.1",
+        "laravel/breeze": "^2.3",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.0",
-        "phpunit/phpunit": "^11.0.1"
+        "pestphp/pest": "^3.7",
+        "pestphp/pest-plugin-laravel": "^3.0"
     },
     "autoload": {
         "psr-4": {
@@ -33,7 +36,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Namu\\WireChat\\": "wirechat/src/"
         }
     },
     "scripts": {

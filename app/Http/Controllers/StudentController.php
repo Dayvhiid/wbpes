@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Student;
-use App\Models\studentBioData;
 use Illuminate\Http\Request;
+use App\Models\studentBioData;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class StudentController extends Controller
@@ -18,12 +19,13 @@ class StudentController extends Controller
             'name' => 'required',
             'password' => 'required',
             'confirm_password' => 'required',
-            'matric_no' => 'required'
+            'email' => 'required'
+            // 'matric_no' => 'required'
         ]);
          $name = $data['name'];
          $password = $data['password'];
          $confirm_password = $data['confirm_password'];
-         $matric_no = $data['matric_no'];
+         $email = $data['email'];
         //  $search = Doctor::all();
          $search = Student::where('name', $name)->get(); // Find names that start with "category"
          if($search->isEmpty()){//change back to search
@@ -32,8 +34,13 @@ class StudentController extends Controller
                 $register = new Student();
                 $register->name = $name;
                 $register->password = $hashedPassword;
-                $register->matric_no = $matric_no;
+                $register->email = $email;
+                $user = new User();
+                $user->name = $name;
+                $user->email = $email;
+                $user->password = $password;
                 $register->save();
+                $user->save();
                 return redirect(route('status.status'))->with('msg','account created sucesfully'); 
              } else {
                 return redirect(route('status.status'))->with('msg','Passwords do not match'); 

@@ -292,6 +292,9 @@ th {
 .select:has(.options input[type="radio"]#option-3:checked) .selected::before {
   content: attr(data-three);
 }
+a{
+    text-decoration: none;
+}
 
 
 
@@ -424,11 +427,11 @@ th {
                                 <option value="Reviewed" {{ $value->status == 'Reviewed' ? 'selected' : '' }}>Reviewed</option>
                             </div>
                             </select>
-                            <button type="button" class="update-status-btn" data-form-id="status-form-{{ $value->id }}">Update</button>
+                            <button type="button"  data-form-id="status-form-{{ $value->id }}"  class="feedbackBtn">Update</button>
                         </form>
                     </td>
 
-                    <td><span class="status"></span>  <a href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
+                    <td><span class="status" ></span>  <a  class="feedbackBtn" href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
                         View</a>
                     </td>
                     <td>    

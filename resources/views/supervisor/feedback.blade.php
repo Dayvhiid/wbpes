@@ -12,7 +12,7 @@ body{
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(#4671EA, #AC34E7);
+  background: linear-gradient(#F5EDF0);
 }
 ::selection{
   color: #fff;
@@ -59,7 +59,7 @@ textarea::-webkit-scrollbar{
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Auto Resize Textarea in JavaScript | CodingNepal</title>
+    <title>Feedback For Student</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
@@ -70,7 +70,6 @@ textarea::-webkit-scrollbar{
         @method('POST')
     <div class="wrapper">
       <h2> Feedback for {{ $student->fullname }}</h2>
-      {{-- <h2>Auto Resize Textarea</h2> --}}
       <input type="hidden" name="student_id" value="{{ $student->id }}">
       <textarea spellcheck="false" placeholder="Type something here..." name="feedback"></textarea>  
       <button type="submit">Save</button>

@@ -25,7 +25,8 @@
                 </div> --}}
                 {{-- <span>or use your email for registeration</span> --}}
                 <input type="text" placeholder="Name" name="name">
-                <input type="password" placeholder="Matric No" name="matric_no">
+                {{-- <input type="password" placeholder="Matric No" name="matric_no"> --}}
+                <input type="text" placeholder="Email" name="email">
                 <input type="password" placeholder="password" name="password">
                 <input type="password" placeholder="Confirm" name="confirm_password">
                 <button type="submit">Sign Up</button>

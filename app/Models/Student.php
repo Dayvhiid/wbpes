@@ -21,7 +21,8 @@ class Student extends Model
         'chapter_name',
         'submitted',
         'status',
-        'file_path'
+        'file_path',
+        'email',
     ];
 
     public function student_bio_data(){

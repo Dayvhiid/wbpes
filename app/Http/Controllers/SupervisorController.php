@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Chapter;
 use App\Models\Student;
 use App\Models\Supervisor;
@@ -32,9 +33,11 @@ class SupervisorController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'password' => 'required',
+            'email' => 'required',
             'confirm_password' => 'required'
         ]);
          $name = $data['name'];
+         $email = $data['email'];
          $password = $data['password'];
          $confirm_password = $data['confirm_password'];
         //  $search = Doctor::all();
@@ -46,6 +49,13 @@ class SupervisorController extends Controller
                 $register->name = $name;
                 $register->password = $hashedPassword;
                 $register->save();
+                $user = new User();
+                $user->email = $email;
+                $user->name = $name;
+                $user->password = $password;
+                $user->save();
+                Session::put('user_email', $user->email);
+                Session::put('user_password', $user->password);
                 return redirect(route('status.status'))->with('msg','account created sucesfully'); 
              } else {
                 return redirect(route('status.status'))->with('msg','Passwords do not match'); 
@@ -60,6 +70,7 @@ class SupervisorController extends Controller
         //This function handles the signing in logic
         $data = $request->validate([
             'name' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
         $search = Supervisor::where('name', $data['name'])->get();
