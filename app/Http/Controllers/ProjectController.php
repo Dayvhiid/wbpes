@@ -67,6 +67,19 @@ class ProjectController extends Controller
 
     public function projectList(Chapter $chapter){
         $chapter = Chapter::where('matric_no', session('matric_no'))->get();
+
+
+         $chaptering = Chapter::find('matric_no');
+
+    // Check if the methodology evaluation is null or empty
+    if ($chaptering && (is_null($chaptering->feedback))) {
+        // If empty or null, show "under review" message
+        notify()->success('Your Project is under review');
+    } else {
+        // If not empty, show "approved" message
+        notify()->success('Project has been approved');
+    }
+        // notify()->success('Your Project Has Been Approved');
         return view('projects.projectList', ['chapter' => $chapter]);
     }
 

@@ -9,14 +9,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ChapterController;
-use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FeedBackController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\StudentDataController;
+use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\StudentGroupController;
 use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\StudentT;
 
@@ -77,6 +78,7 @@ Route::get('/evaluation', [EvaluationController::class, 'index'])->name('evaluat
 
 
 
+
 //route to handle toast messages
 Route::get('/status/message', function () {
    return view('status.toast');
@@ -110,6 +112,10 @@ Route::middleware('auth')->group(function () {
 
 //testing
 Route::get('/testing', [StudentDataController::class, 'index'])->name('testing');
+Route::get('/testing-notify',function () {
+       notify()->success(message:'Laravel Notify is awesome!');
+        // connectify('success', 'Connection Found', 'Success Message Here');
+});
 Route::get('users/export', [StudentDataController::class, 'export'])->name('users.export');
 Route::post('users/import', [StudentDataController::class, 'import'])->name('users.import');
 

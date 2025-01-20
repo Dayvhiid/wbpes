@@ -6,11 +6,15 @@ use App\Models\User;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\studentBioData;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class StudentController extends Controller
 {
     public function index(){
+        notify()->success('Laravel Notify is awesome!');
         return view('student.studentSignUp');
     }
 
@@ -18,23 +22,23 @@ class StudentController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'password' => 'required',
-            'confirm_password' => 'required',
-            'email' => 'required'
-            // 'matric_no' => 'required'
+            'email' => 'required',
+            'matric_no' => 'required'
         ]);
          $name = $data['name'];
          $password = $data['password'];
-         $confirm_password = $data['confirm_password'];
          $email = $data['email'];
-        //  $search = Doctor::all();
+         $matric_no = $data['matric_no'];
+
          $search = Student::where('name', $name)->get(); // Find names that start with "category"
          if($search->isEmpty()){//change back to search
-            if($password == $confirm_password){
+            if($password == $password){
                 $hashedPassword = bcrypt($password);
                 $register = new Student();
                 $register->name = $name;
                 $register->password = $hashedPassword;
                 $register->email = $email;
+                $register->matric_no = $matric_no;
                 $user = new User();
                 $user->name = $name;
                 $user->email = $email;
@@ -52,50 +56,130 @@ class StudentController extends Controller
     }
 
     public function submition(Student $student){
-        return view('student.welcome', ['student' => $student]);
+        // notify()->success('Laravel Notify is awesome!');
+        // return view('student.welcome', ['student' => $student]);
+        return view('student.welcome', ['student' => $student])->with('success', notify()->success('Laravel Notify is awesome!'));
     }
 
    
     public function welcome(){
+        notify()->success('Laravel Notify is awesome!');
         return view('student.welcome');
     }
 
-    public function check(Request $request) 
+//     public function check(Request $request) 
+// {
+//     // This function handles the signing in logic
+//     $data = $request->validate([
+//         'email' => 'required',
+//         'password' => 'required',
+//     ]);
+
+//     // Search for the student by name
+//     $search = Student::where('email', $data['email'])->get();
+//     if ($search->isEmpty()) {
+//         // No results found
+//         return redirect(route('status.status'))->with('msg', 'Invalid Input details');
+//     } else {
+//         // Handle results (process $search)
+//         $student = $search->first();
+        
+//         if (password_verify($data['password'], $student->password)) {
+//             // Password is correct
+//             if (is_null($student->course)) {
+//                 // Matric number is NULL, redirect to the student forms
+//                 return redirect(route('student.forms'));
+//             } else {
+//                 // Matric number is not NULL, show the welcome view
+//                 // return view('student.welcome', ['student' => $student]);
+//                 session(['matric_no' => $student->matric_no]);
+//                 session(['project_supervisor' => $student->project_supervisor]);
+//                 return redirect(route('student.welcome',['student' => $student]));
+//             }
+//         } else {
+//             // Password is incorrect
+//             return redirect(route('status.status'))->with('msg', 'Wrong Password');
+//         }
+//     }
+// }
+
+
+
+public function check(Request $request) 
 {
-    // This function handles the signing in logic
+    // Validate input data
     $data = $request->validate([
-        'name' => 'required',
+        'email' => 'required|email',
         'password' => 'required',
     ]);
 
-    // Search for the student by name
-    $search = Student::where('name', $data['name'])->get();
-    if ($search->isEmpty()) {
-        // No results found
-        return redirect(route('status.status'))->with('msg', 'Invalid Input details');
-    } else {
-        // Handle results (process $search)
-        $student = $search->first();
-        
-        if (password_verify($data['password'], $student->password)) {
-            // Password is correct
+    // Search for the student in the 'students' table by email
+    $student = Student::where('email', $data['email'])->first();
+
+    // Search for the user in the 'users' table by email
+    $user = User::where('email', $data['email'])->first();
+
+    if ($student) {
+        // Check if the password matches the student's password
+        if (Hash::check($data['password'], $student->password)) {
+            // Password is correct for the student
+            // Log::info('Student login successful', ['email' => $student->email]);
+            return redirect(route('student.welcome',['student' => $student]));
+
+            // Handle course checks for students
             if (is_null($student->course)) {
-                // Matric number is NULL, redirect to the student forms
                 return redirect(route('student.forms'));
+                // Log::info('Student is missing a course. Redirecting to forms page', ['email' => $student->email]);
+
+                // Return a JSON response for missing course
+                return response()->json([
+                    'message' => 'Student login successful. Missing course. Fill out forms.',
+                    'student' => $student
+                ], 200);
             } else {
-                // Matric number is not NULL, show the welcome view
-                // return view('student.welcome', ['student' => $student]);
+                // Save relevant session data for the student
                 session(['matric_no' => $student->matric_no]);
                 session(['project_supervisor' => $student->project_supervisor]);
-                return redirect(route('student.welcome',['student' => $student]));
+
+                Log::info('Student login successful and has a course', [
+                    'email' => $student->email,
+                    'matric_no' => $student->matric_no,
+                    'project_supervisor' => $student->project_supervisor
+                ]);
+
+                return response()->json([
+                    'message' => 'Student login successful and has a course',
+                    'student' => $student
+                ], 200);
             }
         } else {
-            // Password is incorrect
-            return redirect(route('status.status'))->with('msg', 'Wrong Password');
+            // Incorrect password for student
+            Log::error('Student login failed due to wrong password', ['email' => $data['email']]);
+            return response()->json(['message' => 'Invalid email or password for student'], 401);
         }
+    } elseif ($user) {
+        // Check if the password matches the user's password in the 'users' table
+        if (Hash::check($data['password'], $user->password)) {
+            // Log the user in
+            Auth::login($user);
+
+            Log::info('User login successful', ['email' => $user->email]);
+
+            return response()->json([
+                'message' => 'User login successful',
+                'user' => $user
+            ], 200);
+        } else {
+            // Incorrect password for user
+            Log::error('User login failed due to wrong password', ['email' => $data['email']]);
+            return response()->json(['message' => 'Invalid email or password for user'], 401);
+        }
+    } else {
+        // No student or user found with the provided email
+        Log::error('Login failed. No account found with the provided email', ['email' => $data['email']]);
+        return response()->json(['message' => 'No account found with the provided email'], 404);
     }
 }
-
 
    
 

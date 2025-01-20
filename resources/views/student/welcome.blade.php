@@ -111,11 +111,14 @@
     />
 
     <title>Student Welcome</title>
+    @notifyCss
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   </head>
   <body>
+    <x:notify::notify />
+    @notifyJs
     <div class="relative flex size-full min-h-screen flex-col bg-slate-50 group/design-root overflow-x-hidden" style='font-family: Lexend, "Noto Sans", sans-serif;'>
       <div class="layout-container flex h-full grow flex-col">
         <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf3] px-10 py-3">
@@ -177,8 +180,15 @@
           >
          <a href="{{route('student.projectList')}}">Project List</a>
         </button>
+        <button
+        class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#1980e6] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em]"
+        >
+       <a href="/chatify">CHAT</a>
+      </button>
+
+      @notifyJs
          
-      <div class="dd">
+      {{-- <div class="dd">
         <div class="select">
           <div
             class="selected"
@@ -213,7 +223,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
         
 
          

@@ -360,7 +360,7 @@ a{
                         ></path>
                         </svg>
                     </div>
-                    <div class="options">
+                    {{-- <div class="options">
                         <div title="all">
                         <input id="all" name="option" type="radio" checked=""  />
                         <label class="option" for="all" data-txt="Messaging"></label>
@@ -372,9 +372,10 @@ a{
                         <div title="option-2">
                         <input id="option-2" name="option" type="radio" href="{{route('login')}}" />
                         <a class="option" href="{{route('register')}} ">REGISTER</a>
-                        {{-- <label class="option" for="option-2" data-txt="Login"></label> --}}
+                      
                         </div>
-                    </div>
+                    </div> --}}
+                    
                     </div>
                 </li>
                 <li><a href="#">Calendar</a></li>

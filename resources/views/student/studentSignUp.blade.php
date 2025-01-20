@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/login.css">
     <title>Sign Up/Sign In</title>
+    @notifyCss
 </head>
+<x:notify::notify />
+@notifyJs
 
 <body>
 
@@ -27,8 +30,8 @@
                 <input type="text" placeholder="Name" name="name">
                 {{-- <input type="password" placeholder="Matric No" name="matric_no"> --}}
                 <input type="text" placeholder="Email" name="email">
+                <input type="text" placeholder="Matric_no" name="matric_no">
                 <input type="password" placeholder="password" name="password">
-                <input type="password" placeholder="Confirm" name="confirm_password">
                 <button type="submit">Sign Up</button>
             </form>
         </div>
@@ -44,7 +47,7 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div> --}}
                 {{-- <span>or use your email password</span> --}}
-                <input type="text" placeholder="Enter your name" name="name">
+                <input type="text" placeholder="Enter your email" name="email">
                 <input type="password" placeholder="Enter your Password" name="password">
                 <a href="#">Forget Your Password?</a>
                 <button>Sign In</button>
