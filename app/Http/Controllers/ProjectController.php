@@ -57,7 +57,10 @@ class ProjectController extends Controller
             // Save the new Project instance to the database
             if ($student->save()) {
                 // Return a success response
-                return redirect(route('student.projectList'));
+                $chapter = Chapter::where('matric_no', session('matric_no'))->get();
+                notify()->success('Your Project has been submitted succefully');
+                return view('projects.projectList',['chapter' => $chapter]);
+                // return redirect(route('student.projectList'));
                 return response()->json(['message' => 'Student record created successfully.']);
             } else {
                 // Handle the case when the record could not be saved
@@ -87,7 +90,10 @@ class ProjectController extends Controller
     public function delete($chapter){
         $rw = Chapter::find($chapter);
         $rw->delete();
-        return redirect(route('student.projectList'));
+        $chapter = Chapter::where('matric_no', session('matric_no'))->get();
+        notify()->success('Your Project has been deleted Successfully');
+        return view('projects.projectList',['chapter' => $chapter]);
+        // return redirect(route('student.projectList'));
       
     }  
        // public function projectList($chapter){
