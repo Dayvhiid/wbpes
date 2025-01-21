@@ -63,7 +63,7 @@ class StudentController extends Controller
 
    
     public function welcome(){
-        notify()->success('Laravel Notify is awesome!');
+        // notify()->success('Laravel Notify is awesome!');
         return view('student.welcome');
     }
 

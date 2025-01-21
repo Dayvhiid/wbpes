@@ -69,98 +69,106 @@ class SupervisorController extends Controller
         // return view('doctors.signup');
     }
 
-    // public function check(Request $request, Chapter $chapter){
-    //     //This function handles the signing in logic
-    //     $data = $request->validate([
-    //         // 'name' => 'required',
-    //         'email' => 'required',
-    //         'password' => 'required',
-    //     ]);
-    //     $search = Supervisor::where('email', $data['email'])->get();
+    public function check(Request $request, Chapter $chapter){
+        //This function handles the signing in logic
+        $data = $request->validate([
+            // 'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        $search = Supervisor::where('email', $data['email'])->get();
 
 
-    //     //Singular Login into the users and supervisors table at once
-    //     $supervisor = Supervisor::where('email', $data['email'])->first();
-    //     // Search for the user in the 'users' table by email
-    //     $user = User::where('email', $data['email'])->first();
-
-    //     if (count($search) === 0) {
-    //         // No results found
-    //         return redirect(route('status.status'))->with('msg','Invalid Input details'); 
-    //     } else {
-    //         // Handle results (process $search)
-    //         if(password_verify($data['password'], $search[0]['password'])){
-    //             session(['name' => $search[0]['fullname']]);
-    //             if ($search[0]['department']){
-    //                 $chapter = Chapter::where('project_supervisor', $data['email'])->get();
-    //                 return view('supervisor.welcome', ['chapter' => $chapter] );
-    //             }else {
-    //                 return redirect(route('supervisor.form',  ['chapter' => $chapter->id]));
-    //             }
-    //       } else {
-    //           error_log('Supervisor Password Incorrect');
-    //           return redirect(route('status.status'))->with('msg','Wrong Password'); 
-    //       }
-    //       //code segment to check if the orther detail for the supervisor has been filled
-    //       //so we dont have to render the form page if the user has filled it previously
-    //     }
-
-    // }
+        //Singular Login into the users and supervisors table at once
+        $supervisor = Supervisor::where('email', $data['email'])->first();
+        // Search for the user in the 'users' table by email
+        $user = User::where('email', $data['email'])->first();
 
 
+        if ($user && Hash::check($data['password'], $user->password)) {
+            Auth::login($user);
 
-    public function check(Request $request, Chapter $chapter)
-{
-    // Validate input data
-    $data = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-
-    // Singular Login into the users and supervisors table at once
-    $supervisor = Supervisor::where('email', $data['email'])->first();
-    $user = User::where('email', $data['email'])->first();
-
-    // Check if the user exists in the 'users' table
-    if ($user && Hash::check($data['password'], $user->password)) {
-        // Authenticate the user using Laravel's Auth system
-        Auth::login($user);
-
-        // Store the user's full name in the session
-        session(['name' => $user->fullname]);
-
-        // Check if the user is also a supervisor
-        if ($supervisor) {
-            // Check if the supervisor has a department
-            if ($supervisor->department) {
-                $chapter = Chapter::where('project_supervisor', $data['email'])->get();
-                return view('supervisor.welcome', ['chapter' => $chapter]);
-            } else {
-                return redirect(route('supervisor.form', ['chapter' => $chapter->id]));
-            }
         }
 
-        // If only logged in as a user, proceed with user-specific functionality (not covered in the original code)
-        return redirect()->route('home'); // Redirect to a default route for authenticated users
-    }
-
-    // Check if the supervisor exists and validate their password
-    if ($supervisor && password_verify($data['password'], $supervisor->password)) {
-        // Store the supervisor's full name in the session
-        session(['name' => $supervisor->fullname]);
-
-        // Check if the supervisor has a department
-        if ($supervisor->department) {
-            $chapter = Chapter::where('project_supervisor', $data['email'])->get();
-            return view('supervisor.welcome', ['chapter' => $chapter]);
+        if (count($search) === 0) {
+            // No results found
+            return redirect(route('status.status'))->with('msg','Invalid Input details'); 
         } else {
-            return redirect(route('supervisor.form', ['chapter' => $chapter->id]));
+            // Handle results (process $search)
+            if(password_verify($data['password'], $search[0]['password'])){
+                session(['name' => $search[0]['fullname']]);
+                if ($search[0]['department']){
+                    $chapter = Chapter::where('project_supervisor', $user->name)->get();
+                    return view('supervisor.welcome', ['chapter' => $chapter] );
+                }else {
+                    return redirect(route('supervisor.form',  ['chapter' => $chapter->id]));
+                }
+          } else {
+              error_log('Supervisor Password Incorrect');
+              return redirect(route('status.status'))->with('msg','Wrong Password'); 
+          }
+          //code segment to check if the orther detail for the supervisor has been filled
+          //so we dont have to render the form page if the user has filled it previously
         }
+
     }
 
-    // If no match is found, return an error
-    return redirect(route('status.status'))->with('msg', 'Invalid Input details');
-}
+
+
+//     public function check(Request $request, Chapter $chapter)
+// {
+//     // Validate input data
+//     $data = $request->validate([
+//         'email' => 'required|email',
+//         'password' => 'required',
+//     ]);
+
+//     // Singular Login into the users and supervisors table at once
+//     $supervisor = Supervisor::where('email', $data['email'])->first();
+//     $user = User::where('email', $data['email'])->first();
+
+
+//     // Check if the user exists in the 'users' table
+//     if ($user && Hash::check($data['password'], $user->password)) {
+//         // Authenticate the user using Laravel's Auth system
+//         Auth::login($user);
+
+//         // Store the user's full name in the session
+//         session(['name' => $user->fullname]);
+
+        
+//         if ($supervisor) {
+//             // Check if the supervisor has a department
+//             if ($supervisor->department) {
+//                 $chapter = Chapter::where('project_supervisor', session('name'));
+//                 dd($chapter->fullname);
+//                 return view('supervisor.welcome', ['chapter' => $chapter]);
+//             } else {
+//                 return redirect(route('supervisor.form', ['chapter' => $chapter->id]));
+//             }
+//         }
+
+//         // If only logged in as a user, proceed with user-specific functionality (not covered in the original code)
+//         return redirect()->route('home'); // Redirect to a default route for authenticated users
+//     }
+
+//     // Check if the supervisor exists and validate their password
+//     if ($supervisor && password_verify($data['password'], $supervisor->password)) {
+//         // Store the supervisor's full name in the session
+//         session(['name' => $supervisor->fullname]);
+
+//         // Check if the supervisor has a department
+//         if ($supervisor->department) {
+//             $chapter = Chapter::where('project_supervisor', $data['email'])->get();
+//             return view('supervisor.welcome', ['chapter' => $chapter]);
+//         } else {
+//             return redirect(route('supervisor.form', ['chapter' => $chapter->id]));
+//         }
+//     }
+
+//     // If no match is found, return an error
+//     return redirect(route('status.status'))->with('msg', 'Invalid Input details');
+// }
 
 
     public function search(){

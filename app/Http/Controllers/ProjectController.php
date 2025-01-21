@@ -49,6 +49,7 @@ class ProjectController extends Controller
                 $student->file_name = $storedFilename;
                 // dd($storedFilename);
             }
+            $student->save();
 
         
          
