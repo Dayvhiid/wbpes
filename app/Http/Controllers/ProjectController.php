@@ -91,7 +91,11 @@ class ProjectController extends Controller
         $rw = Chapter::find($chapter);
         $rw->delete();
         $chapter = Chapter::where('matric_no', session('matric_no'))->get();
-        notify()->success('Your Project has been deleted Successfully');
+        // notify()->success('Your Project has been deleted Successfully');
+        // drakify('success');
+        // emotify('success', 'You are awesome, your data was successfully created');
+        smilify('success', 'Project Successfully deleted');
+
         return view('projects.projectList',['chapter' => $chapter]);
         // return redirect(route('student.projectList'));
       
