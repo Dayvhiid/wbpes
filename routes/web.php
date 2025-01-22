@@ -56,6 +56,9 @@ Route::post('supervisor/update/status', [ChapterController::class, 'update'])->n
 Route::post('supervisor/feeback/save/{chapter}', [FeedBackController::class, 'feedbackSave'])->name('supervisor.feedback.save');
 Route::get('supervisor/search', [SupervisorController::class, 'search'])->name('supervisor.search');
 Route::get('supervisor/find', [SupervisorController::class, 'find'])->name('supervisor.find');
+Route::post('supervisor/deadline', [SupervisorController::class, 'deadline'])->name('supervisor.deadline');
+Route::post('supervisor/deadline_two', [SupervisorController::class, 'deadline_two'])->name('supervisor.deadline_two');
+Route::post('supervisor/deadline_three', [SupervisorController::class, 'deadline_three'])->name('supervisor.deadline_three');
 
 
 //feeback

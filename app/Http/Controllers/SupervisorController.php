@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Chapter;
+use App\Models\Deadline;
 use App\Models\Student;
 use App\Models\Supervisor;
 use Illuminate\Http\Request;
@@ -15,6 +16,67 @@ use Illuminate\Support\Facades\Session;
 
 class SupervisorController extends Controller
 {
+
+    public function deadline(Request $request){
+        $data = $request->validate([
+            'due_date' => 'required',
+        ]);
+         $due_date = $data['due_date'];
+         $chapter_name = "Chapter One";
+
+         $deadline = new Deadline();
+         $deadline->chatper_name = $chapter_name;
+         $deadline->due_date = $due_date;
+         $deadline->save();
+         $chapter = Chapter::where('project_supervisor', session('name'))->get();
+         smilify('success', 'Project Deadline for chapter one set successfully');
+         return view ('supervisor.welcome', ['chapter' => $chapter]);
+
+         // Redirect back to the previous page
+        
+        //  smilify('success', 'Project Deadline for chapter one set successfully');
+    }
+
+
+    public function deadline_two(Request $request){
+        $data = $request->validate([
+            'due_date' => 'required',
+        ]);
+         $due_date = $data['due_date'];
+         $chapter_name = "Chapter Two";
+
+         $deadline = new Deadline();
+         $deadline->chatper_name = $chapter_name;
+         $deadline->due_date = $due_date;
+         $deadline->save();
+         $chapter = Chapter::where('project_supervisor', session('name'))->get();
+         smilify('success', 'Project Deadline for chapter two set successfully');
+         return view ('supervisor.welcome', ['chapter' => $chapter]);
+
+    }
+
+
+    public function deadline_three(Request $request){
+        $data = $request->validate([
+            'due_date' => 'required',
+        ]);
+         $due_date = $data['due_date'];
+         $chapter_name = "Chapter Three";
+
+         $deadline = new Deadline();
+         $deadline->chatper_name = $chapter_name;
+         $deadline->due_date = $due_date;
+         $deadline->save();
+         $chapter = Chapter::where('project_supervisor', session('name'))->get();
+         smilify('success', 'Project Deadline for chapter three set successfully');
+         return view ('supervisor.welcome', ['chapter' => $chapter]);
+
+         // Redirect back to the previous page
+        
+        //  smilify('success', 'Project Deadline for chapter one set successfully');
+    }
+
+
     public function feedback($student_id) {
         $student = Chapter::findOrFail($student_id);
         return view('supervisor.feedback', compact('student'));
@@ -112,6 +174,8 @@ class SupervisorController extends Controller
         }
 
     }
+
+
 
 
 

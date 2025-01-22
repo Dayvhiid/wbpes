@@ -331,9 +331,11 @@ a{
     <title>Evaluation Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
- 
+    @notifyCss
 </head>
 <body>
+    <x-notify::notify />
+    @notifyJs
     <header>
         <nav>
             <div class="logo">Research University</div>
@@ -388,15 +390,38 @@ a{
         </nav>
     </header>
     <main>
-        <h1>Evaluation</h1>
-        <p>Students are waiting for your feedback. Help them improve and learn.</p>
+        <h1>Project Submittion</h1>
+        {{-- <p>Students are waiting for your feedback. Help them improve and learn.</p>
         <div class="filters">
             <button class="filter-btn">All projects <i class="fas fa-caret-down"></i></button>
             <button class="filter-btn">In progress <i class="fas fa-caret-down"></i></button>
             <button class="filter-btn">Late <i class="fas fa-caret-down"></i></button>
             <button class="filter-btn">Done <i class="fas fa-caret-down"></i></button>
             <button class="filter-btn">Needs review <i class="fas fa-caret-down"></i></button>
-        </div>
+        </div> --}}
+        <h1>Chapter One</h1>
+       {{-- <form action="{{route('supervisor.deadline')}}">
+           <input type="date" placeholder="Enter Due Date" name="due_date" required>
+       </form> --}}
+
+
+
+       <form id="deadlineForm" action="{{ route('supervisor.deadline') }}" method="POST">
+        @csrf
+        <input 
+            type="date" 
+            placeholder="Enter Due Date" 
+            name="due_date" 
+            required 
+            id="dueDateInput">
+    </form>
+    
+    <script>
+        document.getElementById('dueDateInput').addEventListener('change', function () {
+            // Automatically submit the form when a date is selected
+            document.getElementById('deadlineForm').submit();
+        });
+    </script>
         <table>
             <thead>
                 <tr>
@@ -411,48 +436,277 @@ a{
             </thead>
             <tbody>
                 @foreach ($chapter as $value)
+                    @if ($value->chapter_name == "Chapter One")
+                        <tr>
+                            <td>{{ $value->fullname }}</td>
+                            <td>{{ $value->chapter_name }}</td>
+                            <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
+                            <td>{{ $value->due_date }}</td>
+                            <td>
+                                <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
+                                    @method('POST')
+                                    @csrf
+                                    <input type="hidden" name="chapter_id" value="{{ $value->id }}">
+                                    <select name="status">
+                                        <div class="options">
+                                            <option value="Pending" {{ $value->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                            <option value="Graded" {{ $value->status == 'Graded' ? 'selected' : '' }}>Graded</option>
+                                            <option value="Reviewed" {{ $value->status == 'Reviewed' ? 'selected' : '' }}>Reviewed</option>
+                                        </div>
+                                    </select>
+                                    <button type="button" data-form-id="status-form-{{ $value->id }}" class="feedbackBtn">Update</button>
+                                </form>
+                            </td>
+                            <td>
+                                <span class="status"></span>
+                                <a class="feedbackBtn" href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
+                                    View
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{{ route('supervisor.feedback', ['student_id' => $value->id]) }}" method="get">
+                                    <input type="hidden" name="student_id" value="{{ $value->id }}">
+                                    <button class="feedbackBtn">Add Feedback</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+        
+                @if (!$chapter->contains(fn($value) => $value->chapter_name == "Chapter Two"))
+                    <tr>
+                        <td colspan="7" style="text-align: center;">No data available for Chapter One</td>
+                    </tr>
+                @endif
+            </tbody>
+        </table>
+        
+       
+
+        <h1>Chapter Two</h1>
+
+
+        <form id="deadlineFormTwo" action="{{ route('supervisor.deadline_two') }}" method="POST">
+            @csrf
+            <input 
+                type="date" 
+                placeholder="Enter Due Date" 
+                name="due_date" 
+                required 
+                id="dueDateInputTwo">
+        </form>
+
+        <script>
+            document.getElementById('dueDateInputTwo').addEventListener('change', function () {
+                // Automatically submit the form when a date is selected
+                document.getElementById('deadlineFormTwo').submit();
+            });
+        </script>
+        <table>
+            <thead>
                 <tr>
-                    <td> {{ $value->fullname }}</td>
-                    <td>{{ $value->chapter_name}}</td>
+                    <th>Student Name</th>
+                    <th>Project</th>
+                    <th>Submitted</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>File</th>
+                    <th>Add Feedback</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($chapter as $value)
+                    @if ($value->chapter_name == "Chapter Two")
+                        <tr>
+                            <td>{{ $value->fullname }}</td>
+                            <td>{{ $value->chapter_name }}</td>
+                            <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
+                            <td>{{ $value->due_date }}</td>
+                            <td>
+                                <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
+                                    @method('POST')
+                                    @csrf
+                                    <input type="hidden" name="chapter_id" value="{{ $value->id }}">
+                                    <select name="status">
+                                        <div class="options">
+                                            <option value="Pending" {{ $value->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                            <option value="Graded" {{ $value->status == 'Graded' ? 'selected' : '' }}>Graded</option>
+                                            <option value="Reviewed" {{ $value->status == 'Reviewed' ? 'selected' : '' }}>Reviewed</option>
+                                        </div>
+                                    </select>
+                                    <button type="button" data-form-id="status-form-{{ $value->id }}" class="feedbackBtn">Update</button>
+                                </form>
+                            </td>
+                            <td>
+                                <span class="status"></span>
+                                <a class="feedbackBtn" href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
+                                    View
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{{ route('supervisor.feedback', ['student_id' => $value->id]) }}" method="get">
+                                    <input type="hidden" name="student_id" value="{{ $value->id }}">
+                                    <button class="feedbackBtn">Add Feedback</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+        
+                @if (!$chapter->contains(fn($value) => $value->chapter_name == "Chapter Two"))
+                    <tr>
+                        <td colspan="7" style="text-align: center;">No data available for Chapter Two</td>
+                    </tr>
+                @endif
+            </tbody>
+        </table>
+
+
+
+        <h1>Chapter Three</h1>
+
+
+        <h1>Chapter Two</h1>
+
+
+        <form id="deadlineFormThree" action="{{ route('supervisor.deadline_three') }}" method="POST">
+            @csrf
+            <input 
+                type="date" 
+                placeholder="Enter Due Date" 
+                name="due_date" 
+                required 
+                id="dueDateInputThree">
+        </form>
+
+        <script>
+            document.getElementById('dueDateInputThree').addEventListener('change', function () {
+                // Automatically submit the form when a date is selected
+                document.getElementById('deadlineFormThree').submit();
+            });
+        </script>
+<table>
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Project</th>
+            <th>Submitted</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>File</th>
+            <th>Add Feedback</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($chapter as $value)
+            @if ($value->chapter_name == "Chapter Three")
+                <tr>
+                    <td>{{ $value->fullname }}</td>
+                    <td>{{ $value->chapter_name }}</td>
                     <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
-                    <td>{{ $value->due_date}}</td>
+                    <td>{{ $value->due_date }}</td>
                     <td>
                         <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
                             @method('POST')
                             @csrf
                             <input type="hidden" name="chapter_id" value="{{ $value->id }}">
-                            <select name="status" >
-                            <div class="options">
-                                <option value="Pending" {{ $value->status == 'Pending' ? 'selected' : '' }}>Pending</option>
-                                <option value="Graded" {{ $value->status == 'Graded' ? 'selected' : '' }}>Graded</option>
-                                <option value="Reviewed" {{ $value->status == 'Reviewed' ? 'selected' : '' }}>Reviewed</option>
-                            </div>
+                            <select name="status">
+                                <div class="options">
+                                    <option value="Pending" {{ $value->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="Graded" {{ $value->status == 'Graded' ? 'selected' : '' }}>Graded</option>
+                                    <option value="Reviewed" {{ $value->status == 'Reviewed' ? 'selected' : '' }}>Reviewed</option>
+                                </div>
                             </select>
-                            <button type="button"  data-form-id="status-form-{{ $value->id }}"  class="feedbackBtn">Update</button>
+                            <button type="button" data-form-id="status-form-{{ $value->id }}" class="feedbackBtn">Update</button>
                         </form>
                     </td>
-
-                    <td><span class="status" ></span>  <a  class="feedbackBtn" href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
-                        View</a>
+                    <td>
+                        <span class="status"></span>
+                        <a class="feedbackBtn" href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
+                            View
+                        </a>
                     </td>
-                    <td>    
-                        <form action="{{ route('supervisor.feedback',  ['student_id' => $value->id]) }}" method="get">
+                    <td>
+                        <form action="{{ route('supervisor.feedback', ['student_id' => $value->id]) }}" method="get">
                             <input type="hidden" name="student_id" value="{{ $value->id }}">
-                            <button class="feedbackBtn">
-                                Add Feedback
-                            </button>
+                            <button class="feedbackBtn">Add Feedback</button>
                         </form>
                     </td>
                 </tr>
-                @endforeach
-                {{-- <tr>
-                    <td>CS-101: Web App</td>
-                    <td>Oct 20</td>
-                    <td>Oct 19</td>
-                    <td><span class="status">In progress</span></td>
-                </tr> --}}
-            </tbody>
-        </table>
+            @endif
+        @endforeach
+
+        @if (!$chapter->contains(fn($value) => $value->chapter_name == "Chapter Two"))
+            <tr>
+                <td colspan="7" style="text-align: center;">No data available for Chapter Three</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+
+
+<h1>Chapter Four</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Project</th>
+            <th>Submitted</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>File</th>
+            <th>Add Feedback</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($chapter as $value)
+            @if ($value->chapter_name == "Chapter Four")
+                <tr>
+                    <td>{{ $value->fullname }}</td>
+                    <td>{{ $value->chapter_name }}</td>
+                    <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
+                    <td>{{ $value->due_date }}</td>
+                    <td>
+                        <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
+                            @method('POST')
+                            @csrf
+                            <input type="hidden" name="chapter_id" value="{{ $value->id }}">
+                            <select name="status">
+                                <div class="options">
+                                    <option value="Pending" {{ $value->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="Graded" {{ $value->status == 'Graded' ? 'selected' : '' }}>Graded</option>
+                                    <option value="Reviewed" {{ $value->status == 'Reviewed' ? 'selected' : '' }}>Reviewed</option>
+                                </div>
+                            </select>
+                            <button type="button" data-form-id="status-form-{{ $value->id }}" class="feedbackBtn">Update</button>
+                        </form>
+                    </td>
+                    <td>
+                        <span class="status"></span>
+                        <a class="feedbackBtn" href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
+                            View
+                        </a>
+                    </td>
+                    <td>
+                        <form action="{{ route('supervisor.feedback', ['student_id' => $value->id]) }}" method="get">
+                            <input type="hidden" name="student_id" value="{{ $value->id }}">
+                            <button class="feedbackBtn">Add Feedback</button>
+                        </form>
+                    </td>
+                </tr>
+            @endif
+        @endforeach
+
+        @if (!$chapter->contains(fn($value) => $value->chapter_name == "Chapter Two"))
+            <tr>
+                <td colspan="7" style="text-align: center;">No data available for Chapter Four</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+
+
+        
         {{-- <button type="submit" class="btn btn-primary">Update Status</button> --}}
     </main>
 
