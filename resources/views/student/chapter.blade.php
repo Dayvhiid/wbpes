@@ -164,6 +164,7 @@ button[type="submit"]:hover {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniSubmit Form</title>
+    @notifyCss
     {{-- <link rel="stylesheet" href="css/studentforms.css"> --}}
 </head>
 <body>
@@ -182,6 +183,8 @@ button[type="submit"]:hover {
         </nav> --}}
     </header>
     <main>
+        <x-notify::notify />
+        @notifyJs
         <div class="progress-bar">
             <div class="step">Step 1/3</div>
             <div class="progress">
@@ -193,7 +196,15 @@ button[type="submit"]:hover {
         <form  action="{{route('student.project.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST') 
-            <input type="text" placeholder="Enter your Chapter" name="chapter_name" required>
+            {{-- <input type="text" placeholder="Enter your Chapter" name="chapter_name" required> --}}
+            <select name="chapter_name" type="text">
+                <option >Select your Chapter</option>
+                <option value="Chapter One">Chapter One</option>
+                <option value="Chapter Two">Chapter Two</option>
+                <option value="Chapter Three">Chapter Three</option>
+                <option value="Chapter Four">Chapter Four</option>
+                <option value="Chapter Five">Chapter Five</option>
+            </select>
             <input type="text" placeholder="Enter Student Full Name" name="fullname" required>
             <select name="project_supervisor">
                 <option >Select your project supervisor</option>

@@ -27,6 +27,7 @@ class SupervisorController extends Controller
          $deadline = new Deadline();
          $deadline->chatper_name = $chapter_name;
          $deadline->due_date = $due_date;
+         $deadline->supevisor_name = session('name');
          $deadline->save();
          $chapter = Chapter::where('project_supervisor', session('name'))->get();
          smilify('success', 'Project Deadline for chapter one set successfully');
@@ -48,6 +49,7 @@ class SupervisorController extends Controller
          $deadline = new Deadline();
          $deadline->chatper_name = $chapter_name;
          $deadline->due_date = $due_date;
+         $deadline->supevisor_name = session('name');
          $deadline->save();
          $chapter = Chapter::where('project_supervisor', session('name'))->get();
          smilify('success', 'Project Deadline for chapter two set successfully');
@@ -64,6 +66,7 @@ class SupervisorController extends Controller
          $chapter_name = "Chapter Three";
 
          $deadline = new Deadline();
+         $deadline->supevisor_name = session('name');
          $deadline->chatper_name = $chapter_name;
          $deadline->due_date = $due_date;
          $deadline->save();
