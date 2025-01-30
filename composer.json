@@ -12,6 +12,7 @@
         "laravel/reverb": "^1.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "livewire-filemanager/filemanager": "^0.1.32",
         "livewire/livewire": "^3.0",
         "maatwebsite/excel": "^3.1",
         "mckenziearts/laravel-notify": "^2.5",

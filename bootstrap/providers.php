@@ -6,5 +6,6 @@ return [
     App\Providers\JetstreamServiceProvider::class,
     Namu\WireChat\WireChatServiceProvider::class,
     Mckenziearts\Notify\LaravelNotifyServiceProvider::class
+    // Vish4395\LaravelFileViewer\LaravelFileViewerFacade::class,
 ];
 
