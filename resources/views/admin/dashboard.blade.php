@@ -1,424 +1,167 @@
-<style>
-    
-    /* <span style="font-family: verdana, geneva, sans-serif;"> import google fonts */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-*{
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  text-decoration: none;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-body{
-  background: rgb(219, 219, 219);
-}
-.header{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  padding: 20px;
-  background: #fff;
-}
-.logo{
-  display: flex;
-  align-items: center;
-}
-.logo a{
-  color: #000;
-  font-size: 18px;
-  font-weight: 600;
-  margin: 2rem 8rem 2rem 2rem;
-}
-.search_box{
-  display: flex;
-  align-items: center;
-}
-.search_box input{
-  padding: 9px;
-  width: 250px;
-  background: rgb(228, 228, 228);
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
-.search_box i{
-  padding: 0.66rem;
-  cursor: pointer;
-  color: #fff;
-  background: #000;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-.header-icons{
-  display: flex;
-  align-items: center;
-}
-.header-icons i{
-  margin-right: 2rem;
-  cursor: pointer;
-}
-.header-icons .account{
-  width: 130px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.header-icons .account img{
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-  border-radius: 50%;
-}
-.container{
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-}
-/* Side menubar section */
-nav{
-  background: #fff;
-}
-.side_navbar{
-  padding: 1px;
-  display: flex;
-  flex-direction: column;
-}
-.side_navbar span{
-  color: gray;
-  margin: 1rem 3rem;
-  font-size: 12px;
-}
-.side_navbar a{
-  width: 100%;
-  padding: 0.8rem 3rem;
-  font-weight: 500;
-  font-size: 15px;
-  color: rgb(100, 100, 100);
-}
-.links{
-  margin-top: 5rem;
-  display: flex;
-  flex-direction: column;
-}
-.links a{
-  font-size: 13px;
-}
-.side_navbar a:hover{
-  background: rgb(235, 235, 235);
-}
-.side_navbar .active{
-  border-left: 2px solid rgb(100, 100, 100);
-}
-/* Main Body Section */
-.main-body{
-  width: 70%;
-  padding: 1rem;
-  margin-right: 5%;
-}
-.promo_card{
-  width: 100%;
-  color: #fff;
-  margin-top: 10px;
-  border-radius: 8px;
-  padding: 0.5rem 1rem 1rem 3rem;
-  background: rgb(37, 37, 37);
-}
-.promo_card h1, .promo_card span, button{
-  margin: 10px;
-}
-.promo_card button{
-  display: block;
-  padding: 6px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.history_lists{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.row{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1rem 0;
-}
-table{
-  background: #fff;
-  padding: 1rem;
-  text-align: left;
-  border-radius: 10px;
-}
-table td, th{
-  padding: 0.2rem 0.8rem;
-}
-table th{
-  font-size: 15px;
-}
-table td{
-  font-size: 13px;
-  color: rgb(100, 100, 100);
-}
-/* Sidebar Section */
-.sidebar{
-  width: 15%;
-  padding: 2rem 1rem;
-  background: #fff;
-}
-.sidebar h4{
-  margin-bottom: 1.5rem;
-}
-.sidebar .balance{
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-.balance .icon{
-  color: #fff;
-  font-size: 20px;
-  border-radius: 6px;
-  margin-right: 1rem;
-  padding: 1rem;
-  background: rgb(37, 37, 37);
-}
-.balance .info h5{
-  font-size: 16px;
-}
-.balance .info span{
-  font-size: 14px;
-  color: rgb(100, 100, 100);
-}
-.balance .info i{
-  margin-right: 2px;
-}
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
 
-</style>
-<span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Admin Dashboard | By Code Info</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- Font Awesome Cdn Link -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-</head>
-<body>
-  <header class="header">
-    <div class="logo">
-      <a href="#">Babcock University</a>
-      <div class="search_box">
-        <input type="text" placeholder="Search EasyPay">
-        <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
-      </div>
-    </div>
+    <title>Admin Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
-    <div class="header-icons">
-      <i class="fas fa-bell"></i>
-      <div class="account">
-        <img src="./pic/img.jpg" alt="">
-        <p>{{ session('user_name', 'Defualt Value') }}</p>
-      </div>
-    </div>
-  </header>
-  <div class="container">
-    <nav>
-      <div class="side_navbar">
-        <span>Main Menu</span>
-        <a href="#" class="active">Dashboard</a>
-        <a href="{{ route('testing') }}">Update Student List</a>
-        <a href="{{ route('studentList') }}">Student List</a>
-        <a href="{{ route('groupList')}}">Group Students</a>
-        {{-- <a href="#">Application</a>
-        <a href="#">My Account</a>
-        <a href="#">Documnets</a> --}}
-
-        <div class="links">
-          <span>Quick Link</span>
-          <a href="#">Paypal</a>
-          <a href="#">EasyPay</a>
-          <a href="#">SadaPay</a>
-        </div>
-      </div>
-    </nav>
-
-    <div class="main-body">
-      <h2>Dashboard</h2>
-      {{-- <div class="promo_card">
-        <h1>Welcome to EasyPay</h1>
-        <span>Lorem ipsum dolor sit amet.</span>
-        <button>Learn More</button>
-      </div> --}}
-{{-- 
-      <div class="history_lists">
-        <div class="list1">
-          <div class="row">
-            <h4>History</h4>
-            <a href="#">See all</a>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div
+      class="relative flex size-full min-h-screen flex-col bg-slate-50 group/design-root overflow-x-hidden"
+      style="--checkbox-tick-svg: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(248,250,252)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cpath d=%27M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z%27/%3e%3c/svg%3e'); font-family: Inter, &quot;Noto Sans&quot;, sans-serif;"
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf3] px-10 py-3">
+          <div class="flex items-center gap-4 text-[#0e141b]">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-[#0e141b] text-lg font-bold leading-tight tracking-[-0.015em]">Babcock University</h2>
           </div>
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Dates</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Ammount</th>
-                <th>Ammount</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>2, Aug, 2022</td>
-                <td>Sam Tonny</td>
-                <td>Premimum</td>
-                <td>$2000.00</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>29, July, 2022</td>
-                
-                <td>Code Info</td>
-                <td>Silver</td>
-                <td>$5,000.00</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>15, July, 2022</td>
-              
-                <td>Jhon David</td>
-                <td>Startup</td>
-                <td>$3000.00</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>5, July, 2022</td>
-                <td>Salina Gomiz</td>
-                <td>Premimum</td>
-                <td>$7000.00</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>29, June, 2022</td>
-                <td>Gomiz</td>
-                <td>Gold</td>
-                <td>$4000.00</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>28, June, 2022</td>
-                <td>Elyana Jhon</td>
-                <td>Premimum</td>
-                <td>$2000.00</td>
-              </tr>
-            </tbody>
-          </table>
-        </div> --}}
-{{-- 
-        <div class="list2">
-          <div class="row">
-            <h4>Documnets</h4>
-            <a href="#">Upload</a>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Dashboard</a>
+              <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Projects</a>
+              <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Evaluators</a>
+              <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Settings</a>
+            </div>
+            <button
+              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#e7edf3] text-[#0e141b] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
+            >
+              <div class="text-[#0e141b]" data-icon="Question" data-size="20px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                  <path
+                    d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+            <div
+              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+              style='background-image: url("https://cdn.usegalileo.ai/sdxl10/4321a8ce-0731-4565-a405-6463e755081b.png");'
+            ></div>
           </div>
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Type</th>
-                <th>Uplaoded</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>CNIC</td>
-                <td>PDF</td>
-                <td>20</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Passport</td>
-                <td>PDF</td>
-                <td>12</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Licence</td>
-                <td>PDF</td>
-                <td>9</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Pic</td>
-                <td>Jpg</td>
-                <td>22</td>
-              </tr> 
-              <tr>
-                <td>5</td>
-                <td>CNIC</td>
-                <td>Jpg</td>
-                <td>22</td>
-              </tr> 
-              <tr>
-                <td>6</td>
-                <td>Docx</td>
-                <td>Word</td>
-                <td>22</td>
-              </tr> 
-            </tbody>
-          </table>
-        </div> --}}
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4">
+              <p class="text-[#0e141b] tracking-light text-[32px] font-bold leading-tight min-w-72">Project validation and evaluator assignment</p>
+            </div>
+            <h3 class="text-[#0e141b] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Project validation</h3>
+            <div class="px-4 py-3 @container">
+              <div class="flex overflow-hidden rounded-xl border border-[#d0dbe7] bg-slate-50">
+                <table class="flex-1">
+                  <thead>
+                    <tr class="bg-slate-50">
+                      <th class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-120 px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">Project</th>
+                      <th class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-240 px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">User</th>
+                      <th class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-360 px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">
+                        Submitted
+                      </th>
+                      <th
+                        class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-480 px-4 py-3 text-left text-[#0e141b] w-60 text-[#4e7397] text-sm font-medium leading-normal"
+                      ></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-t border-t-[#d0dbe7]">
+                      <td class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
+                        UI Style Guide
+                      </td>
+                      <td class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">Sophie C</td>
+                      <td class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
+                        2 days ago
+                      </td>
+                      <td class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-480 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
+                        View details
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <style>
+                          @container(max-width:120px){.table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-120{display: none;}}
+                @container(max-width:240px){.table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-240{display: none;}}
+                @container(max-width:360px){.table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-360{display: none;}}
+                @container(max-width:480px){.table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-480{display: none;}}
+              </style>
+            </div>
+            <h3 class="text-[#0e141b] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Evaluator assignment</h3>
+            <div class="flex items-center gap-4 bg-slate-50 px-4 min-h-[72px] py-2 justify-between">
+              <div class="flex items-center gap-4">
+                <div
+                  class="text-[#0e141b] flex items-center justify-center rounded-lg bg-[#e7edf3] shrink-0 size-12"
+                  data-icon="FolderSimple"
+                  data-size="24px"
+                  data-weight="regular"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M216,72H130.67L102.93,51.2a16.12,16.12,0,0,0-9.6-3.2H40A16,16,0,0,0,24,64V200a16,16,0,0,0,16,16H216.89A15.13,15.13,0,0,0,232,200.89V88A16,16,0,0,0,216,72Zm0,128H40V64H93.33l27.74,20.8a16.12,16.12,0,0,0,9.6,3.2H216Z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="flex flex-col justify-center">
+                  <p class="text-[#0e141b] text-base font-medium leading-normal line-clamp-1">Unassigned Projects</p>
+                  <p class="text-[#4e7397] text-sm font-normal leading-normal line-clamp-2">UI Style Guide</p>
+                </div>
+              </div>
+              <div class="shrink-0">
+                <button
+                  class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e7edf3] text-[#0e141b] text-sm font-medium leading-normal w-fit"
+                >
+                  <span class="truncate">Assign</span>
+                </button>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 bg-slate-50 px-4 min-h-[72px] py-2 justify-between">
+              <div class="flex items-center gap-4">
+                <div class="text-[#0e141b] flex items-center justify-center rounded-lg bg-[#e7edf3] shrink-0 size-12" data-icon="Users" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="flex flex-col justify-center">
+                  <p class="text-[#0e141b] text-base font-medium leading-normal line-clamp-1">Evaluator</p>
+                  <p class="text-[#4e7397] text-sm font-normal leading-normal line-clamp-2">Sophie C</p>
+                </div>
+              </div>
+              <div class="shrink-0">
+                <button
+                  class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e7edf3] text-[#0e141b] text-sm font-medium leading-normal w-fit"
+                >
+                  <span class="truncate">Unassign</span>
+                </button>
+              </div>
+            </div>
+            <div class="px-4">
+              <label class="flex gap-x-3 py-3 flex-row">
+                <input
+                  type="checkbox"
+                  class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1980e6] checked:bg-[#1980e6] checked:border-[#1980e6] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
+                  checked=""
+                />
+                <p class="text-[#0e141b] text-base font-normal leading-normal">Notify evaluators of new assignments</p>
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-{{-- 
-    <div class="sidebar">
-      <h4>Account Balance</h4>
-      
-      <div class="balance">
-        <i class="fas fa-dollar icon"></i>
-        <div class="info">
-          <h5>Dollar</h5>
-          <span><i class="fas fa-dollar"></i>25,000.00</span>
-        </div>
-      </div>
-      
-      <div class="balance">
-        <i class="fa-solid fa-rupee-sign icon"></i>
-        <div class="info">
-          <h5>PKR</h5>
-          <span><i class="fa-solid fa-rupee-sign"></i>300,000.00</span>
-        </div>
-      </div>
-
-      <div class="balance">
-        <i class="fas fa-euro icon"></i>
-        <div class="info">
-          <h5>Euro</h5>
-          <span><i class="fas fa-euro"></i>25,000.00</span>
-        </div>
-      </div>
-
-      <div class="balance">
-        <i class="fa-solid fa-indian-rupee-sign icon"></i>
-        <div class="info">
-          <h5>INR</h5>
-          <span><i class="fa-solid fa-indian-rupee-sign"></i>220,000.00</span>
-        </div>
-      </div>
-
-      <div class="balance">
-        <i class="fa-solid fa-sterling-sign icon"></i>
-        <div class="info">
-          <h5>Pound</h5>
-          <span><i class="fa-solid fa-sterling-sign"></i>30,000.00</span>
-        </div>
-      </div>
-
-    </div> --}}
-  </div>
-</body>
+  </body>
 </html>
-</span>

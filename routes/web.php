@@ -56,8 +56,10 @@ Route::post('supervisor/update/status', [ChapterController::class, 'update'])->n
 Route::post('supervisor/feeback/save/{chapter}', [FeedBackController::class, 'feedbackSave'])->name('supervisor.feedback.save');
 Route::get('supervisor/search', [SupervisorController::class, 'search'])->name('supervisor.search');
 Route::get('supervisor/find', [SupervisorController::class, 'find'])->name('supervisor.find');
+Route::get('supervisor/studentList', [SupervisorController::class, 'studentList'])->name('supervisor.studentList');
 Route::post('supervisor/deadline', [SupervisorController::class, 'deadline'])->name('supervisor.deadline');
 Route::post('supervisor/deadline_two', [SupervisorController::class, 'deadline_two'])->name('supervisor.deadline_two');
+Route::get('supervisor/profile', [SupervisorController::class, 'profile'])->name('supervisor.profile');
 Route::post('supervisor/deadline_three', [SupervisorController::class, 'deadline_three'])->name('supervisor.deadline_three');
 
 
@@ -78,6 +80,9 @@ Route::post('student/project/store', [ProjectController::class, 'store'])->name(
 Route::get('student/projects', [ProjectController::class, 'projectList'])->name('student.projectList');
 Route::delete('student/projectList/delete/{chapter}', [ProjectController::class, 'delete'])->name('student.delete');
 Route::get('/evaluation', [EvaluationController::class, 'index'])->name('evaluation');
+Route::get('/studentDataForm', [StudentController::class, 'studentDataForm'])->name('studentData');
+Route::post('/studentDataForm/save', [StudentController::class, 'studentSave'])->name('studentFormData.save');// the registeration form data capture
+Route::get('student/certificate', [StudentController::class, 'certificate'])->name('student.certificate');
 
 
 

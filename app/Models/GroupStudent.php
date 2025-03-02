@@ -11,6 +11,7 @@ class GroupStudent extends Model
     protected $fillable = [
         "matric_no",
         "group_name",
-        "supervisor"
+        "supervisor",
+        "name"
     ];
 }

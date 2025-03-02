@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chapter;
 use App\Models\Deadline;
+use App\Models\GroupStudent;
 use App\Models\Student;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
@@ -83,15 +84,16 @@ class ProjectController extends Controller
     public function store(Request $request)
 {
     $matricNo = session('matric_no');
-
+    $supervisor = GroupStudent::where('name', auth()->user()->name)->first();
     // Validate the incoming request
-    $request->validate([
-        'due_date' => 'required|date',
-        'chapter_name' => 'required|string|max:255',
-        'fullname' => 'required|string|max:255',
-        'file' => 'required|file|mimes:pdf,doc,docx|max:2048', // Restrict file types and size
-        'project_supervisor' => 'required|string|max:255',
-    ]);
+    // $request->validate([
+    //     'due_date' => 'required|date',
+    //     'chapter_name' => 'required|string|max:255',
+    //     'fullname' => 'required|string|max:255',
+    //     'file' => 'required|file|mimes:pdf,doc,docx|max:2048', // Restrict file types and size
+    //     'project_supervisor' => 'required|string|max:255',
+    // ]);
+    
 
     // Create a new instance of Chapter
     $chapter = new Chapter();
@@ -99,18 +101,32 @@ class ProjectController extends Controller
     // Set the properties of the new Chapter instance
     $chapter->due_date = $request->input('due_date');
     $chapter->chapter_name = $request->input('chapter_name');
-    $chapter->fullname = $request->input('fullname');
+    $chapter->fullname = auth()->user()->name;
     $chapter->matric_no = $matricNo;
-    $chapter->project_supervisor = $request->input('project_supervisor');
+    $chapter->project_supervisor = $supervisor->supervisor;
+  
 
     // Handle file upload
-    if ($request->hasFile('file')) {
-        $filePath = $request->file('file')->store('public/uploads');
-        $chapter->file_path = $filePath;
+    // if ($request->hasFile('file')) {
+    //     $filePath = $request->file('file')->store('public/uploads');
+    //     $chapter->file_path = $filePath;
 
-        // Extract and store the file name
-        $chapter->file_name = pathinfo($filePath, PATHINFO_BASENAME);
-    }
+    //     // Extract and store the file name
+    //     $chapter->file_name = pathinfo($filePath, PATHINFO_BASENAME);
+    // }
+
+
+    if($request->hasFile('file')){
+                    $file = $request->file('file')->store('public');
+                    // $file = Storage::disk('local')->put('/',$request->file('file'));
+                    $pathInfo = pathinfo($file);
+    
+                    // Extract the filename from the path information
+                    $storedFilename = $pathInfo['basename'];
+                    $chapter->file_name = $storedFilename;
+                    // dd($storedFilename);
+                }
+    
 
     // Check the deadline
     $currentDateTime = Carbon::now();
@@ -136,6 +152,7 @@ class ProjectController extends Controller
         return response()->json(['error' => 'Failed to create student record.'], 500);
     }
 }
+
 
 
     public function projectList(Chapter $chapter){

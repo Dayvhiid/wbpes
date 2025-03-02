@@ -56,6 +56,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+
+    public function regStudent()
+    {
+        return $this->hasOne(RegStudent::class);
+    }
+
+
     /**
      * Get the attributes that should be cast.
      *

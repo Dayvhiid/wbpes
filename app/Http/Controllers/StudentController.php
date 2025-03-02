@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GroupStudent;
+use App\Models\Regstudent;
 use App\Models\User;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\studentBioData;
+use App\Models\studentData;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -119,65 +122,49 @@ public function check(Request $request)
     // Search for the user in the 'users' table by email
     $user = User::where('email', $data['email'])->first();
 
+    // Check if the email belongs to a student
     if ($student) {
-        // Check if the password matches the student's password
+        // Verify the password
         if (Hash::check($data['password'], $student->password)) {
-            // Password is correct for the student
-            // Log::info('Student login successful', ['email' => $student->email]);
-            return redirect(route('student.welcome',['student' => $student]));
+            // Log the student in manually using session
+            session(['student_id' => $student->id]);
 
-            // Handle course checks for students
+            // Check if the student is missing a course
             if (is_null($student->course)) {
-                return redirect(route('student.forms'));
-                // Log::info('Student is missing a course. Redirecting to forms page', ['email' => $student->email]);
-
-                // Return a JSON response for missing course
-                return response()->json([
-                    'message' => 'Student login successful. Missing course. Fill out forms.',
-                    'student' => $student
-                ], 200);
+                // Redirect to the forms page to fill in the course
+                return redirect()->route('student.forms');
             } else {
                 // Save relevant session data for the student
                 session(['matric_no' => $student->matric_no]);
                 session(['project_supervisor' => $student->project_supervisor]);
 
-                Log::info('Student login successful and has a course', [
-                    'email' => $student->email,
-                    'matric_no' => $student->matric_no,
-                    'project_supervisor' => $student->project_supervisor
-                ]);
-
-                return response()->json([
-                    'message' => 'Student login successful and has a course',
-                    'student' => $student
-                ], 200);
+                // Redirect to the student welcome page
+                Auth::login($user);
+                return redirect()->route('student.welcome', ['student' => $student]);
             }
         } else {
             // Incorrect password for student
-            Log::error('Student login failed due to wrong password', ['email' => $data['email']]);
-            return response()->json(['message' => 'Invalid email or password for student'], 401);
+            return back()->withErrors(['password' => 'Invalid email or password for student']);
         }
-    } elseif ($user) {
-        // Check if the password matches the user's password in the 'users' table
+    } 
+    
+    // Check if the email belongs to a user
+    elseif ($user) {
+        // Verify the password and log the user in
         if (Hash::check($data['password'], $user->password)) {
-            // Log the user in
             Auth::login($user);
 
-            Log::info('User login successful', ['email' => $user->email]);
-
-            return response()->json([
-                'message' => 'User login successful',
-                'user' => $user
-            ], 200);
+            // Redirect to the dashboard or home page
+            return redirect()->route('home');
         } else {
             // Incorrect password for user
-            Log::error('User login failed due to wrong password', ['email' => $data['email']]);
-            return response()->json(['message' => 'Invalid email or password for user'], 401);
+            return back()->withErrors(['password' => 'Invalid email or password for user']);
         }
-    } else {
-        // No student or user found with the provided email
-        Log::error('Login failed. No account found with the provided email', ['email' => $data['email']]);
-        return response()->json(['message' => 'No account found with the provided email'], 404);
+    } 
+    
+    // If no student or user is found with the provided email
+    else {
+        return back()->withErrors(['email' => 'No account found with the provided email']);
     }
 }
 
@@ -185,26 +172,96 @@ public function check(Request $request)
 
     public function profile()
     {
-        // Retrieve the matric number from the session
+        //Retrieve the matric number from the session
         $matricNo = session('matric_no');
     
         // Find the student by matric number
-        $student = Student::where('matric_no', $matricNo)->first();
-        $student->project_supervisor = session('project_supervisor');
-    
-        // Check if the student exists
+        $student = Regstudent::where('email', auth()->user()->email)->first();
+        $results = GroupStudent::where('name',auth()->user()->name)->first();
+
         if (!$student) {
             return redirect()->back()->with('error', 'Student not found.');
         }
     
-        // Pass the student data to the view
-        return view('student.profile', compact('student'));
+      //  Pass the student data to the view
+        return view('student.profile', compact('student', 'results'));
     }
     
 
     public function studentForms(){
         return view('student.studentForms');
     }
+
+    public function studentDataForm(){
+        return view('student.studentData');
+    }
+
+    public function certificate(){
+        return view('student.certificate');
+    }
+
+
+    // public function studentSave(Request $request){
+
+    //     $user = Auth::user();
+
+    //     $studentData = new Regstudent();
+    //     $studentData->name = $request->input('name');
+    //     $studentData->user_id = auth()->user()->id;
+    //     $studentData->matricNo = $request->input('matricNo');
+    //     $studentData->email = auth()->user()->email;
+    //     $studentData->phone_number = $request->input('phone_number');
+    //     $studentData->department = $request->input('department');
+    //     $studentData->project_title = $request->input('project_title');
+    //     $studentData->gender = $request->input('gender');
+    //     $studentData->save();
+
+    // }
+
+
+    public function studentSave(Request $request)
+{
+    // Validate the input data
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'matricNo' => 'required|string|max:100',
+        'phone_number' => 'nullable|string|max:15',
+        'department' => 'nullable|string|max:100',
+        'project_title' => 'nullable|string|max:255',
+        'gender' => 'nullable|string|max:10',
+        'cgpa' => 'nullable|string|max:10',
+    ]);
+
+    // Get the current authenticated user's ID and email
+    $userId = auth()->user()->id;
+    $user_email = auth()->user()->email;
+
+    // Update if name exists, otherwise create new record
+    $studentData = Regstudent::updateOrCreate(
+        ['name' => $request->input('name')], // Check if name exists
+        [
+            'name' => $request->input('name'),
+            'user_id' => $userId,
+            'matricNo' => $request->input('matricNo'),
+            'email' => $user_email,
+            'phone_number' => $request->input('phone_number'),
+            'department' => $request->input('department'),
+            'project_title' => $request->input('project_title'),
+            'gender' => $request->input('gender'),
+            'cgpa' => $request->input('cgpa'),
+        ]
+    );
+
+    // Return a response
+    notify()->success('Your project has been submitted successfully.');
+    return view('student.studentData');
+   
+    // return response()->json([
+    //     'message' => 'Record saved successfully.',
+    //     'data' => $studentData
+    // ], 200);
+}
+
     public function save(Request $request){
      
         // storing matric number and project supervisor to session

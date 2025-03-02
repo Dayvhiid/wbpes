@@ -1,6 +1,6 @@
 <style>
     body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f8f9fa;
@@ -295,7 +295,155 @@ th {
 a{
     text-decoration: none;
 }
+table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5%;
+    margin-top: 5%;
+    border-radius: 10px;
+}
+.navbar {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 64px;
+  background: #023e8a;
+  color: #f9f9f9;
+  font-family: "Poppins";
+  box-sizing: border-box;
+}
+.button {
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
 
+
+.navbar {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 64px;
+  background: #023e8a;
+  color: #f9f9f9;
+  font-family: "Poppins";
+  box-sizing: border-box;
+}
+
+@media only screen and (min-width: 600px) {
+  .navbar {
+    justify-content: space-between;
+    padding: 0 0 0 16px;
+  }
+}
+
+.navbar-overlay {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+body.open .navbar-overlay {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media only screen and (min-width: 600px) {
+  .navbar-overlay {
+    display: none;
+  }
+}
+.navbar-burger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+}
+
+@media only screen and (min-width: 600px) {
+  .navbar-burger {
+    display: none;
+  }
+}
+
+.navbar-title {
+  margin: 0;
+  font-size: 16px;
+}
+
+.navbar-menu {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  translate: -100% 0;
+  width: 270px;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #000000;
+  visibility: hidden;
+  transition: translate 0.3s;
+}
+
+body.open .navbar-menu {
+  translate: 0 0;
+  visibility: visible;
+}
+thead th{
+  background: #0077b6;
+  color: #333;
+}
+
+@media only screen and (min-width: 600px) {
+  .navbar-menu {
+    position: static;
+    translate: 0 0;
+    width: auto;
+    background: transparent;
+    flex-direction: row;
+    visibility: visible;
+  }
+}
+
+.navbar-menu > button {
+  color: rgba(255, 255, 255, 0.5);
+  background: transparent;
+  padding: 0 8px;
+}
+
+.navbar-menu > button.active {
+  color: inherit;
+}
 
 
 @media (max-width: 768px) {
@@ -331,18 +479,31 @@ a{
     <title>Evaluation Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     @notifyCss
 </head>
 <body>
     <x-notify::notify />
     @notifyJs
     <header>
-        <nav>
+        {{-- <nav>
             <div class="logo">Research University</div>
             <ul>
                 <li><a href="{{route('supervisor.search')}}">Search</a></li>
-                <li><a href="#">Projects</a></li>
-                <li>                    
+                {{-- <li>                    
                     <div class="select">
                     <div
                         class="selected"
@@ -361,7 +522,7 @@ a{
                             d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
                         ></path>
                         </svg>
-                    </div>
+                    </div> --}}
                     {{-- <div class="options">
                         <div title="all">
                         <input id="all" name="option" type="radio" checked=""  />
@@ -378,19 +539,33 @@ a{
                         </div>
                     </div> --}}
                     
-                    </div>
-                </li>
-                <li><a href="#">Calendar</a></li>
-                <li><a href="#">Docs</a></li>
+                    {{-- </div>
+                </li> --}}
+                {{-- <li><a href="{{ route('supervisor.studentList') }}">Students List</a></li>
+                <li>Chat</li>
             </ul>
             <div class="profile">
                 <i class="fas fa-bell"></i>
                 <img src="profile.jpg" alt="Profile">
             </div>
-        </nav>
+        </nav> --}}
+        <nav class="navbar">
+            <div class="navbar-overlay" onclick="toggleMenuOpen()"></div>
+      
+            <button type="button" class="navbar-burger" onclick="toggleMenuOpen()">
+              <span class="material-icons">menu</span>
+            </button>
+            <h1 class="navbar-title">Academic Insights</h1>
+            <nav class="navbar-menu">
+              <button type="button" class="button">Search</button>
+              <button type="button" class="button" onclick="window.location='/chatify'">Chat</button>
+              <button type="button" class="button">Profile</button>
+              <button type="button" class="button" onclick="window.location='{{ route('supervisor.studentList') }}'">Student List</button>
+            </nav>
+          </nav> 
     </header>
     <main>
-        <h1>Project Submittion</h1>
+        {{-- <h1>Project Submittion</h1> --}}
         {{-- <p>Students are waiting for your feedback. Help them improve and learn.</p>
         <div class="filters">
             <button class="filter-btn">All projects <i class="fas fa-caret-down"></i></button>
@@ -399,14 +574,14 @@ a{
             <button class="filter-btn">Done <i class="fas fa-caret-down"></i></button>
             <button class="filter-btn">Needs review <i class="fas fa-caret-down"></i></button>
         </div> --}}
-        <h1>Chapter One</h1>
+        {{-- <h1>Chapter One</h1> --}}
        {{-- <form action="{{route('supervisor.deadline')}}">
            <input type="date" placeholder="Enter Due Date" name="due_date" required>
        </form> --}}
 
 
 
-       <form id="deadlineForm" action="{{ route('supervisor.deadline') }}" method="POST">
+       {{-- <form id="deadlineForm" action="{{ route('supervisor.deadline') }}" method="POST">
         @csrf
         <input 
             type="date" 
@@ -414,7 +589,7 @@ a{
             name="due_date" 
             required 
             id="dueDateInput">
-    </form>
+    </form> --}}
     
     <script>
         document.getElementById('dueDateInput').addEventListener('change', function () {
@@ -429,7 +604,7 @@ a{
                     <th>Project</th>
                     <th>Submitted</th>
                     <th>Due Date</th>
-                    <th>Status</th>
+                    {{-- <th>Status</th> --}}
                     <th>File</th>
                     <th>Add Feedback</th>
                 </tr>
@@ -442,7 +617,7 @@ a{
                             <td>{{ $value->chapter_name }}</td>
                             <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
                             <td>{{ $value->due_date }}</td>
-                            <td>
+                            {{-- <td>
                                 <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
                                     @method('POST')
                                     @csrf
@@ -456,7 +631,7 @@ a{
                                     </select>
                                     <button type="button" data-form-id="status-form-{{ $value->id }}" class="feedbackBtn">Update</button>
                                 </form>
-                            </td>
+                            </td> --}}
                             <td>
                                 <span class="status"></span>
                                 <a class="feedbackBtn" href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
@@ -483,7 +658,7 @@ a{
         
        
 
-        <h1>Chapter Two</h1>
+        {{-- <h1>Chapter Two</h1>
 
 
         <form id="deadlineFormTwo" action="{{ route('supervisor.deadline_two') }}" method="POST">
@@ -494,7 +669,7 @@ a{
                 name="due_date" 
                 required 
                 id="dueDateInputTwo">
-        </form>
+        </form> --}}
 
         <script>
             document.getElementById('dueDateInputTwo').addEventListener('change', function () {
@@ -509,7 +684,7 @@ a{
                     <th>Project</th>
                     <th>Submitted</th>
                     <th>Due Date</th>
-                    <th>Status</th>
+                    {{-- <th>Status</th> --}}
                     <th>File</th>
                     <th>Add Feedback</th>
                 </tr>
@@ -522,7 +697,7 @@ a{
                             <td>{{ $value->chapter_name }}</td>
                             <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
                             <td>{{ $value->due_date }}</td>
-                            <td>
+                            {{-- <td>
                                 <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
                                     @method('POST')
                                     @csrf
@@ -536,7 +711,7 @@ a{
                                     </select>
                                     <button type="button" data-form-id="status-form-{{ $value->id }}" class="feedbackBtn">Update</button>
                                 </form>
-                            </td>
+                            </td> --}}
                             <td>
                                 <span class="status"></span>
                                 <a class="feedbackBtn" href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
@@ -563,13 +738,13 @@ a{
 
 
 
-        <h1>Chapter Three</h1>
+        {{-- <h1>Chapter Three</h1>
 
 
-        <h1>Chapter Two</h1>
+        <h1>Chapter Two</h1> --}}
 
 
-        <form id="deadlineFormThree" action="{{ route('supervisor.deadline_three') }}" method="POST">
+        {{-- <form id="deadlineFormThree" action="{{ route('supervisor.deadline_three') }}" method="POST">
             @csrf
             <input 
                 type="date" 
@@ -706,7 +881,7 @@ a{
 </table>
 
 
-        
+         --}}
         {{-- <button type="submit" class="btn btn-primary">Update Status</button> --}}
     </main>
 

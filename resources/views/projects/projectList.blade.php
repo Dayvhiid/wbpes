@@ -261,7 +261,7 @@ th {
             </tbody>
         </table>
     </main>
-    <x-livewire-filemanager />
+    {{-- <x-livewire-filemanager /> --}}
 
     @filemanagerScripts
 </body>

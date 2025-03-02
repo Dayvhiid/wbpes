@@ -156,6 +156,13 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
+.drop_down{
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 1rem;
+}
 
 </style>
 <!DOCTYPE html>
@@ -185,19 +192,13 @@ button[type="submit"]:hover {
     <main>
         <x-notify::notify />
         @notifyJs
-        <div class="progress-bar">
-            <div class="step">Step 1/3</div>
-            <div class="progress">
-                <div class="progress-fill"></div>
-            </div>
-        </div>
         <h1>Welcome to UniSubmit</h1>
         <p>Please fill in the form below to complete your submission</p>
         <form  action="{{route('student.project.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST') 
             {{-- <input type="text" placeholder="Enter your Chapter" name="chapter_name" required> --}}
-            <select name="chapter_name" type="text">
+            <select name="chapter_name" type="text" class="drop_down">
                 <option >Select your Chapter</option>
                 <option value="Chapter One">Chapter One</option>
                 <option value="Chapter Two">Chapter Two</option>
@@ -205,13 +206,13 @@ button[type="submit"]:hover {
                 <option value="Chapter Four">Chapter Four</option>
                 <option value="Chapter Five">Chapter Five</option>
             </select>
-            <input type="text" placeholder="Enter Student Full Name" name="fullname" required>
-            <select name="project_supervisor">
+            {{-- <input type="text" placeholder="Enter Student Full Name" name="fullname" required>  --}}
+            {{-- <select name="project_supervisor">
                 <option >Select your project supervisor</option>
                 <option value="Dr Maitanmi">Dr Maitanmi</option>
                 <option value="Dr Mensah">Dr Mensah</option>
-            </select>
-            <input type="date" placeholder="Enter Due Date" name="due_date" required>
+            </select> --}}
+            {{-- <input type="date" placeholder="Enter Due Date" name="due_date" id="due_date" required>  --}}
 
 
             <label for="file">Upload PDF:</label>

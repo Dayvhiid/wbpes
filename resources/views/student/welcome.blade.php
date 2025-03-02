@@ -117,8 +117,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   </head>
   <body>
-    <x:notify::notify />
-    @notifyJs
+    
     <div class="relative flex size-full min-h-screen flex-col bg-slate-50 group/design-root overflow-x-hidden" style='font-family: Lexend, "Noto Sans", sans-serif;'>
       <div class="layout-container flex h-full grow flex-col">
         <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf3] px-10 py-3">
@@ -186,6 +185,12 @@
        <a href="/chatify">CHAT</a>
       </button>
 
+      <button
+      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#1980e6] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em]"
+      >
+     <a href="/studentDataForm">Student Data</a>
+    </button>
+
       @notifyJs
          
       {{-- <div class="dd">
@@ -230,12 +235,12 @@
         </header>
        
         {{-- <a href="{{route('student.chapter')}}">Project</a> --}}
-        <a href="{{route('student.projectList')}}">Project</a>
-        <div class="px-40 flex flex-1 justify-center py-5">
+        {{-- <a href="{{route('student.projectList')}}">Project</a> --}}
+        <div class="px-40 flex flex-1 justify-center py-4">
           <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
             <h3 class="text-[#0e141b] tracking-light text-2xl font-bold leading-tight px-4 text-left pb-2 pt-5">Welcome, {{ $student->fullname }}</h3>
             <p class="text-[#0e141b] text-base font-normal leading-normal pb-3 pt-1 px-4">
-              You're all set to explore. Dive into our library of quizzes, flashcards, and study guides, or check out the latest from your classmates and instructors.
+              You're all set.
             </p>
             <h3 class="text-[#0e141b] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Recommended for you</h3>
             <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
@@ -245,11 +250,11 @@
                   style='background-image: url("https://cdn.usegalileo.ai/stability/ed8cb0b1-be1f-4619-8c69-c6b5132b0598.png");'
                 ></div>
                 <div>
-                  <p class="text-[#0e141b] text-base font-medium leading-normal">Quiz: 10 Qs</p>
-                  <p class="text-[#4e7397] text-sm font-normal leading-normal">Physical Science - Matter &amp; Energy</p>
+                  <p class="text-[#0e141b] text-base font-medium leading-normal">Chatting</p>
+                  <p class="text-[#4e7397] text-sm font-normal leading-normal">Get in touch with your supervisor </p>
                 </div>
               </div>
-              <div class="flex flex-col gap-3 pb-3">
+              {{-- <div class="flex flex-col gap-3 pb-3">
                 <div
                   class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
                   style='background-image: url("https://cdn.usegalileo.ai/stability/077546e6-0088-4ec1-93f1-e9aa97745be2.png");'
@@ -258,6 +263,16 @@
                   <p class="text-[#0e141b] text-base font-medium leading-normal">Study Guide</p>
                   <p class="text-[#4e7397] text-sm font-normal leading-normal">Physical Science - Matter &amp; Energy</p>
                 </div>
+              </div> --}}
+              <div class="flex flex-col gap-3 pb-3">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
+                  style='background-image: url("https://cdn.usegalileo.ai/stability/84206141-7ff2-4515-8477-71e93d788bfc.png");'
+                ></div>
+                <div>
+                  <p class="text-[#0e141b] text-base font-medium leading-normal">Projects Submitions</p>
+                  <p class="text-[#4e7397] text-sm font-normal leading-normal">Keep track of your submitions</p>
+                </div>
               </div>
               <div class="flex flex-col gap-3 pb-3">
                 <div
@@ -265,13 +280,13 @@
                   style='background-image: url("https://cdn.usegalileo.ai/stability/0e04cb42-94c7-417f-8afc-81857983e1a2.png");'
                 ></div>
                 <div>
-                  <p class="text-[#0e141b] text-base font-medium leading-normal">Flashcards</p>
-                  <p class="text-[#4e7397] text-sm font-normal leading-normal">Physical Science - Matter &amp; Energy</p>
+                  <p class="text-[#0e141b] text-base font-medium leading-normal">Supervisor Feedback</p>
+                  <p class="text-[#4e7397] text-sm font-normal leading-normal">Get timely feedback on your project submitions</p>
                 </div>
               </div>
-            </div>
-            <h3 class="text-[#0e141b] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">From your classmates</h3>
-            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+            {{-- </div>
+            <h3 class="text-[#0e141b] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">From your classmates</h3> --}}
+            {{-- <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
               <div class="flex flex-col gap-3 pb-3">
                 <div
                   class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
@@ -302,7 +317,7 @@
                   <p class="text-[#4e7397] text-sm font-normal leading-normal">Physical Science - Matter &amp; Energy</p>
                 </div>
               </div>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>

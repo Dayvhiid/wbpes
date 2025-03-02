@@ -99,7 +99,7 @@
     <div class="profile-container">
         <div class="profile-header">
             <img src="profile.webp" alt="Profile Picture" class="profile-picture">
-            <h2 class="profile-name">{{$student->fullname}}</h2>
+            <h2 class="profile-name">{{$student->name}}</h2>
             <p class="profile-title">Undergraduate student, Babcock University</p>
         </div>
         <div class="profile-details">
@@ -107,35 +107,35 @@
                 <i class="fas fa-user detail-icon"></i>
                 <div class="detail-info">
                     <span class="detail-title">Name</span>
-                    <span class="detail-subtitle">{{$student->fullname}}</span>
+                    <span class="detail-subtitle">{{$student->name}}</span>
                 </div>
             </div>
             <div class="detail-card">
                 <i class="fas fa-graduation-cap detail-icon"></i>
                 <div class="detail-info">
                     <span class="detail-title">Course</span>
-                    <span class="detail-subtitle">{{$student->course}}</span>             
+                    <span class="detail-subtitle">{{$student->department}}</span>             
                 </div>
             </div>
             <div class="detail-card">
                 <i class="fas fa-id-card detail-icon"></i>
                 <div class="detail-info">
                     <span class="detail-title">Matric number</span>
-                    <span class="detail-subtitle">{{$student->matric_no}}</span>
+                    <span class="detail-subtitle">{{$student->matricNo}}</span>
                 </div>
             </div>
             <div class="detail-card">
                 <i class="fas fa-project-diagram detail-icon"></i>
                 <div class="detail-info">
                     <span class="detail-title">Project title</span>
-                    <span class="detail-subtitle">{{$student->project_topic}}</span>
+                    <span class="detail-subtitle">{{$student->project_title}}</span>
                 </div>
             </div>
             <div class="detail-card">
                 <i class="fas fa-user-tie detail-icon"></i>
                 <div class="detail-info">
                     <span class="detail-title">Supervisor</span>
-                    <span class="detail-subtitle">{{$student->project_supervisor}}</span>
+                    <span class="detail-subtitle">{{$results->supervisor}}</span>
                 </div>
             </div>
             <div class="detail-card">
@@ -145,6 +145,15 @@
                     <span class="detail-subtitle">Male</span>
                 </div>
             </div>
+            <div class="detail-card">
+                <i class="fas fa-user-tie detail-icon"></i>
+                <div class="detail-info">
+                    <span class="detail-title">Email</span>
+                    <span class="detail-subtitle">{{$student->email}}</span>
+                </div>
+            </div>
+
+            
         </div>
     </div>
 </body>

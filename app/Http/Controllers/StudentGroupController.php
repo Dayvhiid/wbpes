@@ -42,9 +42,9 @@ class StudentGroupController extends Controller
         $supervisors = [
             'Dr Maitanmi',
             'Dr Mensah',
-            'Dr Adegboola',
-            'Prof Oyenkachi',
-            'Mrs S. Susan'
+            // 'Dr Adegboola',
+            // 'Prof Oyenkachi',
+            // 'Mrs S. Susan'
         ];
     
         foreach ($chunks as $key => $chunk) {

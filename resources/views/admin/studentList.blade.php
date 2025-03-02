@@ -376,7 +376,7 @@ thead th.active,tbody td.active {
                     @foreach ($students as $student)
                         <tr>
                             <td>  {{ $student->name }} </td>
-                            <td> {{ $student->matric_no }} </td>
+                            <td> {{ $student->matricNo }} </td>
                             <td> {{ $student->department }} </td>
                             <td> {{ $student->cgpa }} </td>
                             <td> {{ $student->phone_number }} </td>

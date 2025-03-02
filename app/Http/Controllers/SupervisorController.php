@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Chapter;
 use App\Models\Deadline;
+use App\Models\GroupStudent;
 use App\Models\Student;
 use App\Models\Supervisor;
 use Illuminate\Http\Request;
@@ -251,6 +252,17 @@ class SupervisorController extends Controller
         
         $results = $students->union($chapters);
         return view('supervisor.find', compact('results'));
+    }
+
+    public function studentList(){
+        $studentList =  GroupStudent::where('supervisor', auth()->user()->name)->get();
+        return view('supervisor.studentList', compact('studentList'));
+    }
+
+
+    public function profile(){  //Not Done Yet
+        $list = Supervisor::where('email', auth()->user()->email)->get();
+        return view('supervisor.profile', compact('list'));
     }
     
 
