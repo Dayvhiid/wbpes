@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Collection;
 use WireChat\Traits\HasConversations;
 
 class User extends Authenticatable
@@ -63,6 +64,9 @@ class User extends Authenticatable
     }
 
 
+
+
+
     /**
      * Get the attributes that should be cast.
      *
@@ -75,4 +79,59 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    //Everything WireChat related
+
+    //This allows the user to create chats
+    public function canCreateChats(): bool
+    {
+        return true;
+    }
+
+    //This allows the user to create group chats
+    public function canCreateGroups(): bool
+    {
+        return true;
+    }
+
+    public function getCoverUrlAttribute(): ?string
+    {
+      return $this->avatar_url ?? null;
+    }
+
+    /**
+    * Returns the URL for the user's profile page.
+    * Adjust the 'profile' route as needed for your setup.
+    */
+    public function getProfileUrlAttribute(): ?string
+    {
+      return route('profile', ['id' => $this->id]);
+    }
+
+    /**
+    * Returns the display name for the user.
+    * Modify this to use your preferred name field.
+    */
+    public function getDisplayNameAttribute(): ?string
+    {
+      return $this->name ?? 'user';
+    }
+
+    /**
+    * Search for users when creating a new chat or adding members to a group.
+    * Customize the search logic to limit results, such as restricting to friends or eligible users only.
+    */
+    public function searchChatables(string $query): ?Collection
+    {
+     $searchableFields = ['name'];
+     return User::where(function ($queryBuilder) use ($searchableFields, $query) {
+        foreach ($searchableFields as $field) {
+                $queryBuilder->orWhere($field, 'LIKE', '%'.$query.'%');
+        }
+      })
+        ->limit(20)
+        ->get();
+    }
+
+
 }

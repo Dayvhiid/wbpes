@@ -1,3 +1,8 @@
+<style>
+  thead{
+    background-color: #0267C1;
+  }
+</style>
 <html>
   <head>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
@@ -64,7 +69,7 @@
             <div class="px-4 py-3 @container">
               <div class="flex overflow-hidden rounded-xl border border-[#d0dbe7] bg-slate-50">
                 <table class="flex-1">
-                  <thead>
+                  <thead class="table_head">
                     <tr class="bg-slate-50">
                       <th class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-120 px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">Project</th>
                       <th class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-240 px-4 py-3 text-left text-[#0e141b] w-[400px] text-sm font-medium leading-normal">User</th>
@@ -76,10 +81,10 @@
                       ></th>
                     </tr>
                   </thead>
-                  <tbody>
+                  {{-- <tbody>
                     <tr class="border-t border-t-[#d0dbe7]">
                       <td class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
-                        UI Style Guide
+                        {{$student->chapter_name}}
                       </td>
                       <td class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">Sophie C</td>
                       <td class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
@@ -89,7 +94,25 @@
                         View details
                       </td>
                     </tr>
-                  </tbody>
+                  </tbody> --}}
+                  <tbody>
+                    @foreach($students as $student)
+                        <tr class="border-t border-t-[#d0dbe7]">
+                            <td class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-120 h-[72px] px-4 py-2 w-[400px] text-[#0e141b] text-sm font-normal leading-normal">
+                                {{$student->chapter_name}}
+                            </td>
+                            <td class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-240 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
+                                {{$student->fullname}}
+                            </td>
+                            <td class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-360 h-[72px] px-4 py-2 w-[400px] text-[#4e7397] text-sm font-normal leading-normal">
+                                {{$student->created_at->diffForHumans()}}
+                            </td>
+                            <td class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-480 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
+                                <a href="">View details</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
                 </table>
               </div>
               <style>

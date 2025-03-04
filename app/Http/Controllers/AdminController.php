@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
 use App\Models\studentData;
 use App\Models\GroupStudent;
 use App\Models\Regstudent;
@@ -17,7 +18,8 @@ class AdminController extends Controller
     }
 
     public function dashboard(){
-        return view('admin.dashboard');
+        $students = Chapter::all();
+        return view('admin.dashboard', compact('students'));
     }
 
     public function fileUpload(){
