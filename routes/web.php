@@ -96,7 +96,8 @@ Route::get('/status/message', function () {
 Route::get('/signup/status', function () { return view('status.status'); })->name('status.status');
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('landpage');
 });
 
 

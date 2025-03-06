@@ -170,21 +170,42 @@ public function check(Request $request)
 
    
 
+    // public function profile()
+    // {
+    //     //Retrieve the matric number from the session
+    //     $matricNo = session('matric_no');
+    
+    //     // Find the student by matric number
+    //     $student = Regstudent::where('email', auth()->user()->email)->first();
+    //     $results = GroupStudent::where('name',auth()->user()->name)->first();
+
+    //     if (!$student) {
+    //         return redirect()->back()->with('error', 'Student not found.');
+    //     }
+    
+    //   //  Pass the student data to the view
+    //     return view('student.profile', compact('student', 'results'));
+    // }
+
+
     public function profile()
     {
-        //Retrieve the matric number from the session
+        // Retrieve the matric number from the session
         $matricNo = session('matric_no');
     
-        // Find the student by matric number
+        // Find the student by email
         $student = Regstudent::where('email', auth()->user()->email)->first();
-        $results = GroupStudent::where('name',auth()->user()->name)->first();
-
+        $results = GroupStudent::where('name', auth()->user()->name)->first();
+    
         if (!$student) {
             return redirect()->back()->with('error', 'Student not found.');
         }
     
-      //  Pass the student data to the view
-        return view('student.profile', compact('student', 'results'));
+        // Find all students in the same group
+        $groupStudents = GroupStudent::where('group_name', $results->group_name)->get();
+    
+        // Pass the student data and group students to the view
+        return view('student.profile', compact('student', 'results', 'groupStudents'));
     }
     
 

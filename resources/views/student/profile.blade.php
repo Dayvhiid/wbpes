@@ -152,7 +152,26 @@
                     <span class="detail-subtitle">{{$student->email}}</span>
                 </div>
             </div>
-
+            <div class="detail-card">
+                <i class="fas fa-users detail-icon"></i>
+                <div class="detail-info">
+                    <span class="detail-title">Group</span>
+                    <span class="detail-subtitle">{{$results->group_name}}</span>
+                </div>
+            </div>
+        </div>
+        <h3 class="profile-title">Group Members</h3>
+        <div class="profile-details">
+            @foreach($groupStudents as $groupStudent)
+                <div class="detail-card">
+                    <i class="fas fa-user detail-icon"></i>
+                    <div class="detail-info">
+                        <span class="detail-title">Name</span>
+                        <span class="detail-subtitle">{{$groupStudent->name}}</span>
+                    </div>
+                </div>
+            @endforeach
+        </div>
             
         </div>
     </div>

@@ -27,7 +27,7 @@
                 <input type="text" placeholder="Name" name="name">
                 <input type="text" placeholder="Email" name="email">
                 <input type="password" placeholder="password" name="password">
-                <input type="password" placeholder="Confirm" name="confirm_password">
+                <input type="password" placeholder="Confirm password" name="confirm_password">
                 <button type="submit">Sign Up</button>
             </form>
         </div>
@@ -43,7 +43,7 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div> --}}
                 {{-- <span>or use your email password</span> --}}
-                <input type="text" placeholder="Enter your name" name="name">
+                {{-- <input type="text" placeholder="Enter your name" name="name"> --}}
                 <input type="text" placeholder="Enter your email" name="email">
                 <input type="password" placeholder="Enter your Password" name="password">
                 <a href="#">Forget Your Password?</a>
@@ -53,12 +53,12 @@
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
-                    <h1>Welcome Back!</h1>
-                    <p>Enter your  details</p>
+                    <h1></h1>
+                    <h1>Enter your  details</h1>
                     <button class="hidden" id="login">Sign In</button>
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <h1>Hello, Superviosr</h1>
+                    <h1>Hello, Evaluator</h1>
                     <p>Create a new account</p>
                     <button class="hidden" id="register">Sign Up</button>
                 </div>
