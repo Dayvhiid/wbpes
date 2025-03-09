@@ -108,7 +108,51 @@
                                 {{$student->created_at->diffForHumans()}}
                             </td>
                             <td class="table-85df6e5f-798f-4a7b-b9c6-d1ae1dc0fabe-column-480 h-[72px] px-4 py-2 w-60 text-[#4e7397] text-sm font-bold leading-normal tracking-[0.015em]">
-                                <a href="">View details</a>
+                                {{-- <a href="">View details</a> --}}
+                                {{-- <input
+                                type="checkbox"
+                                class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1980e6] checked:bg-[#1980e6] checked:border-[#1980e6] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
+                                checked=""
+                              /> --}}
+                              {{-- <form action="{{route('update.project.status')}}" action="POST">
+                                <p class="text-[#0e141b] text-base font-normal leading-normal" value="validated" >Validate Project</p>
+                                </form>                     --}}
+                                <td>
+                                  <input
+                                      type="checkbox"
+                                      class="validate-checkbox h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1980e6] checked:bg-[#1980e6] checked:border-[#1980e6] focus:ring-0 focus:outline-none"
+                                      data-student-id="{{$student->id}}"
+                                      {{ $student->validate_status ? 'checked' : '' }}
+                                  />
+                                  <p class="text-[#0e141b] text-base font-normal leading-normal">Validate Project</p>
+                              </td>
+                              
+                              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                              <script>
+                                  $(document).ready(function () {
+                                      $(".validate-checkbox").on("change", function () {
+                                          let studentId = $(this).data("student-id");
+                                          let isChecked = $(this).is(":checked") ? 1 : 0;
+                              
+                                          $.ajax({
+                                              url: "{{ route('update.project.status') }}",
+                                              type: "POST",
+                                              data: {
+                                                  _token: "{{ csrf_token() }}",
+                                                  student_id: studentId,
+                                                  validate_status: isChecked
+                                              },
+                                              success: function (response) {
+                                                  alert(response.message);
+                                              },
+                                              error: function (error) {
+                                                  alert("Error updating validation status.");
+                                              }
+                                          });
+                                      });
+                                  });
+                              </script>
+                              
                             </td>
                         </tr>
                     @endforeach
@@ -161,7 +205,9 @@
                 </div>
                 <div class="flex flex-col justify-center">
                   <p class="text-[#0e141b] text-base font-medium leading-normal line-clamp-1">Evaluator</p>
-                  <p class="text-[#4e7397] text-sm font-normal leading-normal line-clamp-2">Sophie C</p>
+                  <p class="text-[#4e7397] text-sm font-normal leading-normal line-clamp-2">Dr Maitanmi</p>
+                  <p class="text-[#4e7397] text-sm font-normal leading-normal line-clamp-2">Dr Mensah</p>
+                  <p class="text-[#4e7397] text-sm font-normal leading-normal line-clamp-2">Dr Adegboola</p>
                 </div>
               </div>
               <div class="shrink-0">
@@ -179,7 +225,7 @@
                   class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1980e6] checked:bg-[#1980e6] checked:border-[#1980e6] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
                   checked=""
                 />
-                <p class="text-[#0e141b] text-base font-normal leading-normal">Notify evaluators of new assignments</p>
+                {{-- <p class="text-[#0e141b] text-base font-normal leading-normal">Notify evaluators of new assignments</p> --}}
               </label>
             </div>
           </div>

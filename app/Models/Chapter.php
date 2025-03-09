@@ -9,6 +9,7 @@ class Chapter extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'matric_no',
         'Due Date',
         'chapter_name',
@@ -27,6 +28,7 @@ class Chapter extends Model
         'data_analysis_evaluation',
         'conclusion_evaluation',
         'presentation_quality_evaluation',
-        'comments'
+        'comments',
+        'validated_status'
     ];
 }

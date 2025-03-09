@@ -157,9 +157,9 @@ class ProjectController extends Controller
 
     public function projectList(Chapter $chapter){
         $chapter = Chapter::where('matric_no', session('matric_no'))->get();
-
-
          $chaptering = Chapter::find('matric_no');
+         //Try to get it by ID
+        
 
     // Check if the methodology evaluation is null or empty
     if ($chaptering && (is_null($chaptering->feedback))) {

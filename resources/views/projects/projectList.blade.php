@@ -240,7 +240,7 @@ th {
                         </td> --}}
                         <td>
                             <button class="view"  >
-                                <a href="{{ url('/evaluation') }}">Evaluation</a>
+                                <a href="{{route('evaluation', ['evaluation_id' => $project->id]) }}">Evaluation</a>
                             </button>
                         </td>
                         <td>   <button class="view">

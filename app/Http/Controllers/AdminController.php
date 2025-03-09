@@ -31,6 +31,20 @@ class AdminController extends Controller
         return view('admin.studentList', compact('students'));
     }
 
+
+    public function updateProjectStatus(){
+        $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'validate_status' => 'required|boolean',
+        ]);
+
+        $student = Chapter::findOrFail($request->student_id);
+        $student->validate_status = $request->validate_status;
+        $student->save();
+
+        return response()->json(['success' => true, 'message' => 'Validation status updated successfully!']);
+    }
+
     // public function groupList(){
     //     $students = GroupStudent::all();
     //     return view('admin.grouplist',compact('students'));

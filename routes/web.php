@@ -39,6 +39,7 @@ Route::get('/file-upload', [AdminController::class, 'fileUpload'])->name('studen
 Route::get('/student-list', [AdminController::class, 'studentList'])->name('studentList');
 Route::get('/group-list', [AdminController::class, 'groupList'])->name('groupList');
 Route::get('/export-excel', [AdminController::class, 'exportExcel'])->name('export.excel');
+Route::post('/update-project-status', [AdminController::class, 'updateProjectStatus'])->name('update.project.status'); //to update project status
 //Supervisor
 // Route::get('/supervisor', [Supervisor::class, 'index'])->name('supervisor.index');
 
@@ -79,7 +80,7 @@ Route::get('student/project_chapter', [ProjectController::class, 'index'])->name
 Route::post('student/project/store', [ProjectController::class, 'store'])->name('student.project.store');
 Route::get('student/projects', [ProjectController::class, 'projectList'])->name('student.projectList');
 Route::delete('student/projectList/delete/{chapter}', [ProjectController::class, 'delete'])->name('student.delete');
-Route::get('/evaluation', [EvaluationController::class, 'index'])->name('evaluation');
+Route::get('/evaluation/{evaluation_id}', [EvaluationController::class, 'index'])->name('evaluation');
 Route::get('/studentDataForm', [StudentController::class, 'studentDataForm'])->name('studentData');
 Route::post('/studentDataForm/save', [StudentController::class, 'studentSave'])->name('studentFormData.save');// the registeration form data capture
 Route::get('student/certificate', [StudentController::class, 'certificate'])->name('student.certificate');
