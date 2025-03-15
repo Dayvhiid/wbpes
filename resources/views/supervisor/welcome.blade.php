@@ -638,8 +638,15 @@ thead th{
                                     View
                                 </a>
                             </td>
-                            <td>
+                            {{-- <td>
                                 <form action="{{ route('supervisor.feedback', ['student_id' => $value->id]) }}" method="get">
+                                    <input type="hidden" name="student_id" value="{{ $value->id }}">
+                                    <button class="feedbackBtn">Add Feedback</button>
+                                </form>
+                            </td> --}}
+
+                            <td>
+                                <form action="{{ route('supervisor.chapterOne', ['student_id' => $value->id]) }}" method="get">
                                     <input type="hidden" name="student_id" value="{{ $value->id }}">
                                     <button class="feedbackBtn">Add Feedback</button>
                                 </form>

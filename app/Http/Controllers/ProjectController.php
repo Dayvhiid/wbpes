@@ -85,6 +85,8 @@ class ProjectController extends Controller
 {
     $matricNo = session('matric_no');
     $supervisor = GroupStudent::where('name', auth()->user()->name)->first();
+   
+    
     // Validate the incoming request
     // $request->validate([
     //     'due_date' => 'required|date',

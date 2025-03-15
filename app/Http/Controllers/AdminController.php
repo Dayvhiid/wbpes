@@ -32,17 +32,33 @@ class AdminController extends Controller
     }
 
 
-    public function updateProjectStatus(){
+    // public function updateProjectStatus(Request $request){
+    //     $request->validate([
+    //         'student_id' => 'required|exists:students,id',
+    //         // 'validate_status' => 'required|boolean',
+    //         'status' => 'required' 
+    //     ]);
+
+    //     $student = Chapter::findOrFail($request->student_id);
+    //     $student->validated_status = $request->status;
+    //     $student->save();
+
+    //     return response()->json(['success' => true, 'message' => 'Validation status updated successfully!']);
+    // }
+
+
+    public function updateProjectStatus(Request $request){
         $request->validate([
             'student_id' => 'required|exists:students,id',
-            'validate_status' => 'required|boolean',
+            'status' => 'required' 
         ]);
-
-        $student = Chapter::findOrFail($request->student_id);
-        $student->validate_status = $request->validate_status;
-        $student->save();
-
-        return response()->json(['success' => true, 'message' => 'Validation status updated successfully!']);
+    
+        // Use the Student model instead of Chapter
+        $chapter = Chapter::findOrFail($request->student_id);
+        $chapter->validated_status = "Validated";
+        $chapter->save();
+    
+        // return response()->json(['success' => true, 'message' => 'Validation status updated successfully!']);
     }
 
     // public function groupList(){

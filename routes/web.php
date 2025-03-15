@@ -1,5 +1,4 @@
 <?php
-
 use App\Models\Student;
 use App\Models\Supervisor;
 use App\Exports\StudentsExport;
@@ -8,6 +7,7 @@ use App\Http\Controllers\StudentData;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AgoraController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -46,6 +46,10 @@ Route::post('/update-project-status', [AdminController::class, 'updateProjectSta
 Route::get('/supervisor', function () {
     return view('supervisor.index');
 });
+
+
+
+
 Route::post('/supervisor/auth', [SupervisorController::class, 'store'])->name('supervisor.data');
 Route::post('/supervisor/check', [SupervisorController::class, 'check'])->name('supervisor.check');
 Route::get('supervisor/form', [SupervisorController::class, 'form'])->name('supervisor.form');
@@ -62,6 +66,9 @@ Route::post('supervisor/deadline', [SupervisorController::class, 'deadline'])->n
 Route::post('supervisor/deadline_two', [SupervisorController::class, 'deadline_two'])->name('supervisor.deadline_two');
 Route::get('supervisor/profile', [SupervisorController::class, 'profile'])->name('supervisor.profile');
 Route::post('supervisor/deadline_three', [SupervisorController::class, 'deadline_three'])->name('supervisor.deadline_three');
+//displaying the evalution pages for the differnt chapter
+Route::get('supervisor/chapterOne/evaluation{student_id}', [EvaluationController::class, 'chapterOne'])->name('supervisor.chapterOne');
+Route::post('supervisor/feebackOne/save,', [EvaluationController::class, 'store'])->name('supervisor.feedbackone.save');
 
 
 //feeback
@@ -86,7 +93,14 @@ Route::post('/studentDataForm/save', [StudentController::class, 'studentSave'])-
 Route::get('student/certificate', [StudentController::class, 'certificate'])->name('student.certificate');
 
 
+//video Call Routes
+// Route::post('/get-token', [AgoraController::class, 'getToken']);
+// Route::post('/get-token-salon/{salon}', [AgoraController::class, 'getTokenSalon']);
 
+
+Route::get('/agora-chat', 'App\Http\Controllers\AgoraVideoController@index');
+Route::post('/agora/token', 'App\Http\Controllers\AgoraVideoController@token');
+Route::post('/agora/call-user', 'App\Http\Controllers\AgoraVideoController@callUser');
 
 //route to handle toast messages
 Route::get('/status/message', function () {

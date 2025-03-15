@@ -2,6 +2,9 @@
   thead{
     background-color: #0267C1;
   }
+  .validated{
+    margin-left: -50px;
+  }
 </style>
 <html>
   <head>
@@ -117,41 +120,26 @@
                               {{-- <form action="{{route('update.project.status')}}" action="POST">
                                 <p class="text-[#0e141b] text-base font-normal leading-normal" value="validated" >Validate Project</p>
                                 </form>                     --}}
-                                <td>
-                                  <input
+                                {{-- <td class="validated"> --}}
+                                  {{-- <form action="{{route('update.project.status')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="student_id" value="{{$student->id}}">
+                                    <input type="hidden" name="status" value="validated">
+                                    <button type="submit" class="text-[#0e141b]  font-normal leading-normal">Validate Project</button>
+                                  </form> --}}
+                                  <form action="{{route('update.project.status')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="student_id" value="{{$student->id}}">
+                                    <input type="hidden" name="status" value="validated">
+                                    <button type="submit" class="text-[#0e141b] font-normal leading-normal">Validate Project</button>
+                                </form>
+                                  {{-- <input
                                       type="checkbox"
+                                      value="Validated"
                                       class="validate-checkbox h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1980e6] checked:bg-[#1980e6] checked:border-[#1980e6] focus:ring-0 focus:outline-none"
-                                      data-student-id="{{$student->id}}"
-                                      {{ $student->validate_status ? 'checked' : '' }}
                                   />
-                                  <p class="text-[#0e141b] text-base font-normal leading-normal">Validate Project</p>
+                                  <p class="text-[#0e141b] text-base font-normal leading-normal">Validate Project</p> --}}
                               </td>
-                              
-                              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                              <script>
-                                  $(document).ready(function () {
-                                      $(".validate-checkbox").on("change", function () {
-                                          let studentId = $(this).data("student-id");
-                                          let isChecked = $(this).is(":checked") ? 1 : 0;
-                              
-                                          $.ajax({
-                                              url: "{{ route('update.project.status') }}",
-                                              type: "POST",
-                                              data: {
-                                                  _token: "{{ csrf_token() }}",
-                                                  student_id: studentId,
-                                                  validate_status: isChecked
-                                              },
-                                              success: function (response) {
-                                                  alert(response.message);
-                                              },
-                                              error: function (error) {
-                                                  alert("Error updating validation status.");
-                                              }
-                                          });
-                                      });
-                                  });
-                              </script>
                               
                             </td>
                         </tr>
