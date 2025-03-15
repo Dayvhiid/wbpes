@@ -38,7 +38,6 @@ return new class extends Migration
             $table->string('testcases')->nullable();
             $table->string('systemDemonstration')->nullable();
             $table->string('researchObjectives')->nullable();
-
             //CHAPTER FIVE
             $table->string('summaryOfFindings')->nullable();
             $table->string('contributionOfKnowledge')->nullable();

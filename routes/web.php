@@ -69,6 +69,15 @@ Route::post('supervisor/deadline_three', [SupervisorController::class, 'deadline
 //displaying the evalution pages for the differnt chapter
 Route::get('supervisor/chapterOne/evaluation{student_id}', [EvaluationController::class, 'chapterOne'])->name('supervisor.chapterOne');
 Route::post('supervisor/feebackOne/save,', [EvaluationController::class, 'store'])->name('supervisor.feedbackone.save');
+//chapter Two
+Route::get('supervisor/chapterTwo/evaluation{student_id}', [EvaluationController::class, 'chapterTwo'])->name('supervisor.chapterTwo');
+Route::post('supervisor/feedbackTwo/save', [EvaluationController::class, 'storeTwo'])->name('supervisor.feedbacktwo.save');
+//chapter Three
+Route::get('supervisor/chapterThree/evaluation{student_id}', [EvaluationController::class, 'chapterThree'])->name('supervisor.chapterThree');
+Route::post('supervisor/feedbackThree/save', [EvaluationController::class, 'storeThree'])->name('supervisor.feedbackthree.save');
+//chapter Four
+Route::get('supervisor/chapterFour/evaluation{student_id}', [EvaluationController::class, 'chapterFour'])->name('supervisor.chapterFour');
+Route::post('supervisor/feedbackFour/save', [EvaluationController::class, 'storeFour'])->name('supervisor.feedbackfour.save');
 
 
 //feeback

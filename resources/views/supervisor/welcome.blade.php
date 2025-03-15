@@ -726,7 +726,7 @@ thead th{
                                 </a>
                             </td>
                             <td>
-                                <form action="{{ route('supervisor.feedback', ['student_id' => $value->id]) }}" method="get">
+                                <form action="{{ route('supervisor.chapterTwo', ['student_id' => $value->id]) }}" method="get">
                                     <input type="hidden" name="student_id" value="{{ $value->id }}">
                                     <button class="feedbackBtn">Add Feedback</button>
                                 </form>
@@ -745,13 +745,13 @@ thead th{
 
 
 
-        {{-- <h1>Chapter Three</h1>
+         {{-- <h1>Chapter Three</h1>
 
 
-        <h1>Chapter Two</h1> --}}
+       
 
 
-        {{-- <form id="deadlineFormThree" action="{{ route('supervisor.deadline_three') }}" method="POST">
+         <form id="deadlineFormThree" action="{{ route('supervisor.deadline_three') }}" method="POST">
             @csrf
             <input 
                 type="date" 
@@ -766,7 +766,7 @@ thead th{
                 // Automatically submit the form when a date is selected
                 document.getElementById('deadlineFormThree').submit();
             });
-        </script>
+        </script> --}}
 <table>
     <thead>
         <tr>
@@ -774,7 +774,6 @@ thead th{
             <th>Project</th>
             <th>Submitted</th>
             <th>Due Date</th>
-            <th>Status</th>
             <th>File</th>
             <th>Add Feedback</th>
         </tr>
@@ -787,7 +786,7 @@ thead th{
                     <td>{{ $value->chapter_name }}</td>
                     <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
                     <td>{{ $value->due_date }}</td>
-                    <td>
+                    {{-- <td>
                         <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
                             @method('POST')
                             @csrf
@@ -801,7 +800,7 @@ thead th{
                             </select>
                             <button type="button" data-form-id="status-form-{{ $value->id }}" class="feedbackBtn">Update</button>
                         </form>
-                    </td>
+                    </td> --}}
                     <td>
                         <span class="status"></span>
                         <a class="feedbackBtn" href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
@@ -809,7 +808,7 @@ thead th{
                         </a>
                     </td>
                     <td>
-                        <form action="{{ route('supervisor.feedback', ['student_id' => $value->id]) }}" method="get">
+                        <form action="{{ route('supervisor.chapterThree', ['student_id' => $value->id]) }}" method="get">
                             <input type="hidden" name="student_id" value="{{ $value->id }}">
                             <button class="feedbackBtn">Add Feedback</button>
                         </form>
@@ -827,7 +826,7 @@ thead th{
 </table>
 
 
-<h1>Chapter Four</h1>
+
 <table>
     <thead>
         <tr>
@@ -835,7 +834,7 @@ thead th{
             <th>Project</th>
             <th>Submitted</th>
             <th>Due Date</th>
-            <th>Status</th>
+        
             <th>File</th>
             <th>Add Feedback</th>
         </tr>
@@ -848,7 +847,7 @@ thead th{
                     <td>{{ $value->chapter_name }}</td>
                     <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
                     <td>{{ $value->due_date }}</td>
-                    <td>
+                    {{-- <td>
                         <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
                             @method('POST')
                             @csrf
@@ -862,7 +861,7 @@ thead th{
                             </select>
                             <button type="button" data-form-id="status-form-{{ $value->id }}" class="feedbackBtn">Update</button>
                         </form>
-                    </td>
+                    </td> --}}
                     <td>
                         <span class="status"></span>
                         <a class="feedbackBtn" href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
@@ -870,7 +869,7 @@ thead th{
                         </a>
                     </td>
                     <td>
-                        <form action="{{ route('supervisor.feedback', ['student_id' => $value->id]) }}" method="get">
+                        <form action="{{ route('supervisor.chapterFour', ['student_id' => $value->id]) }}" method="get">
                             <input type="hidden" name="student_id" value="{{ $value->id }}">
                             <button class="feedbackBtn">Add Feedback</button>
                         </form>

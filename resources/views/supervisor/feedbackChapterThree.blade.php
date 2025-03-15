@@ -40,18 +40,18 @@
             ></div>
           </div>
         </header>
-        <form action="{{ route('supervisor.feedbacktwo.save') }}" method="POST">
+        <form action="{{ route('supervisor.feedbackthree.save') }}" method="POST">
             @csrf
             @method('POST')    
             <input type="hidden" name="student_id" value="{{ $student->id }}">
         <div class="px-40 flex flex-1 justify-center py-5">
           <div class="layout-content-container flex flex-col w-[512px] max-w-[512px] py-5 max-w-[960px] flex-1">
             <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#111418] tracking-light text-[32px] font-bold leading-tight min-w-72">Evaluate work</p></div>
-            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Theoritical Framework</h3>
+            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Research Design</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <select
-                 name="theoriticalFramework"
+                 name="researchDesign"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-14 bg-[image:--select-button-svg] placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 >
                   <option value="one">Select an option</option>
@@ -60,11 +60,11 @@
                 </select>
               </label>
             </div>
-            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Review of related work</h3>
+            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Data Collection Methods</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <select
-                name="reviewOfRelatedWork"
+                name="dataCollectionMethods"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-14 bg-[image:--select-button-svg] placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 >
                   <option value="one">Select an option</option>
@@ -73,7 +73,7 @@
                 </select>
               </label>
             </div>
-            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Identification Of Research Gaps</h3>
+            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">System/Software Requriements</h3>
             <div class="flex flex-wrap gap-3 p-4">
               {{-- <label
                 class="text-sm font-medium leading-normal flex items-center justify-center rounded-xl border border-[#dce0e5] px-4 h-11 text-[#111418] has-[:checked]:border-[3px] has-[:checked]:px-3.5 has-[:checked]:border-[#1980e6] relative cursor-pointer"
@@ -88,7 +88,7 @@
                 <input type="radio" class="invisible absolute" name="8639b14a-4b41-4b4e-8f85-af6d10ccd946" />
               </label> --}}
               <select
-                  name="identificationOfResearchGaps"
+                  name="requirements"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-14 bg-[image:--select-button-svg] placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 >
                   <option value="one">Select an option</option>
@@ -97,11 +97,11 @@
                 </select>
             </div>
             {{-- Here --}}
-            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Justification Of the Study</h3>
+            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Tools and Technologies Used</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <select
-                  name="justificationOfStudy"
+                  name="tools"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-14 bg-[image:--select-button-svg] placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 >
                   <option value="one">Select an option</option>
@@ -111,11 +111,11 @@
               </label>
             </div>
             {{-- Here --}}
-            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Citation and Referencing</h3>
+            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Justification Of Methodology</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <select
-                   name="citationAndReferencing"
+                   name="justificationOfMethodology"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-14 bg-[image:--select-button-svg] placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 >
                   <option value="one">Select an option</option>
@@ -125,11 +125,11 @@
               </label>
             </div>
             {{-- Here --}}
-            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Logical Organization</h3>
+            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Ethical Consideration</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <select
-                   name="logicalOrganization"
+                   name="ethicalConsoderation"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-14 bg-[image:--select-button-svg] placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 >
                   <option value="one">Select an option</option>
