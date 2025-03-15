@@ -193,9 +193,10 @@
     </head>
     <body>
         <div id="app">
-            {{-- <example-component></example-component> --}}
+            <example-component></example-component>
             <video-chat></video-chat>
         </div>
-        <script src="{{ asset('js/app.js') }}"></script>
+        {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+        @vite(['resources/js/app.js'])
     </body>
 </html>

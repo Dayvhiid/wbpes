@@ -19,6 +19,7 @@ use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\StudentDataController;
 use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\StudentGroupController;
+use App\Http\Controllers\VideoController;
 use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\StudentT;
 
 
@@ -103,6 +104,8 @@ Route::get('student/certificate', [StudentController::class, 'certificate'])->na
 
 
 //video Call Routes
+
+ Route::get('/video-conferencing', [VideoController::class, 'index'])->name('video.index');
 // Route::post('/get-token', [AgoraController::class, 'getToken']);
 // Route::post('/get-token-salon/{salon}', [AgoraController::class, 'getTokenSalon']);
 

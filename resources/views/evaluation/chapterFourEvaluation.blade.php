@@ -151,7 +151,7 @@
             name="address2"
             id="address2"
             class="formbold-form-input"
-            value="{{$chapter->ethicalConsideration}}"
+            value="{{$chapter->ethicalConsoderation}}"
           />
         </div>
   
