@@ -46,7 +46,7 @@ Route::post('/update-project-status', [AdminController::class, 'updateProjectSta
 
 Route::get('/supervisor', function () {
     return view('supervisor.index');
-});
+})->name('supervisor.index');
 
 
 
@@ -106,6 +106,8 @@ Route::get('student/certificate', [StudentController::class, 'certificate'])->na
 //video Call Routes
 
  Route::get('/video-conferencing', [VideoController::class, 'index'])->name('video.index');
+ Route::post('/create-room', [VideoController::class, 'createRoom']);
+Route::post('/join-room', [VideoController::class, 'joinRoom']);
 // Route::post('/get-token', [AgoraController::class, 'getToken']);
 // Route::post('/get-token-salon/{salon}', [AgoraController::class, 'getTokenSalon']);
 

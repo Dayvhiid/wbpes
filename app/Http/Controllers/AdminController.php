@@ -32,19 +32,7 @@ class AdminController extends Controller
     }
 
 
-    // public function updateProjectStatus(Request $request){
-    //     $request->validate([
-    //         'student_id' => 'required|exists:students,id',
-    //         // 'validate_status' => 'required|boolean',
-    //         'status' => 'required' 
-    //     ]);
-
-    //     $student = Chapter::findOrFail($request->student_id);
-    //     $student->validated_status = $request->status;
-    //     $student->save();
-
-    //     return response()->json(['success' => true, 'message' => 'Validation status updated successfully!']);
-    // }
+    
 
 
     public function updateProjectStatus(Request $request){
@@ -61,53 +49,10 @@ class AdminController extends Controller
         // return response()->json(['success' => true, 'message' => 'Validation status updated successfully!']);
     }
 
-    // public function groupList(){
-    //     $students = GroupStudent::all();
-    //     return view('admin.grouplist',compact('students'));
-    // }
+    
+    
 
-
-    // public function groupList()
-    // {
-    //     // Check if the group_students table is empty
-    //     if (GroupStudent::count() === 0) {
-    //         // Fetch students ordered by CGPA
-    //         $students = StudentData::orderBy('cgpa', 'desc')->get();
     
-    //         // Chunk students into groups of 3
-    //         $chunks = $students->chunk(3);
-    
-    //         // Define a list of supervisors
-    //         $supervisors = [
-    //             'Dr Maitanmi',
-    //             'Dr Mensah',
-    //             // Add more supervisors as needed
-    //         ];
-    
-    //         // Iterate through each chunk and assign groups
-    //         foreach ($chunks as $key => $chunk) {
-    //             $groupName = 'Group ' . ($key + 1);
-    
-    //             // Randomly select a supervisor for the entire group
-    //             $randomSupervisor = $supervisors[array_rand($supervisors)];
-    
-    //             // Insert each student into the student_groups table with their group and the same supervisor
-    //             foreach ($chunk as $student) {
-    //                 GroupStudent::create([
-    //                     'matric_no' => $student->matric_no,
-    //                     'group_name' => $groupName,
-    //                     'supervisor' => $randomSupervisor, // The same supervisor for the entire group
-    //                 ]);
-    //             }
-    //         }
-    //     }
-    
-    //     // Fetch the grouped students for the view
-    //     $students = GroupStudent::all();
-    
-    //     // Return the view with the grouped students
-    //     return view('admin.grouplist', compact('students'));
-    // }
 
 //Modifying The     Code to fetch Data from the StudentDataTable the original code will be contained above
     public function groupList()

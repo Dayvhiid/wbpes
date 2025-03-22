@@ -501,7 +501,7 @@
                         </button> --}}
                         <a href="{{route('NewBooking')}}">
                             <button class="appButton" >
-                                Book An Appointment
+                                Book An Appointm
                             </button>
                         </a>
                     {{-- </div> --}}

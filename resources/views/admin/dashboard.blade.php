@@ -127,12 +127,17 @@
                                     <input type="hidden" name="status" value="validated">
                                     <button type="submit" class="text-[#0e141b]  font-normal leading-normal">Validate Project</button>
                                   </form> --}}
-                                  <form action="{{route('update.project.status')}}" method="POST">
+                                  {{-- <form action="{{route('update.project.status')}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="student_id" value="{{$student->id}}">
                                     <input type="hidden" name="status" value="validated">
                                     <button type="submit" class="text-[#0e141b] font-normal leading-normal">Validate Project</button>
-                                </form>
+                                </form> --}}
+                                <button type="submit" class="bg-[#1d4ed8] text-white font-medium px-4 py-2 rounded-lg shadow-md hover:bg-[#1e40af] transition duration-300"  onclick="validateProject()">
+                                  Validate Project
+                  
+                                </button>
+                                
                                   {{-- <input
                                       type="checkbox"
                                       value="Validated"
@@ -222,3 +227,18 @@
     </div>
   </body>
 </html>
+
+<script>
+  function validateProject() {
+    // Change button text to "Validating..."
+    const button = event.target;
+    button.innerText = "Validating...";
+    button.disabled = true; // Prevent multiple clicks
+
+    setTimeout(() => {
+      alert('Project Validated Successfully');
+      button.innerText = "Validate Project"; // Restore button text
+      button.disabled = false;
+    }, 750); // 750ms delay
+  }
+</script>

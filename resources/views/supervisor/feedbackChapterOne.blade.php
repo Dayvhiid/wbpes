@@ -93,7 +93,7 @@
                 >
                   <option value="one">Select an option</option>
                   <option value="meets requirements">Satisfy Requirements</option>
-                  <option value="does not satisfy requirement">Does Not stisfy requirements</option>
+                  <option value="does not satisfy requirement">Does Not satisfy requirements</option>
                 </select>
             </div>
             {{-- Here --}}
@@ -134,7 +134,7 @@
                 >
                   <option value="one">Select an option</option>
                   <option value="meets requirements">Satisfy Requirements</option>
-                  <option value="does not satisfy requirement">Does Not stisfy requirements</option>
+                  <option value="does not satisfy requirement">Does Not satisfy requirements</option>
                 </select>
               </label>
             </div>
@@ -150,7 +150,14 @@
               </label>
             </div>
 
-            <button class="bt-2" type="submit" >Submit</button>
+            {{-- <button class="bt-2" type="submit" >Submit</button> --}}
+
+            <button
+            type="submit"
+            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-blue-500 text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue-600"
+        >
+            Submit
+        </button>
           </div>
         </div>
       </div>

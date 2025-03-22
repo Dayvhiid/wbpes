@@ -557,8 +557,9 @@ thead th{
             </button>
             <h1 class="navbar-title">Academic Insights</h1>
             <nav class="navbar-menu">
-              <button type="button" class="button">Search</button>
-              <button type="button" class="button" onclick="window.location='/chatify'">Chat</button>
+              <button type="button" class="button"   onclick="window.location='/supervisor/search'">Search</button>
+              <button type="button" class="button" onclick="window.location='/chats'">Chat</button>
+              <button type="button" class="button" onclick="window.location='/video-conferencing'">Video Conferencing</button>
               <button type="button" class="button">Profile</button>
               <button type="button" class="button" onclick="window.location='{{ route('supervisor.studentList') }}'">Student List</button>
             </nav>
@@ -603,7 +604,7 @@ thead th{
                     <th>Student Name</th>
                     <th>Project</th>
                     <th>Submitted</th>
-                    <th>Due Date</th>
+                    {{-- <th>Due Date</th> --}}
                     {{-- <th>Status</th> --}}
                     <th>File</th>
                     <th>Add Feedback</th>
@@ -616,7 +617,7 @@ thead th{
                             <td>{{ $value->fullname }}</td>
                             <td>{{ $value->chapter_name }}</td>
                             <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
-                            <td>{{ $value->due_date }}</td>
+                            {{-- <td>{{ $value->due_date }}</td> --}}
                             {{-- <td>
                                 <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
                                     @method('POST')
@@ -690,7 +691,7 @@ thead th{
                     <th>Student Name</th>
                     <th>Project</th>
                     <th>Submitted</th>
-                    <th>Due Date</th>
+                    {{-- <th>Due Date</th> --}}
                     {{-- <th>Status</th> --}}
                     <th>File</th>
                     <th>Add Feedback</th>
@@ -703,7 +704,7 @@ thead th{
                             <td>{{ $value->fullname }}</td>
                             <td>{{ $value->chapter_name }}</td>
                             <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
-                            <td>{{ $value->due_date }}</td>
+                            {{-- <td>{{ $value->due_date }}</td> --}}
                             {{-- <td>
                                 <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
                                     @method('POST')
@@ -773,7 +774,7 @@ thead th{
             <th>Student Name</th>
             <th>Project</th>
             <th>Submitted</th>
-            <th>Due Date</th>
+            {{-- <th>Due Date</th> --}}
             <th>File</th>
             <th>Add Feedback</th>
         </tr>
@@ -785,7 +786,7 @@ thead th{
                     <td>{{ $value->fullname }}</td>
                     <td>{{ $value->chapter_name }}</td>
                     <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
-                    <td>{{ $value->due_date }}</td>
+                    {{-- <td>{{ $value->due_date }}</td> --}}
                     {{-- <td>
                         <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
                             @method('POST')
@@ -833,7 +834,7 @@ thead th{
             <th>Student Name</th>
             <th>Project</th>
             <th>Submitted</th>
-            <th>Due Date</th>
+            {{-- <th>Due Date</th> --}}
         
             <th>File</th>
             <th>Add Feedback</th>
@@ -846,7 +847,7 @@ thead th{
                     <td>{{ $value->fullname }}</td>
                     <td>{{ $value->chapter_name }}</td>
                     <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
-                    <td>{{ $value->due_date }}</td>
+                    {{-- <td>{{ $value->due_date }}</td> --}}
                     {{-- <td>
                         <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
                             @method('POST')
@@ -887,7 +888,7 @@ thead th{
 </table>
 
 
-         --}}
+       
         {{-- <button type="submit" class="btn btn-primary">Update Status</button> --}}
     </main>
 

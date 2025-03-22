@@ -247,7 +247,8 @@ class SupervisorController extends Controller
         $search_text = $_GET['query'];
         // $students = Student::where('name','LIKE', '%'.$search_text.'%')->get();
 
-        $students = Student::where('name', 'LIKE', '%' . $search_text . '%')->get();
+        // $students = Student::where('name', 'LIKE', '%' . $search_text . '%')->get();
+        $students = Student::where('name', $search_text)->get();
         $chapters = Chapter::where('fullname', 'LIKE', '%' . $search_text . '%')->get();
         
         $results = $students->union($chapters);

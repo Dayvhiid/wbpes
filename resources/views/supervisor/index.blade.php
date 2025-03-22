@@ -58,7 +58,7 @@
                     <button class="hidden" id="login">Sign In</button>
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <h1>Hello, Evaluator</h1>
+                    <h1>Hello, Supervisor</h1>
                     <p>Create a new account</p>
                     <button class="hidden" id="register">Sign Up</button>
                 </div>
