@@ -24,7 +24,7 @@
         <!-- Action Buttons -->
         <div class="mt-4 flex gap-4">
             <button class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Drop</button>
-            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Record</button>
+            <!-- <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Record</button> -->
             <button 
                     class="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700"  
                     onclick="this.innerText='Broadcasting...'; this.disabled=true; setTimeout(() => { alert('Link Broadcasted Successfully'); this.innerText='Broadcast Link'; this.disabled=false; }, 750);">

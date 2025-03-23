@@ -238,7 +238,7 @@
         {{-- <a href="{{route('student.projectList')}}">Project</a> --}}
         <div class="px-40 flex flex-1 justify-center py-4">
           <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <h3 class="text-[#0e141b] tracking-light text-2xl font-bold leading-tight px-4 text-left pb-2 pt-5">Welcome, {{ $student->fullname }}</h3>
+            <h3 class="text-[#0e141b] tracking-light text-2xl font-bold leading-tight px-4 text-left pb-2 pt-5">Welcome, {{  auth()->user()->name }}</h3>
             <p class="text-[#0e141b] text-base font-normal leading-normal pb-3 pt-1 px-4">
               You're all set.
             </p>

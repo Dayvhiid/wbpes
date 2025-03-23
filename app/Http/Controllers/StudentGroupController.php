@@ -66,7 +66,8 @@ class StudentGroupController extends Controller
             }
         }
     
-        return response()->json(['message' => 'Students grouped successfully!']);
+        // return response()->json(['message' => 'Students grouped successfully!']);
+        return redirect(route('status.status'))->with('msg','Students Grouped Succesfully');
     }
     
 

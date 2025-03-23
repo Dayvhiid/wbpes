@@ -45,6 +45,7 @@
               <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Projects</a>
               <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Evaluators</a>
               <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Settings</a>
+              <a class="text-[#0e141b] text-sm font-medium leading-normal" href="/group-students">Group Students</a>
             </div>
             <button
               class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#e7edf3] text-[#0e141b] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"

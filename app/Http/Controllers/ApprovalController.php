@@ -77,10 +77,16 @@ class ApprovalController extends Controller
   public function checkCertificate(){
      $chapter = Chapter::where('fullname', auth()->user()->name)->first();
 
-     if ($chapter->chapterOneApproval == 'pending'){
+    //  if ($chapter->chapterOneApproval == 'pending'){
+    //     return redirect(route('status.status'))->with('msg','Project Still Under Evaluation');
+    //  } 
+    // return view('student.certificate', compact('chapter'));
+
+    if ($chapter->chapterOneApproval == 'approved'){
+        return view('student.certificate', compact('chapter'));
+    } else{
         return redirect(route('status.status'))->with('msg','Project Still Under Evaluation');
-     } 
-    return view('student.certificate', compact('chapter'));
+    }
   }
 
 }
