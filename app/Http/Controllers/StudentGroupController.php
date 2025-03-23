@@ -30,6 +30,8 @@ class StudentGroupController extends Controller
 
     //     return response()->json(['message' => 'Students grouped successfully!']);
     // }
+
+    
     public function groupStudents()
     {
         // Fetch students ordered by CGPA
@@ -56,6 +58,7 @@ class StudentGroupController extends Controller
             foreach ($chunk as $student) {
                 // Insert each student into the student_groups table with their group and the same supervisor
                 GroupStudent::create([
+                    'name' => $student->name,
                     'matric_no' => $student->matric_no,
                     'group_name' => $groupName,
                     'supervisor' => $randomSupervisor, // The same supervisor for the entire group

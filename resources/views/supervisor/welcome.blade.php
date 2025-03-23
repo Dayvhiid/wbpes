@@ -555,7 +555,7 @@ thead th{
             <button type="button" class="navbar-burger" onclick="toggleMenuOpen()">
               <span class="material-icons">menu</span>
             </button>
-            <h1 class="navbar-title">Academic Insights</h1>
+            <h1 class="navbar-title">Project Evaluation System</h1>
             <nav class="navbar-menu">
               <button type="button" class="button"   onclick="window.location='/supervisor/search'">Search</button>
               <button type="button" class="button" onclick="window.location='/chats'">Chat</button>
@@ -592,12 +592,12 @@ thead th{
             id="dueDateInput">
     </form> --}}
     
-    <script>
+    {{-- <script>
         document.getElementById('dueDateInput').addEventListener('change', function () {
             // Automatically submit the form when a date is selected
             document.getElementById('deadlineForm').submit();
         });
-    </script>
+    </script> --}}
         <table>
             <thead>
                 <tr>
@@ -608,6 +608,7 @@ thead th{
                     {{-- <th>Status</th> --}}
                     <th>File</th>
                     <th>Add Feedback</th>
+                    <th>Approval</th>
                 </tr>
             </thead>
             <tbody>
@@ -652,6 +653,19 @@ thead th{
                                     <button class="feedbackBtn">Add Feedback</button>
                                 </form>
                             </td>
+                         
+                                <td>
+                                    <form action="{{ url('/update-approval') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="student_id" value="{{ $value->id }}">
+                                        <select name="chapterOneApproval" onchange="this.form.submit()">
+                                            <option value="pending" {{ $value->chapterOneApproval == 'pending' ? 'selected' : '' }}>Pending</option>
+                                            <option value="approved" {{ $value->chapterOneApproval == 'approved' ? 'selected' : '' }}>Approved</option>
+                                        </select>
+                                    </form>
+                                </td>
+                                                      
+                            
                         </tr>
                     @endif
                 @endforeach
@@ -679,12 +693,12 @@ thead th{
                 id="dueDateInputTwo">
         </form> --}}
 
-        <script>
+        {{-- <script>
             document.getElementById('dueDateInputTwo').addEventListener('change', function () {
                 // Automatically submit the form when a date is selected
                 document.getElementById('deadlineFormTwo').submit();
             });
-        </script>
+        </script> --}}
         <table>
             <thead>
                 <tr>
@@ -695,6 +709,7 @@ thead th{
                     {{-- <th>Status</th> --}}
                     <th>File</th>
                     <th>Add Feedback</th>
+                    <th>Approval</th>
                 </tr>
             </thead>
             <tbody>
@@ -704,22 +719,7 @@ thead th{
                             <td>{{ $value->fullname }}</td>
                             <td>{{ $value->chapter_name }}</td>
                             <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
-                            {{-- <td>{{ $value->due_date }}</td> --}}
-                            {{-- <td>
-                                <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
-                                    @method('POST')
-                                    @csrf
-                                    <input type="hidden" name="chapter_id" value="{{ $value->id }}">
-                                    <select name="status">
-                                        <div class="options">
-                                            <option value="Pending" {{ $value->status == 'Pending' ? 'selected' : '' }}>Pending</option>
-                                            <option value="Graded" {{ $value->status == 'Graded' ? 'selected' : '' }}>Graded</option>
-                                            <option value="Reviewed" {{ $value->status == 'Reviewed' ? 'selected' : '' }}>Reviewed</option>
-                                        </div>
-                                    </select>
-                                    <button type="button" data-form-id="status-form-{{ $value->id }}" class="feedbackBtn">Update</button>
-                                </form>
-                            </td> --}}
+                   
                             <td>
                                 <span class="status"></span>
                                 <a class="feedbackBtn" href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
@@ -732,6 +732,29 @@ thead th{
                                     <button class="feedbackBtn">Add Feedback</button>
                                 </form>
                             </td>
+                            
+                           
+
+                            <td>
+                                <select name="chapterTwoApproval" onchange="showSuccessAlert()">
+                                    <option value="pending" {{ $value->chapterTwoApproval == 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="approved" {{ $value->chapterTwoApproval == 'approved' ? 'selected' : '' }}>Approved</option>
+                                </select>
+                            </td>
+
+                            {{-- <td>
+                                <form action="{{ route('update.two') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="student_id" value="{{ $value->id }}">
+                                    <select name="chapterTwoApproval" onchange="this.form.submit()">
+                                        <option value="pending" {{ $value->chapterTwoApproval == 'pending' ? 'selected' : '' }}>Pending</option>
+                                        <option value="approved" {{ $value->chapterTwoApproval == 'approved' ? 'selected' : '' }}>Approved</option>
+                                    </select>
+                                </form>
+                            </td> --}}
+
+
+
                         </tr>
                     @endif
                 @endforeach
@@ -777,6 +800,7 @@ thead th{
             {{-- <th>Due Date</th> --}}
             <th>File</th>
             <th>Add Feedback</th>
+            <th>Approval</th>
         </tr>
     </thead>
     <tbody>
@@ -814,6 +838,25 @@ thead th{
                             <button class="feedbackBtn">Add Feedback</button>
                         </form>
                     </td>
+                    
+                        {{-- <td>
+                            <form action="{{ url('/update-approval-three') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="student_id" value="{{ $value->id }}">
+                                <select name="chapterThreeApproval" onchange="this.form.submit()">
+                                    <option value="pending" {{ $value->chapterThreeApproval == 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="approved" {{ $value->chapterThreeApproval == 'approved' ? 'selected' : '' }}>Approved</option>
+                                </select>
+                            </form>
+                        </td> --}}
+
+                        <td>
+                            <select name="chapterTwoApproval" onchange="showSuccessAlert()">
+                                <option value="pending" {{ $value->chapterTwoApproval == 'pending' ? 'selected' : '' }}>Pending</option>
+                                <option value="approved" {{ $value->chapterTwoApproval == 'approved' ? 'selected' : '' }}>Approved</option>
+                            </select>
+                        </td>
+                    
                 </tr>
             @endif
         @endforeach
@@ -838,6 +881,7 @@ thead th{
         
             <th>File</th>
             <th>Add Feedback</th>
+            <th>Approval</th>
         </tr>
     </thead>
     <tbody>
@@ -869,11 +913,28 @@ thead th{
                             View
                         </a>
                     </td>
+
                     <td>
                         <form action="{{ route('supervisor.chapterFour', ['student_id' => $value->id]) }}" method="get">
                             <input type="hidden" name="student_id" value="{{ $value->id }}">
                             <button class="feedbackBtn">Add Feedback</button>
                         </form>
+                    </td>
+                    {{-- <td>
+                        <form action="{{ url('/update-approval-four') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="student_id" value="{{ $value->id }}">
+                            <select name="chapterFourApproval" onchange="this.form.submit()">
+                                <option value="pending" {{ $value->chapterFourApproval == 'pending' ? 'selected' : '' }}>Pending</option>
+                                <option value="approved" {{ $value->chapterFourApproval == 'approved' ? 'selected' : '' }}>Approved</option>
+                            </select>
+                        </form>
+                    </td> --}}
+                    <td>
+                        <select name="chapterTwoApproval" onchange="showSuccessAlert()">
+                            <option value="pending" {{ $value->chapterTwoApproval == 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="approved" {{ $value->chapterTwoApproval == 'approved' ? 'selected' : '' }}>Approved</option>
+                        </select>
                     </td>
                 </tr>
             @endif
@@ -888,6 +949,86 @@ thead th{
 </table>
 
 
+
+<table>
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Project</th>
+            <th>Submitted</th>
+            {{-- <th>Due Date</th> --}}
+        
+            <th>File</th>
+            <th>Add Feedback</th>
+            <th>Approval</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($chapter as $value)
+            @if ($value->chapter_name == "Chapter Five")
+                <tr>
+                    <td>{{ $value->fullname }}</td>
+                    <td>{{ $value->chapter_name }}</td>
+                    <td>{{ Carbon\Carbon::parse($value->created_at)->format('Y-m-d') }}</td>
+                    {{-- <td>{{ $value->due_date }}</td> --}}
+                    {{-- <td>
+                        <form id="status-form-{{ $value->id }}" action="{{ route('chapterUpdate.update') }}" method="POST">
+                            @method('POST')
+                            @csrf
+                            <input type="hidden" name="chapter_id" value="{{ $value->id }}">
+                            <select name="status">
+                                <div class="options">
+                                    <option value="Pending" {{ $value->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="Graded" {{ $value->status == 'Graded' ? 'selected' : '' }}>Graded</option>
+                                    <option value="Reviewed" {{ $value->status == 'Reviewed' ? 'selected' : '' }}>Reviewed</option>
+                                </div>
+                            </select>
+                            <button type="button" data-form-id="status-form-{{ $value->id }}" class="feedbackBtn">Update</button>
+                        </form>
+                    </td> --}}
+                    <td>
+                        <span class="status"></span>
+                        <a class="feedbackBtn" href="{{ asset('storage/' . $value->file_name) }}" download="{{ $value->file_name }}">
+                            View
+                        </a>
+                    </td>
+                    <td>
+                        <form action="{{ route('supervisor.chapterFive', ['student_id' => $value->id]) }}" method="get">
+                            <input type="hidden" name="student_id" value="{{ $value->id }}">
+                            <button class="feedbackBtn">Add Feedback</button>
+                        </form>
+                    </td>
+                    {{-- <td>
+                        <form action="{{ url('/update-approval-five') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="student_id" value="{{ $value->id }}">
+                            <select name="chapterFiveApproval" onchange="this.form.submit()">
+                                <option value="pending" {{ $value->chapterFiveApproval == 'pending' ? 'selected' : '' }}>Pending</option>
+                                <option value="approved" {{ $value->chapterFiveApproval == 'approved' ? 'selected' : '' }}>Approved</option>
+                            </select>
+                        </form>
+                    </td> --}}
+
+                    <td>
+                        <select name="chapterTwoApproval" onchange="showSuccessAlert()">
+                            <option value="pending" {{ $value->chapterTwoApproval == 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="approved" {{ $value->chapterTwoApproval == 'approved' ? 'selected' : '' }}>Approved</option>
+                        </select>
+                    </td>
+                </tr>
+            @endif
+        @endforeach
+
+        @if (!$chapter->contains(fn($value) => $value->chapter_name == "Chapter Two"))
+            <tr>
+                <td colspan="7" style="text-align: center;">No data available for Chapter Four</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+
+
+
        
         {{-- <button type="submit" class="btn btn-primary">Update Status</button> --}}
     </main>
@@ -898,4 +1039,13 @@ thead th{
 
 
 </body>
+
+
+<script>
+    function showSuccessAlert() {
+    alert("Success! The action was completed."); // Display a success message
+}
+</script>
+
+
 </html>

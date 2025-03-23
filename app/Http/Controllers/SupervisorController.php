@@ -18,6 +18,22 @@ use Illuminate\Support\Facades\Session;
 class SupervisorController extends Controller
 {
 
+
+
+
+    // public function updateApproval(Request $request) {
+    //     $request->validate([
+    //         'student_id' => 'required|integer|exists:chapters,id',
+    //         'chapterOneApproval' => 'required|string|in:approved,pending'
+    //     ]);
+    
+    //     $chapter = Chapter::find($request->student_id);
+    //     $chapter->chapterOneApproval = $request->chapterOneApproval; 
+    //     $chapter->save();
+    
+    //     return response()->json(['success' => true, 'message' => 'Approval status updated']);
+    // }
+
     public function deadline(Request $request){
         $data = $request->validate([
             'due_date' => 'required',
@@ -315,6 +331,8 @@ class SupervisorController extends Controller
     function SupervisorFix(Supervisor $chapter){
         return view('supervisor.welcomeTwo', ['chapter' => $chapter]);
     }
+
+    
 
 
 

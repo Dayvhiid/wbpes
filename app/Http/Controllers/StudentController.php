@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\StudentData as ControllersStudentData;
 use App\Models\GroupStudent;
 use App\Models\Regstudent;
 use App\Models\User;
@@ -48,7 +49,10 @@ class StudentController extends Controller
                 $user->password = $password;
                 $register->save();
                 $user->save();
-                return redirect(route('status.status'))->with('msg','account created sucesfully'); 
+                // return redirect(route('status.status'))->with('msg','account created sucesfully'); 
+
+                notify()->success('Please Sign In');
+                return view('student.studentSignUp');
              } else {
                 return redirect(route('status.status'))->with('msg','Passwords do not match'); 
              }
@@ -132,7 +136,8 @@ public function check(Request $request)
             // Check if the student is missing a course
             if (is_null($student->course)) {
                 // Redirect to the forms page to fill in the course
-                return redirect()->route('student.forms');
+                Auth::login($user);
+                return redirect()->route('student.welcome', ['student' => $student]);
             } else {
                 // Save relevant session data for the student
                 session(['matric_no' => $student->matric_no]);
@@ -194,7 +199,7 @@ public function check(Request $request)
         $matricNo = session('matric_no');
     
         // Find the student by email
-        $student = Regstudent::where('email', auth()->user()->email)->first();
+        $student = Regstudent::where('email', auth()->user()->email)->first(); //good
         $results = GroupStudent::where('name', auth()->user()->name)->first();
     
         if (!$student) {
@@ -202,7 +207,7 @@ public function check(Request $request)
         }
     
         // Find all students in the same group
-        $groupStudents = GroupStudent::where('group_name', $results->group_name)->get();
+        $groupStudents = GroupStudent::where('group_name', $results->group_name);
     
         // Pass the student data and group students to the view
         return view('student.profile', compact('student', 'results', 'groupStudents'));
@@ -245,7 +250,7 @@ public function check(Request $request)
     // Validate the input data
     $request->validate([
         'name' => 'required|string|max:255',
-        'matricNo' => 'required|string|max:100',
+      'matricNo' => 'required|unique:student_data,matric_no',
         'phone_number' => 'nullable|string|max:15',
         'department' => 'nullable|string|max:100',
         'project_title' => 'nullable|string|max:255',
@@ -254,6 +259,7 @@ public function check(Request $request)
     ]);
 
     // Get the current authenticated user's ID and email
+
     $userId = auth()->user()->id;
     $user_email = auth()->user()->email;
 
@@ -273,8 +279,24 @@ public function check(Request $request)
         ]
     );
 
+
+    $studentData = studentData::updateOrCreate(
+        ['name' => $request->input('name')], // Check if name exists
+        [
+            'name' => $request->input('name'),
+            'user_id' => $userId,
+            'matricNo' => $request->input('matricNo'),
+            'email' => $user_email,
+            'phone_number' => $request->input('phone_number'),
+            'department' => $request->input('department'),
+            'project_title' => $request->input('project_title'),
+            'gender' => $request->input('gender'),
+            'cgpa' => $request->input('cgpa'),
+        ]
+    );
+
     // Return a response
-    notify()->success('Your project has been submitted successfully.');
+    notify()->success('Your data has been captured succefully.');
     return view('student.studentData');
    
     // return response()->json([

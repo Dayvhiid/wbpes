@@ -190,15 +190,16 @@ th {
     <header>
         <div class="logo">
             <i class="fas fa-graduation-cap"></i>
-            <span>Academic Platform</span>
+            <span>Project Evaluation System</span>
         </div>
         <nav>
             <ul>
-                <li><a href="#">Dashboard</a></li>
+                <li><a href="/check-certificate">Generate Certificate</li>
+                {{-- <li><a href="#">Dashboard</a></li>
                 <li><a href="#">Explore</a></li>
                 <li><a href="#">My Library</a></li>
                 <li><a href="#"><i class="fas fa-bell"></i></a></li>
-                <li><a href="#"><img src="user-icon.png" alt="User"></a></li>
+                <li><a href="#"><img src="user-icon.png" alt="User"></a></li> --}}
             </ul>
         </nav>
     </header>
@@ -214,7 +215,7 @@ th {
             <thead>
                 <tr>
                     <th>Project Title</th>
-                    <th>Due Date</th>
+                    {{-- <th>Due Date</th> --}}
                     <th>Submitted</th>
                     <th>Evaluation</th>
                     <th>View</th>
@@ -231,7 +232,7 @@ th {
                 <tbody>
                     @foreach ($chapter as $project) <tr>
                         <td>{{ $project->chapter_name }}</td>
-                        <td>{{ $project->due_date }}</td>
+                        {{-- <td>{{ $project->due_date }}</td> --}}
                         <td>{{ Carbon\Carbon::parse($project->created_at)->format('Y-m-d') }}</td>
                         {{-- <td>
                             <span class="status {{ rand(0, 2) === 0 ? 'reviewed' : (rand(0, 1) === 0 ? 'graded' : 'pending') }}">

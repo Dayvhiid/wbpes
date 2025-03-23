@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/login.css">
     <title>Sign Up/Sign In</title>
+    @notifyCss
    
 </head>
 
 
 <body>
+    <x-notify::notify />
+    @notifyJs
 
     <div class="container" id="container">
         <div class="form-container sign-up">

@@ -8,10 +8,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgoraController;
+use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\FeedBackController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\EvaluationController;
@@ -19,7 +21,6 @@ use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\StudentDataController;
 use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\StudentGroupController;
-use App\Http\Controllers\VideoController;
 use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\StudentT;
 
 
@@ -79,6 +80,25 @@ Route::post('supervisor/feedbackThree/save', [EvaluationController::class, 'stor
 //chapter Four
 Route::get('supervisor/chapterFour/evaluation{student_id}', [EvaluationController::class, 'chapterFour'])->name('supervisor.chapterFour');
 Route::post('supervisor/feedbackFour/save', [EvaluationController::class, 'storeFour'])->name('supervisor.feedbackfour.save');
+//cahpter Five
+Route::get('supervisor/chapterFive/evaluation{student_id}', [EvaluationController::class, 'chapterFive'])->name('supervisor.chapterFive');
+Route::post('supervisor/feedbackFive/save', [EvaluationController::class, 'storeFive'])->name('supervisor.feedbackfive.save');
+
+//Update Approval Chapoter One
+Route::post('/update-approval', [ApprovalController::class, 'update']);
+//Update Approval Chapoter Two
+Route::post('/update-approval-two', [ApprovalController::class, 'updateTwo'])->name('update.two');
+//Update Approval Chapoter Three
+Route::post('/update-approval-three', [ApprovalController::class, 'updateThree']);
+//Update Approval Chapoter Four
+Route::post('/update-approval-four', [ApprovalController::class, 'updateFour']);
+//Update Approval Chapoter Five
+Route::post('/update-approval-five', [ApprovalController::class, 'updateFive']);
+
+
+//To check Certificates
+Route::get('/check-certificate', [ApprovalController::class, 'checkCertificate'])->name('check.certificate');
+
 
 
 //feeback

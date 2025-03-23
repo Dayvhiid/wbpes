@@ -49,6 +49,7 @@ class EvaluationController extends Controller
             'justificationOfStudy' => 'required|string',
             'significanceOfStudy' => 'required|string', // ✅ Fixed
             'organizationOfProject' => 'required|string', // ✅ Fixed
+            'chapterOneApproval' => 'required|string',
         ]);
     
         // Find student record
@@ -145,6 +146,37 @@ class EvaluationController extends Controller
             'testcases' => 'required|string',
             'systemDemonstration' => 'required|string',
             'researchObjectives' => 'required|string',
+        ]);
+    
+        // Find student record
+        $student = Chapter::find($request->student_id);
+    
+        if (!$student) {
+            return redirect()->back()->with('error', 'Student record not found.');
+        }
+    
+        // Update the record
+        $student->update($validatedData);
+    
+        return redirect()->back()->with('success', 'Feedback updated successfully!');
+    }
+
+    public function chapterFive($student_id){
+        $student = Chapter::findOrFail($student_id);
+        return view('supervisor.feedbackchapterFive', compact('student'));
+    }
+
+    public function storeFive(Request $request)
+    {
+        // Validate request
+        $validatedData = $request->validate([
+            'student_id' => 'required|exists:chapters,id',
+            'feedback' => 'required|string',
+            'summaryOfFindings' => 'required|string',
+            'contributionOfKnowledge' => 'required|string',
+            'limitationsOfStudy' => 'required|string',
+            'recommendationOfFutureWork' => 'required|string',
+            'conclusion' => 'required|string',
         ]);
     
         // Find student record

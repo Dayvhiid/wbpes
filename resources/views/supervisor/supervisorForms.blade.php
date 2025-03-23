@@ -185,12 +185,12 @@ button[type="submit"]:hover {
             @method('POST') 
             <input type="text" placeholder="Enter your full name" name="fullname">
             <input type="text" placeholder="Enter your identification number" name="id_no">
-            <div class="gender-options">
+            {{-- <div class="gender-options">
                 <button type="button">Male</button>
                 <button type="button">Female</button>
                 <button type="button">Non-binary</button>
                 <button type="button">Prefer not to say</button>
-            </div>
+            </div> --}}
             <select name="department">
                 <option value="">Select your Department</option>
                 <option value="accounting">Accounting</option>

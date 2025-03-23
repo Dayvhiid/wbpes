@@ -40,18 +40,18 @@
             ></div>
           </div>
         </header>
-        <form action="{{ route('supervisor.feedbackone.save') }}" method="POST">
+        <form action="{{ route('supervisor.feedbackfour.save') }}" method="POST">
             @csrf
             @method('POST')    
             <input type="hidden" name="student_id" value="{{ $student->id }}">
         <div class="px-40 flex flex-1 justify-center py-5">
           <div class="layout-content-container flex flex-col w-[512px] max-w-[512px] py-5 max-w-[960px] flex-1">
             <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#111418] tracking-light text-[32px] font-bold leading-tight min-w-72">Evaluate work</p></div>
-            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Background of the study</h3>
+            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">System Implementation</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <select
-                 name="backgroundOfStudy"
+                 name="systemImplementation"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-14 bg-[image:--select-button-svg] placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 >
                   <option value="one">Select an option</option>
@@ -60,11 +60,11 @@
                 </select>
               </label>
             </div>
-            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Statement of the problem</h3>
+            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">User Interface (UI) and User experience (UX)</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <select
-                name="statementOfProblem"
+                name="uiux"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-14 bg-[image:--select-button-svg] placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 >
                   <option value="one">Select an option</option>
@@ -73,7 +73,7 @@
                 </select>
               </label>
             </div>
-            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Aims and objectives</h3>
+            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Test Cases and System Validation</h3>
             <div class="flex flex-wrap gap-3 p-4">
               {{-- <label
                 class="text-sm font-medium leading-normal flex items-center justify-center rounded-xl border border-[#dce0e5] px-4 h-11 text-[#111418] has-[:checked]:border-[3px] has-[:checked]:px-3.5 has-[:checked]:border-[#1980e6] relative cursor-pointer"
@@ -88,20 +88,20 @@
                 <input type="radio" class="invisible absolute" name="8639b14a-4b41-4b4e-8f85-af6d10ccd946" />
               </label> --}}
               <select
-                  name="aimsAndObjectives"
+                  name="testcases"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-14 bg-[image:--select-button-svg] placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 >
                   <option value="one">Select an option</option>
                   <option value="meets requirements">Satisfy Requirements</option>
-                  <option value="does not satisfy requirement">Does Not satisfy requirements</option>
+                  <option value="does not satisfy requirement">Does Not stisfy requirements</option>
                 </select>
             </div>
             {{-- Here --}}
-            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Justification Of the Study</h3>
+            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">System Demonstration</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <select
-                  name="justificationOfStudy"
+                  name="systemDemonstration"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-14 bg-[image:--select-button-svg] placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 >
                   <option value="one">Select an option</option>
@@ -111,11 +111,11 @@
               </label>
             </div>
             {{-- Here --}}
-            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Significance of the study</h3>
+            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Research Objective</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <select
-                   name="significanceOfStudy"
+                   name="researchObjective"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-14 bg-[image:--select-button-svg] placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 >
                   <option value="one">Select an option</option>
@@ -125,19 +125,19 @@
               </label>
             </div>
             {{-- Here --}}
-            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Organization of the Project</h3>
+            {{-- <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Ethical Consideration</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <select
-                   name="organizationOfProject"
+                   name="ethicalConsoderation"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none h-14 bg-[image:--select-button-svg] placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 >
                   <option value="one">Select an option</option>
                   <option value="meets requirements">Satisfy Requirements</option>
-                  <option value="does not satisfy requirement">Does Not satisfy requirements</option>
+                  <option value="does not satisfy requirement">Does Not stisfy requirements</option>
                 </select>
               </label>
-            </div>
+            </div> --}}
 
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
@@ -146,24 +146,11 @@
                   name="feedback"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] focus:border-none min-h-36 placeholder:text-[#637588] p-4 text-base font-normal leading-normal"
                 ></textarea>
-
-                <label>
-                  <input type="checkbox" name="chapterOneApproval" value="approved">
-                  Approve Project
-              </label>
-
             </form>
               </label>
             </div>
 
-            {{-- <button class="bt-2" type="submit" >Submit</button> --}}
-
-            <button
-            type="submit"
-            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-blue-500 text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue-600"
-        >
-            Submit
-        </button>
+            <button class="bt-2" type="submit" >Submit</button>
           </div>
         </div>
       </div>

@@ -58,5 +58,10 @@ class Chapter extends Model
         'limitationsOfStudy',
         'recommendationOfFutureWork',
         'conclusion',
+        'chapterOneApproval',
+        'chapterTwoApproval',
+        'chapterThreeApproval',
+        'chapterFourApproval',
+        'chapterFiveApproval',
     ];
 }
