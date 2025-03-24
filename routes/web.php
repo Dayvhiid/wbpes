@@ -20,6 +20,7 @@ use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\StudentDataController;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\StudentGroupController;
 use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\StudentT;
 
@@ -121,7 +122,7 @@ Route::get('/evaluation/{evaluation_id}', [EvaluationController::class, 'index']
 Route::get('/studentDataForm', [StudentController::class, 'studentDataForm'])->name('studentData');
 Route::post('/studentDataForm/save', [StudentController::class, 'studentSave'])->name('studentFormData.save');// the registeration form data capture
 Route::get('student/certificate', [StudentController::class, 'certificate'])->name('student.certificate');
-
+Route::post('/route', [LogoutController::class, 'logout'])->name('logout');//students logout
 
 //video Call Routes
 

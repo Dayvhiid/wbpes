@@ -43,8 +43,8 @@
             <div class="flex items-center gap-9">
               <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Dashboard</a>
               <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Projects</a>
-              <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Evaluators</a>
-              <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Settings</a>
+              {{-- <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Evaluators</a>
+              <a class="text-[#0e141b] text-sm font-medium leading-normal" href="#">Settings</a> --}}
               <a class="text-[#0e141b] text-sm font-medium leading-normal" href="/group-students">Group Students</a>
             </div>
             <button
@@ -176,8 +176,8 @@
                   </svg>
                 </div>
                 <div class="flex flex-col justify-center">
-                  <p class="text-[#0e141b] text-base font-medium leading-normal line-clamp-1">Unassigned Projects</p>
-                  <p class="text-[#4e7397] text-sm font-normal leading-normal line-clamp-2">UI Style Guide</p>
+                  <p class="text-[#0e141b] text-base font-medium leading-normal line-clamp-1"></p>
+                  <p class="text-[#4e7397] text-sm font-normal leading-normal line-clamp-2"></p>
                 </div>
               </div>
               <div class="shrink-0">
@@ -213,15 +213,14 @@
               </div>
             </div>
             <div class="px-4">
-              <label class="flex gap-x-3 py-3 flex-row">
+              {{-- <label class="flex gap-x-3 py-3 flex-row">
                 <input
                   type="checkbox"
                   class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1980e6] checked:bg-[#1980e6] checked:border-[#1980e6] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
                   checked=""
                 />
                 {{-- <p class="text-[#0e141b] text-base font-normal leading-normal">Notify evaluators of new assignments</p> --}}
-              </label>
-            </div>
+              </label> 
           </div>
         </div>
       </div>

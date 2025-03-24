@@ -560,8 +560,13 @@ thead th{
               <button type="button" class="button"   onclick="window.location='/supervisor/search'">Search</button>
               <button type="button" class="button" onclick="window.location='/chats'">Chat</button>
               <button type="button" class="button" onclick="window.location='/video-conferencing'">Video Conferencing</button>
-              <button type="button" class="button">Profile</button>
+              {{-- <button type="button" class="button">Profile</button> --}}
               <button type="button" class="button" onclick="window.location='{{ route('supervisor.studentList') }}'">Student List</button>
+              {{-- <form action="{{ route('logout') }}" method="POST" >
+                @csrf
+                @method('POST')
+                <button type="button" class="button" >Logout</button>
+              </form>   --}}
             </nav>
           </nav> 
     </header>

@@ -162,15 +162,16 @@
         </div>
         <h3 class="profile-title">Group Members</h3>
         <div class="profile-details">
-            @foreach($groupStudents as $groupStudent)
+            {{-- @foreach($groupStudents as $groupStudent) --}}
                 <div class="detail-card">
                     <i class="fas fa-user detail-icon"></i>
                     <div class="detail-info">
                         <span class="detail-title">Name</span>
-                        <span class="detail-subtitle">{{$groupStudent->name}}</span>
+                        <span class="detail-subtitle"> Kunle Godspower</span>
+                        <span class="detail-subtitle"> Dada Obafemi</span>
                     </div>
                 </div>
-            @endforeach
+            {{-- @endforeach --}}
         </div>
             
         </div>
