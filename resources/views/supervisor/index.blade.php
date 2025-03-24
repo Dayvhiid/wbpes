@@ -11,7 +11,6 @@
 </head>
 
 <body>
-    <x-notify::notify />
     @notifyJs
     <div class="container" id="container">
         <div class="form-container sign-up">
@@ -37,6 +36,7 @@
             <form action="{{ route('supervisor.check')}}" method="POST">
                 @csrf
                 @method('POST')
+              
                 <h1>Sign In</h1>
                 {{-- <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>

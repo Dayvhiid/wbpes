@@ -343,14 +343,14 @@ tbody tr:hover {
 							</tr>
 						</thead>
                         <tbody>
-                            @foreach($studentList as $student)
-                                <tr>
-                                    <td class="column1">{{ $student->name }}</td>
-                                    <td class="column2">{{ $student->matric_no }}</td>
-                                    <td class="column3">{{ $student->group_name }}</td>
-                                    <td class="column4">{{$student->supervisor}}</td>
-                                </tr>
-                            @endforeach
+                          @foreach($studentList->unique('matric_no') as $student)
+                              <tr>
+                                  <td class="column1">{{ $student->name }}</td>
+                                  <td class="column2">{{ $student->matric_no }}</td>
+                                  <td class="column3">{{ $student->group_name }}</td>
+                                  <td class="column4">{{ $student->supervisor }}</td>
+                              </tr>
+                          @endforeach
                         </tbody>
 					</table>
 				</div>

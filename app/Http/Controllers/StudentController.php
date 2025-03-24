@@ -18,7 +18,7 @@ use Symfony\Contracts\Service\Attribute\Required;
 class StudentController extends Controller
 {
     public function index(){
-        notify()->success('Laravel Notify is awesome!');
+        // notify()->success('Laravel Notify is awesome!');
         return view('student.studentSignUp');
     }
 
@@ -51,8 +51,8 @@ class StudentController extends Controller
                 $user->save();
                 // return redirect(route('status.status'))->with('msg','account created sucesfully'); 
 
-                notify()->success('Please Sign In');
-                return view('student.studentSignUp');
+                // notify()->success('Please Sign In');
+                return redirect(route('student.index'));
              } else {
                 return redirect(route('status.status'))->with('msg','Passwords do not match'); 
              }
@@ -205,9 +205,19 @@ public function check(Request $request)
         if (!$student) {
             return redirect()->back()->with('error', 'Student not found.');
         }
-    
+
+        
         // Find all students in the same group
-        $groupStudents = GroupStudent::where('group_name', $results->group_name);
+        // $groupStudents = GroupStudent::where('group_name', $results->group_name);    
+
+
+        if ($results && isset($results->group_name)) {
+            $groupStudents = GroupStudent::where('group_name', $results->group_name)->get();
+            } else {
+                // Handle the case where $results is null
+                return redirect(route('status.status'))->with('msg', 'Please Wait for the Admin to assign you a group');
+            }
+
     
         // Pass the student data and group students to the view
         return view('student.profile', compact('student', 'results', 'groupStudents'));
@@ -250,7 +260,7 @@ public function check(Request $request)
     // Validate the input data
     $request->validate([
         'name' => 'required|string|max:255',
-      'matricNo' => 'required|unique:student_data,matric_no',
+    //   'matricNo' => 'required|unique:student_data,matric_no',
         'phone_number' => 'nullable|string|max:15',
         'department' => 'nullable|string|max:100',
         'project_title' => 'nullable|string|max:255',
@@ -285,7 +295,7 @@ public function check(Request $request)
         [
             'name' => $request->input('name'),
             'user_id' => $userId,
-            'matricNo' => $request->input('matricNo'),
+            // 'matricNo' => $request->input('matricNo'),
             'email' => $user_email,
             'phone_number' => $request->input('phone_number'),
             'department' => $request->input('department'),

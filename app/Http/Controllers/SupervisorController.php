@@ -141,7 +141,10 @@ class SupervisorController extends Controller
                 $user->save();
                 Session::put('user_email', $user->email);
                 Session::put('user_password', $user->password);
-                return redirect(route('status.status'))->with('msg','account created sucesfully'); 
+                // return redirect(route('status.status'))->with('msg','account created sucesfully'); 
+
+                notify()->success('Please Sign In.');
+                return redirect(route('supervisor.index'));
              } else {
                 return redirect(route('status.status'))->with('msg','Passwords do not match'); 
              }

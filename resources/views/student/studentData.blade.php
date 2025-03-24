@@ -157,7 +157,6 @@ form .button input:hover {
   @notifyCss
 </head>
 <body>
-  <x-notify::notify />
   @notifyJs
   <div class="container">
     <!-- Title section -->
