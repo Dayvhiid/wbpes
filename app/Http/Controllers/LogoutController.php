@@ -13,7 +13,8 @@ class LogoutController extends Controller
         $request->session()->regenerateToken();
       
 
-        return view('landpage');
+        // return view('landpage');
+        return redirect('/login');
 
     }
 }

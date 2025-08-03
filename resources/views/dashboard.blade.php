@@ -12,6 +12,39 @@
                     {{ __("You're logged in!") }}
                 </div>
             </div>
-        </div>
+            {{-- <div class="flex items-center">
+                <!-- Other nav links -->
+                
+                <!-- ADD Logout Button here -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="ml-4 text-sm text-gray-700 dark:text-gray-300 hover:underline">
+                        Logout
+                    </button>
+                </form>
+        </div> --}}
+
+        <nav class="bg-white dark:bg-gray-800">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between">
+                    <div>
+                        <!-- Logo / Links -->
+                    </div>
+        
+                    <div class="flex items-center">
+                        <!-- Other nav links -->
+                        
+                        <!-- ADD Logout Button here -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="ml-4 text-sm text-gray-700 dark:text-gray-300 hover:underline">
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
     </div>
 </x-app-layout>

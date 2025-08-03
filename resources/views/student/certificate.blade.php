@@ -136,12 +136,12 @@
         <h1>CERTIFICATE</h1>
         <h3>OF COMPLETION</h3>
         <p><strong>IS PRESENTED TO :</strong></p>
-        <div class="recipient">{{$chapter->fullname}}</div>
+        <div class="recipient">{{auth()->user()->name}}</div>
         <p>For their completion of the evaluation of the project</p>
         <img class="badge" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Ambox_seal.svg/1024px-Ambox_seal.svg.png" width="80" alt="Seal">
         <div class="signatures">
             <div>ADMINISTRATOR</div>
-            <div>SUPERVISOR: <h3 >{{$chapter->project_supervisor}}</h2> </div>
+            <div>SUPERVISOR: <h3 >Dr Maitanmi</h2> </div>
             
         </div>
     </div>
